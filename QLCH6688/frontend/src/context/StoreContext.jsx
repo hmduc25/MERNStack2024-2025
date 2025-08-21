@@ -14,9 +14,11 @@ export const StoreContext = createContext(null);
 const StoreContextProvider = (props) => {
     const [cartItems, setCartItems] = useState({});
     // backend url
-    const url = 'http://localhost:6868/';
-    const urlImage = 'http://localhost:6868/images/';
-    // const [token, setToken] = useState('');
+    // 'http://localhost:6868/';
+    const url = import.meta.env.VITE_BACKEND_URL || process.env.VITE_BACKEND_URL;
+    // 'http://localhost:6868/images/';
+    const urlImage = import.meta.env.VITE_BACKEND_IMAGE_URL || process.env.VITE_BACKEND_IMAGE_URL;
+
     const [token, setToken] = useState('');
     const [product_list, setProductList] = useState([]);
 
