@@ -1,0 +1,36 @@
+# ignore all
+*
+
+# unignore all
+!*
+
+# unignore main folders
+!QLCH6688/
+
+# General ignores inside your project QLCH6688/
+# Node.js dependencies
+/QLCH6688/*/node_modules
+/QLCH6688/package-lock.json
+/QLCH6688/yarn.lock
+
+# Build output directories
+/QLCH6688/frontend/dist/
+/QLCH6688/frontend/dist-ssr/
+
+# Logs and misc
+/QLCH6688/logs/
+/QLCH6688/*.log
+/QLCH6688/npm-debug.log*
+/QLCH6688/yarn-debug.log*
+/QLCH6688/pnpm-debug.log*
+/QLCH6688/lerna-debug.log*
+
+# Image folder specific to frontend
+/QLCH6688/frontend/src/assets/images/hinh-anh-da-them/
+
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
