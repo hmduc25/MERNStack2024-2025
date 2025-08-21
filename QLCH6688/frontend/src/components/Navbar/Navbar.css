@@ -1,0 +1,209 @@
+/* ====================
+   Global Styles & Optimization
+   ==================== */
+.navbar a {
+    text-decoration: none;
+    color: #49557e;
+}
+
+.navbar {
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    will-change: transform, box-shadow;
+}
+
+.navbar .logo-link {
+    width: 150px;
+    height: 40px;
+    background: url('path/to/your/logo.png') no-repeat center;
+    background-size: contain;
+}
+
+/* ====================
+   Menu Items
+   ==================== */
+.navbar-menu {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.navbar-menu li {
+    cursor: pointer;
+}
+
+.navbar-menu li a {
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    color: #49557e;
+    text-decoration: none;
+    padding-bottom: 5px;
+    will-change: color, transform;
+}
+
+/* Hiệu ứng gạch chân mượt mà */
+.navbar-menu li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: tomato;
+    transition: width 0.3s ease-in-out;
+    will-change: width;
+}
+
+.navbar-menu a:hover,
+.navbar-menu a.active {
+    color: tomato;
+}
+
+.navbar-menu li a:hover::after {
+    width: 100%;
+}
+
+.navbar-menu .active::after {
+    width: 100%;
+}
+
+/* ====================
+   Navbar Right Section
+   ==================== */
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.navbar-right button {
+    background-color: transparent;
+    font-size: 16px;
+    color: #49557e;
+    border: 1px solid tomato;
+    padding: 10px 30px;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    will-change: background-color, color;
+    margin-right: 16px;
+}
+
+.navbar-right button:hover {
+    background-color: tomato;
+    color: white;
+}
+
+/* .navbar-search-icon {
+    position: relative;
+    will-change: transform;
+}
+
+.navbar-search-icon .dot {
+    position: absolute;
+    min-width: 10px;
+    min-height: 10px;
+    background-color: tomato;
+    border-radius: 5px;
+    top: -8px;
+    right: -8px;
+} */
+
+/* Dropdown Profile */
+.navbar-profile {
+    position: relative;
+    will-change: transform;
+}
+
+.navbar-profile-dropdown {
+    position: absolute;
+    right: 0;
+    z-index: 1;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    will-change: opacity, transform, visibility;
+}
+
+.navbar-profile:hover .navbar-profile-dropdown {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #fff2fe;
+    padding: 12px 25px;
+    border-radius: 4px;
+    border: 1px solid tomato;
+    outline: 2px solid #fff;
+    cursor: pointer;
+    list-style: none;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.navbar-profile-dropdown li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 160px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    will-change: color;
+}
+
+.navbar-profile-dropdown li:hover {
+    color: tomato;
+}
+
+.navbar-profile-dropdown img {
+    width: 20px;
+}
+
+/* ====================
+   Responsive Design
+   ==================== */
+@media (max-width: 1050px) {
+    .navbar .logo-link {
+        width: 140px;
+    }
+    .navbar-menu {
+        gap: 20px;
+        font-size: 17px;
+    }
+    .navbar-right {
+        gap: 30px;
+    }
+    .navbar-right button {
+        padding: 8px 25px;
+    }
+}
+
+@media (max-width: 900px) {
+    .navbar .logo-link {
+        width: 120px;
+    }
+    .navbar-menu {
+        gap: 15px;
+        font-size: 16px;
+    }
+    .navbar-right {
+        gap: 20px;
+    }
+    .navbar-right button {
+        padding: 7px 20px;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 750px) {
+    .navbar-menu {
+        display: none;
+    }
+}

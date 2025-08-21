@@ -1,0 +1,61 @@
+/* @font-face {
+  font-family: 'Magnificent';
+  src: url('../public/fonts/2/svn-magnificent/SVN-Magnificent/SVN-Magnificent.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+} */
+
+/* src: url('../public/fonts/DesignerVN-Poppins/DesignerVN-Poppins-Regular.ttf') format('truetype'); */
+/* src: url('../public/fonts/sendflowers-regular/SendFlowers-Regular.ttf') format('truetype'); */
+/* src: url('../public/fonts/2/svn-sigokae/SVN-Sigokae/SVN-Sigokae.otf') format('opentype'); */
+/* src: url('../public/fonts/2/svn-sofia/SVN-Sofia.ttf') format('truetype'); */
+/* src: url('../public/fonts/2/vn-sunshine-script/vn-sunshine-script.ttf') format('truetype'); */
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    /* font-family: 'Magnificent', sans-serif; */
+    scroll-behavior: smooth;
+}
+body {
+    min-height: 100vh;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+li,
+ul {
+    list-style: none;
+}
+.app {
+    margin: auto;
+}
+
+html ::-webkit-scrollbar {
+    border-radius: 0px;
+    width: 8px;
+}
+html *::-webkit-scrollbar {
+    border-radius: 0;
+    width: 8px;
+}
+html ::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.08);
+}
+html *::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(22, 24, 35, 0.25);
+}
+html ::-webkit-scrollbar-track {
+    border-radius: 0px;
+    background-color: rgba(0, 0, 0, 0);
+}
+html *::-webkit-scrollbar-track {
+    border-radius: 0;
+    background-color: rgba(0, 0, 0, 0);
+}

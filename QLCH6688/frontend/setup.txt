@@ -1,0 +1,18 @@
+# khởi tạo dự án
+npm create vite@latest
+
+Chọn react => js
+
+cd to folder
+npm install
+
+
+npm i react-router-dom axios
+
+
+npm run dev
+
+#xuất file excel
+npm install xlsx
+npm install file-saver
+

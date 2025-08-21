@@ -1,0 +1,187 @@
+/* ProductPopup.css */
+
+/* Định nghĩa các biến CSS để đồng bộ màu sắc */
+:root {
+    --primary-color: #4caf50; /* Màu chủ đạo, ví dụ màu xanh của button thêm sản phẩm */
+    --secondary-color: #f44336; /* Màu đỏ, ví dụ màu của button xóa */
+    --text-color: #333;
+    --text-light-color: #666;
+    --background-color: #f0f2f5;
+    --white: #fff;
+    --border-color: #ddd;
+    --box-shadow-color: rgba(0, 0, 0, 0.2);
+    --border-radius: 8px;
+    --font-family: 'Arial', sans-serif;
+}
+
+/* === Popup Overlay & Container === */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+/* Giao diện chung của popup */
+.product-popup {
+    background: var(--white);
+    width: 40%; /* Chiều rộng nhỏ hơn để phù hợp với màn hình */
+    max-width: 500px; /* Giới hạn chiều rộng tối đa */
+    height: 100%;
+    overflow-y: auto;
+    padding: 24px;
+    border-left: 1px solid var(--border-color);
+    box-shadow: -4px 0 15px var(--box-shadow-color);
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 1001;
+    transform: translateX(100%);
+    animation: slideIn 0.5s forwards cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* === Header & Close Button === */
+.popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 16px;
+}
+
+.popup-title {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.close-button {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--text-light-color);
+    transition: color 0.3s ease;
+}
+
+.close-button:hover {
+    color: var(--secondary-color);
+    transform: scale(1.1);
+}
+
+/* === Product Details === */
+.popup-body {
+    font-family: var(--font-family);
+    color: var(--text-color);
+}
+
+.product-image-container {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.product-image-container .product-image {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-image-container .product-image:hover {
+    transform: scale(1.25);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.detail-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--border-color);
+}
+
+.detail-label {
+    font-weight: 600;
+    color: var(--text-light-color);
+    margin: 0;
+}
+
+.detail-value {
+    margin: 0;
+    text-align: right;
+    flex-shrink: 0; /* Ngăn giá trị bị co lại */
+}
+
+.selling-price {
+    font-weight: bold;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+
+.price-row {
+    justify-content: flex-start;
+    gap: 16px;
+}
+
+.price-toggle-button {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.price-toggle-button:hover {
+    background-color: #388e3c;
+}
+
+/* === Supplier & Batches Info === */
+.supplier-info,
+.batches-info {
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 2px solid var(--primary-color);
+}
+
+.supplier-title,
+.batches-title {
+    color: var(--primary-color);
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 16px;
+}
+
+.batch-item {
+    margin-bottom: 16px;
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--border-color);
+}
+
+.no-batches {
+    text-align: center;
+    color: var(--text-light-color);
+    font-style: italic;
+}

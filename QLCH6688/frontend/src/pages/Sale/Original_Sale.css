@@ -1,0 +1,637 @@
+/* .sale-container {
+    display: grid;
+    grid-template-columns: 7fr 3fr;
+}
+
+.sale-container #search-input {
+    height: 40px;
+    width: 450px;
+    margin-right: 12px;
+}
+
+.sale-btn-tim-kiem {
+    border: none;
+    color: #fff;
+    background-color: tomato;
+    width: max(15vw, 200px);
+    padding: 12px 0;
+    border-radius: 4px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.suggestion-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #ccc;
+    overflow-y: auto;
+    background: #fff;
+    max-width: 600px;
+    max-height: 480px;
+}
+
+.suggestion-item {
+    z-index: 9999;
+}
+
+.suggestion-item-price {
+    font-weight: 600;
+    color: #0070f4;
+}
+
+.list-item {
+    padding: 8px 12px;
+    border-bottom: 1px solid #eee;
+}
+
+.list-item:hover {
+    background-color: #f0f0f0;
+}
+.cart-container {
+}
+
+.cart-container hr {
+    max-width: 964px;
+    margin-left: 0;
+}
+
+.cart-items-title {
+    display: grid;
+    grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr 0.5fr;
+    align-items: center;
+    color: grey;
+    font-size: max(1vw, 12px);
+    max-width: 964px;
+    max-height: 80px;
+}
+
+.cart-items-item {
+    margin: 10px 0;
+    color: #000;
+}
+
+.cart-items-name {
+    margin-left: 10px;
+}
+
+.cart-items-name:hover {
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.cart-items-item .quantity {
+    padding-left: 14px;
+}
+
+.product-item-counter {
+    max-width: 110px;
+    min-width: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 6px;
+    border-radius: 50px;
+    background-color: #fff;
+}
+
+.product-item-counter img {
+    width: 30px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.cart-items-item .img-san-pham {
+    width: 75px;
+    height: 75px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.cart-items-item .img-san-pham:hover {
+    cursor: pointer;
+}
+
+.cart-items-item .cross {
+    cursor: pointer;
+}
+
+.cart-items-item .cross:hover {
+    font-weight: bold;
+}
+
+.cart-bottom {
+    margin-top: 80px;
+    display: flex;
+    justify-content: space-between;
+    gap: max(12vw, 20px);
+}
+
+.cart-total {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-left: 12px;
+    margin-right: 12px;
+}
+
+.cart-total h5 {
+    margin: 10px 0;
+}
+.cart-total button {
+    border: none;
+    color: #fff;
+    background-color: tomato;
+    width: max(15vw, 200px);
+    padding: 12px 0;
+    border-radius: 4px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.cart-total-details {
+    display: flex;
+    justify-content: space-between;
+    color: #555;
+    margin: 10px 0;
+}
+
+.cart-promocode {
+    flex: 1;
+}
+
+.cart-promocode p {
+    color: #333;
+}
+
+.cart-promocode-input {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #eaeaea;
+    border-radius: 4px;
+}
+
+.cart-promocode-input input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    padding-left: 10px;
+}
+
+.cart-promocode-input button {
+    width: max(10vw, 150px);
+    padding: 12px 5px;
+    background-color: #000;
+    border: none;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-drag: none;
+} */
+
+:root {
+    --primary-color: #3b82f6; /* Màu chủ đạo */
+    --secondary-color: #60a5fa; /* Màu phụ */
+    --accent-color: #ef4444; /* Màu nhấn */
+    --text-color: #333; /* Màu chữ */
+    --bg-light: #f3f4f6; /* Nền sáng */
+    --border-color: #e5e7eb; /* Màu viền */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.sale-container {
+    display: grid;
+    grid-template-columns: 7fr 3fr;
+    gap: 20px;
+    padding: 20px;
+    background-color: var(--bg-light);
+    min-height: 100vh;
+}
+
+.sale-left,
+.sale-right {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: var(--shadow-md);
+}
+
+.sale-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.sale-search-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.sale-search-input {
+    flex: 1;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.sale-search-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.sale-btn-tim-kiem {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.sale-btn-tim-kiem:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+.sale-btn-tim-kiem:active {
+    transform: translateY(0);
+}
+
+/* Suggestions */
+.suggestion-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow-y: auto;
+    background: #fff;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    max-height: 300px;
+    box-shadow: var(--shadow-md);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.list-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px 15px;
+    border-bottom: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.list-item:last-child {
+    border-bottom: none;
+}
+
+.list-item:hover {
+    background-color: var(--bg-light);
+}
+
+.suggestion-item-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.suggestion-item-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.suggestion-item-name {
+    font-weight: 600;
+}
+
+.suggestion-item-barcode {
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.suggestion-item-price {
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-left: auto;
+}
+
+.sale-error-message {
+    color: var(--accent-color);
+    font-size: 14px;
+    margin-top: 5px;
+    animation: slideIn 0.3s ease-in-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.sale-cart-list {
+    flex: 1;
+    margin-top: 20px;
+    overflow-y: auto;
+}
+
+.cart-item-container {
+    border-bottom: 1px solid var(--border-color);
+    padding: 15px 0;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    animation: slideUp 0.4s ease-in-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.cart-item-container:last-child {
+    border-bottom: none;
+}
+
+.cart-item-image {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.cart-item-image:hover {
+    transform: scale(1.05);
+}
+
+.cart-item-details {
+    flex: 1;
+}
+
+.cart-item-name {
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.cart-item-name:hover {
+    color: var(--primary-color);
+}
+
+.cart-item-price-per-unit {
+    color: #6b7280;
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+.cart-item-counter {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: var(--bg-light);
+    border-radius: 50px;
+    padding: 4px;
+    margin-left: auto;
+}
+
+.cart-item-counter img {
+    border-radius: 20px;
+    border: 0.5px solid #ccc;
+    width: 28px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.cart-item-counter img:hover {
+    transform: scale(1.1);
+}
+
+.cart-item-quantity-input {
+    width: 40px;
+    text-align: center;
+    border: none;
+    background-color: transparent;
+    font-size: 16px;
+    font-weight: 500;
+    outline: none;
+    -moz-appearance: textfield;
+}
+
+/* Ẩn nút mũi tên mặc định trên Chrome, Safari, Edge, Opera */
+.cart-item-quantity-input::-webkit-outer-spin-button,
+.cart-item-quantity-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0; /* Đôi khi cần thiết để loại bỏ khoảng trống */
+}
+
+.cart-item-total-price {
+    font-weight: 700;
+    color: var(--primary-color);
+    min-width: 120px;
+    text-align: right;
+}
+
+/* Cart Summary (Hóa đơn) */
+.sale-right {
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-summary {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-summary h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.summary-row p,
+.summary-row label,
+.summary-row b {
+    margin: 0;
+}
+
+.summary-row input {
+    padding: 8px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    text-align: right;
+    width: 120px;
+    transition: border-color 0.3s ease;
+}
+
+.summary-row input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.summary-row hr {
+    border: none;
+    border-top: 1px dashed var(--border-color);
+    margin: 10px 0;
+}
+
+.summary-total b {
+    font-size: 20px;
+    color: var(--accent-color);
+}
+
+.split-line {
+    margin-top: 15px;
+}
+
+.payment-suggestion-container {
+    margin-top: 20px;
+}
+
+.payment-suggestion-container h4 {
+    margin-bottom: 10px;
+    color: var(--text-color);
+}
+
+.payment-suggestion-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.payment-suggestion-btn {
+    background-color: var(--bg-light);
+    border: 1px solid var(--border-color);
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.payment-suggestion-btn:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.payment-warning {
+    color: var(--accent-color);
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: 500;
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    50% {
+        transform: translateX(5px);
+    }
+    75% {
+        transform: translateX(-5px);
+    }
+}
+
+.checkout-btn {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 15px 0;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: auto;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.checkout-btn:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+.checkout-btn:active {
+    transform: translateY(0);
+}
+
+/* Thêm style cho phần tiền thừa để tạo hiệu ứng */
+.animated-money {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #007bff; /* Tùy chỉnh màu sắc để nổi bật */
+    transition: transform 0.3s ease, font-size 0.3s ease; /* Thêm hiệu ứng chuyển đổi */
+    animation: scaleAndFade 0.3s ease-in-out; /* Hiệu ứng nhẹ khi số tiền thay đổi */
+}
+
+/* Các keyframes cho animation */
+@keyframes scaleAndFade {
+    0% {
+        transform: scale(0.9);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}

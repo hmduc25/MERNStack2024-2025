@@ -1,0 +1,325 @@
+/* Container chính cho toàn bộ overlay */
+.overlay-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+/* Modal chính chứa nội dung hóa đơn */
+.invoice-modal {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    width: 95%;
+    max-width: 1200px; /* Tăng tối đa chiều ngang để thoải mái thao tác hơn */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    position: relative;
+    max-height: 95vh;
+    overflow-y: auto;
+    animation: fadeIn 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    overflow: hidden;
+}
+
+/* Animation khi modal xuất hiện */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Nút đóng */
+.invoice-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #999;
+    transition: color 0.3s ease;
+}
+
+.invoice-close-btn:hover {
+    color: #333;
+}
+
+/* Header hóa đơn */
+.invoice-header {
+    text-align: center;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+}
+
+.invoice-header h2 {
+    color: var(--primary-color, #007bff);
+    margin: 0 0 5px 0;
+    font-size: 2rem;
+}
+
+.invoice-header p {
+    color: #666;
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* Main container cho layout 2 cột */
+.invoice-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+}
+
+/* Panel trái: danh sách sản phẩm */
+.invoice-left-panel {
+    border-right: 1px solid #eee;
+    padding-right: 30px;
+}
+
+.invoice-left-panel h3 {
+    margin: 0 0 15px 0;
+    font-size: 1.25rem;
+    color: #333;
+}
+
+.invoice-body {
+    /* max-height: 400px; */
+    max-height: 350px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.invoice-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    table-layout: fixed; /* Đảm bảo các cột có độ rộng cố định */
+}
+
+.invoice-table th,
+.invoice-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+    word-wrap: break-word;
+}
+
+.invoice-table th {
+    background-color: #f8f9fa;
+    color: var(--text-color, #495057);
+    font-weight: 600;
+}
+
+/* Thiết lập chiều rộng cụ thể cho các cột */
+.invoice-table th:nth-child(1),
+.invoice-table td:nth-child(1) {
+    width: 5%; /* Cột STT */
+    text-align: center;
+}
+
+.invoice-table th:nth-child(2),
+.invoice-table td:nth-child(2) {
+    width: 45%;
+    text-align: center;
+}
+
+.invoice-table th:nth-child(3),
+.invoice-table td:nth-child(3) {
+    width: 10%; /* Cột Số lượng */
+    text-align: center;
+}
+
+.invoice-table th:nth-child(4),
+.invoice-table td:nth-child(4) {
+    width: 20%; /* Cột Đơn giá */
+}
+
+.invoice-table th:nth-child(5),
+.invoice-table td:nth-child(5) {
+    width: 20%; /* Cột Thành tiền */
+}
+
+.invoice-table tbody tr:nth-child(even) {
+    background-color: #fcfcfc;
+}
+
+/* Panel phải: chi tiết hóa đơn và nút hành động */
+.invoice-right-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.invoice-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.invoice-summary .summary-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1rem;
+    color: #555;
+    transition: transform 0.3s ease;
+}
+
+.invoice-summary .summary-row:hover {
+    transform: translateX(5px);
+}
+
+.invoice-summary .total-amount {
+    font-weight: 700;
+    font-size: 1.4rem;
+    color: var(--accent-color, #dc3545);
+}
+
+/* Phần phương thức thanh toán */
+.payment-method-container {
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: 20px;
+}
+
+.payment-method-container p {
+    font-weight: 600;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+/* Slide toggle switch */
+.slide-toggle-switch {
+    position: relative;
+    width: 250px;
+    height: 50px;
+    background-color: #e9ecef;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    transition: background-color 0.3s ease;
+    margin: 0 auto;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.slide-toggle-switch .slide-toggle-handle {
+    position: absolute;
+    width: calc(50% - 5px);
+    height: calc(100% - 10px);
+    background-color: var(--primary-color, #007bff);
+    border-radius: 50px;
+    left: 5px;
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.slide-toggle-switch.bank .slide-toggle-handle {
+    transform: translateX(100%);
+}
+
+.slide-toggle-switch .toggle-option {
+    flex: 1;
+    background: none;
+    border: none;
+    color: #6c757d;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    z-index: 10;
+}
+
+.slide-toggle-switch .toggle-option.active {
+    color: #fff;
+    font-weight: 700;
+}
+
+/* Các nút hành động */
+.invoice-action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 8px;
+}
+
+.invoice-action-btn {
+    border: none;
+    padding: 16px 10px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    flex: 1;
+    max-width: 250px;
+}
+
+.invoice-paid {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.invoice-pending {
+    background-color: #ffc107;
+    color: #fff;
+}
+
+.invoice-cancel {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.invoice-action-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Thêm phần cảm ơn cuối hóa đơn */
+.invoice-footer {
+    text-align: center;
+    font-style: italic;
+    color: #6c757d;
+    font-size: 0.95rem;
+    padding-top: 4px;
+    border-top: 1px dashed #e9ecef;
+}
+
+/* Responsive cho màn hình nhỏ */
+@media (max-width: 768px) {
+    .invoice-content {
+        grid-template-columns: 1fr;
+    }
+
+    .invoice-left-panel {
+        border-right: none;
+        padding-right: 0;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+    }
+
+    /* Đảm bảo các nút vẫn căn giữa trên mobile */
+    .invoice-action-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .invoice-action-btn {
+        width: 100%;
+        max-width: none;
+    }
+}
