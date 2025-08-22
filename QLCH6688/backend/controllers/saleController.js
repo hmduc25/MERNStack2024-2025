@@ -146,4 +146,34 @@ const getLastInvoiceCode = async (req, res) => {
     }
 };
 
-export { sellProducts, getInvoices, getLastInvoiceCode };
+const updateInvoiceStatus = async (req, res) => {
+    const { id } = req.params;
+    const { status } = req.body;
+
+    // Kiểm tra tính hợp lệ của trạng thái mới
+    if (!status || (status !== 'completed' && status !== 'pending')) {
+        return res.status(400).json({ success: false, message: 'Trạng thái không hợp lệ.' });
+    }
+
+    try {
+        const updatedInvoice = await invoiceModel.findByIdAndUpdate(
+            id,
+            { status: status },
+            { new: true, runValidators: true },
+        );
+
+        if (!updatedInvoice) {
+            return res.status(404).json({ success: false, message: 'Không tìm thấy hóa đơn.' });
+        }
+
+        res.json({
+            success: true,
+            message: 'Cập nhật trạng thái hóa đơn thành công.',
+            data: updatedInvoice,
+        });
+    } catch (error) {
+        res.status(500).json({ success: false, message: `Lỗi khi cập nhật trạng thái: ${error.message}` });
+    }
+};
+
+export { sellProducts, getInvoices, getLastInvoiceCode, updateInvoiceStatus };

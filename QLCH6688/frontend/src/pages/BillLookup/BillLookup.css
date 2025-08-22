@@ -305,6 +305,37 @@
     border-bottom: none;
 }
 
+.details-item__button-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.confirm-payment-button {
+    padding: 6px 16px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.confirm-payment-button:hover {
+    background-color: #218838;
+}
+
+.status-completed {
+    color: #007bff;
+    font-weight: bold;
+}
+
+.status-pending {
+    color: #806412;
+    font-weight: bold;
+}
+
 .product-name {
     font-weight: 500;
 }

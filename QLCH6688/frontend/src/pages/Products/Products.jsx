@@ -201,7 +201,6 @@ const Products = () => {
         );
     }, [currentPage, totalPages, paginate]);
 
-    // 👇 BẮT ĐẦU PHẦN RENDER CÓ ĐIỀU KIỆN 👇
     if (isLoading) {
         return <StatusDisplaySpinner isLoading={true} loadingText="Đang tải danh sách sản phẩm..." />;
     }

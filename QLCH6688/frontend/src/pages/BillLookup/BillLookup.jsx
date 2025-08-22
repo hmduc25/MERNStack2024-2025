@@ -1,15 +1,18 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import './BillLookup.css';
 
 import useInvoicesApi from '../../hooks/useInvoicesApi';
 import { StoreContext } from '../../context/StoreContext';
 import { useBillForm } from '../../hooks/useBillForm';
+import StatusDisplaySpinner from '../../components/StatusDisplaySpinner/StatusDisplaySpinner';
 
 const BillLookup = () => {
     const { url } = useContext(StoreContext);
-    const apiUrl = `${url}api/hoadon/danhsachhoadon`;
+    const { invoices, isLoading, error, fetchInvoices, updateInvoiceStatus } = useInvoicesApi(url);
 
-    const { invoices, isLoading, error } = useInvoicesApi(url);
+    useEffect(() => {
+        fetchInvoices();
+    }, []);
 
     const {
         expandedInvoiceId,
@@ -34,11 +37,29 @@ const BillLookup = () => {
         thisMonthCount,
     } = useBillForm(invoices);
 
-    // 🌟 Hiển thị giao diện dựa trên trạng thái isLoading và error
-    if (isLoading) {
+    const handleConfirmPayment = async (invoiceId, event) => {
+        // Ngăn chặn sự kiện nổi bọt để không làm đóng/mở chi tiết hóa đơn
+        event.stopPropagation();
+
+        // Tùy chọn: Thêm một cửa sổ xác nhận để tránh người dùng nhấp nhầm
+        const isConfirmed = window.confirm('Bạn có chắc chắn muốn xác nhận hóa đơn này đã thanh toán?');
+        if (!isConfirmed) {
+            return;
+        }
+
+        // Gọi hàm cập nhật từ hook
+        const result = await updateInvoiceStatus(invoiceId, 'completed');
+        if (result.success) {
+            alert('Cập nhật trạng thái thành công!');
+        } else {
+            alert('Cập nhật trạng thái thất bại. Vui lòng thử lại.');
+        }
+    };
+
+    if (isLoading || error) {
         return (
             <div className="bill-lookup">
-                <p className="loading-message">Đang tải dữ liệu hóa đơn... ⏳</p>
+                <StatusDisplaySpinner isLoading={isLoading} error={error} />
             </div>
         );
     }
@@ -166,6 +187,7 @@ const BillLookup = () => {
                                 <div className="invoice-card__left">
                                     <p className="invoice-card__code">
                                         <span>Mã hóa đơn:</span> {invoice.invoiceCode}
+                                        {invoice.status !== 'completed' && <span> (Chưa thanh toán)</span>}
                                     </p>
                                     <p className="invoice-card__cashier">
                                         <span>Thu ngân:</span> {invoice.cashier.name}
@@ -179,9 +201,23 @@ const BillLookup = () => {
                             <div className="invoice-card__details">
                                 <div className="details-item">
                                     <span className="details-item__label">Trạng thái:</span>
-                                    <span className="details-item__value">
-                                        {invoice.status === 'completed' ? 'Hoàn thành' : 'Chưa hoàn thành'}
-                                    </span>
+                                    <div className="details-item__button-container">
+                                        {invoice.status !== 'completed' && (
+                                            <button
+                                                className="confirm-payment-button"
+                                                onClick={(event) => handleConfirmPayment(invoice._id.$oid, event)}
+                                            >
+                                                Xác nhận đã thanh toán
+                                            </button>
+                                        )}
+                                        <span
+                                            className={`details-item__value ${
+                                                invoice.status === 'completed' ? 'status-completed' : 'status-pending'
+                                            }`}
+                                        >
+                                            {invoice.status === 'completed' ? 'Đã thanh toán' : 'Chưa thanh toán'}
+                                        </span>
+                                    </div>
                                 </div>
                                 <div className="details-item">
                                     <span className="details-item__label">Thanh toán:</span>
@@ -242,18 +278,18 @@ const BillLookup = () => {
 
                         <div className="footer__grid-semi">
                             <div className="footer__item footer__item--full-width">
-                                <span className="footer__label">Tổng tiền</span>
+                                <span className="footer__label">Tổng tiền của tất cả các hóa đơn</span>
                                 <span className="footer__value footer__value--revenue">
                                     {formatCurrency(stats.totalRevenue)}
                                 </span>
                             </div>
 
                             <div className="footer__item">
-                                <span className="footer__label">Hoàn thành</span>
+                                <span className="footer__label">hóa đơn đã thanh toán</span>
                                 <span className="footer__value footer__value--completed">{stats.completedOrders}</span>
                             </div>
                             <div className="footer__item">
-                                <span className="footer__label">Chưa hoàn thành</span>
+                                <span className="footer__label">hóa đơn chưa thanh toán</span>
                                 <span className="footer__value footer__value--pending">{stats.pendingOrders}</span>
                             </div>
                             <div className="footer__item">
