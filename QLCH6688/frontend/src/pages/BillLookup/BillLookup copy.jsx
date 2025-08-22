@@ -3,7 +3,6 @@ import './BillLookup.css';
 
 import useInvoicesApi from '../../hooks/useInvoicesApi';
 import { StoreContext } from '../../context/StoreContext';
-import { useBillForm } from '../../hooks/useBillForm';
 
 const BillLookup = () => {
     const { url } = useContext(StoreContext);
@@ -11,28 +10,160 @@ const BillLookup = () => {
 
     const { invoices, isLoading, error } = useInvoicesApi(url);
 
-    const {
-        expandedInvoiceId,
-        toggleRow,
-        filterPeriod,
-        setFilterPeriod,
-        selectedDate,
-        setSelectedDate,
-        handleDateChange,
-        pendingSearchTerm,
-        handleInputChange,
-        handleSearchClick,
-        sortCriterion,
-        sortOrder,
-        handleSort,
-        formatDate,
-        formatCurrency,
-        filteredAndSortedInvoices,
-        stats,
-        todayCount,
-        thisWeekCount,
-        thisMonthCount,
-    } = useBillForm(invoices);
+    const [expandedInvoiceId, setExpandedInvoiceId] = useState(null);
+    const [filterPeriod, setFilterPeriod] = useState('all');
+    const [selectedDate, setSelectedDate] = useState('');
+    const [pendingSearchTerm, setPendingSearchTerm] = useState('');
+    const [searchTerm, setSearchTerm] = useState('');
+    const [sortCriterion, setSortCriterion] = useState('date');
+    const [sortOrder, setSortOrder] = useState('desc');
+
+    const toggleRow = (invoiceId) => {
+        setExpandedInvoiceId(expandedInvoiceId === invoiceId ? null : invoiceId);
+    };
+
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' };
+        return date.toLocaleDateString('vi-VN', options);
+    };
+
+    const formatCurrency = (amount) => {
+        return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
+    };
+
+    const isToday = (invoiceDate) => {
+        const today = new Date();
+        const date = new Date(invoiceDate);
+        return (
+            date.getDate() === today.getDate() &&
+            date.getMonth() === today.getMonth() &&
+            date.getFullYear() === today.getFullYear()
+        );
+    };
+
+    const isThisWeek = (invoiceDate) => {
+        const today = new Date();
+        const date = new Date(invoiceDate);
+        const startOfWeek = new Date(today.setDate(today.getDate() - today.getDay()));
+        const endOfWeek = new Date(today.setDate(today.getDate() - today.getDay() + 6));
+        return date >= startOfWeek && date <= endOfWeek;
+    };
+
+    const isThisMonth = (invoiceDate) => {
+        const today = new Date();
+        const date = new Date(invoiceDate);
+        return date.getMonth() === today.getMonth() && date.getFullYear() === today.getFullYear();
+    };
+
+    const isSpecificDate = (invoiceDate, targetDate) => {
+        const date = new Date(invoiceDate);
+        const selected = new Date(targetDate);
+        return (
+            date.getDate() === selected.getDate() &&
+            date.getMonth() === selected.getMonth() &&
+            date.getFullYear() === selected.getFullYear()
+        );
+    };
+
+    const handleInputChange = (event) => {
+        setPendingSearchTerm(event.target.value);
+    };
+
+    const handleSearchClick = () => {
+        setSearchTerm(pendingSearchTerm);
+    };
+
+    const handleSort = (criterion) => {
+        if (sortCriterion === criterion) {
+            setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+        } else {
+            setSortCriterion(criterion);
+            setSortOrder('desc');
+        }
+    };
+
+    const handleDateChange = (event) => {
+        setSelectedDate(event.target.value);
+        setFilterPeriod('specificDate');
+    };
+
+    const filteredByPeriod = invoices.filter((invoice) => {
+        const invoiceDate = invoice.invoiceDate.$date;
+        switch (filterPeriod) {
+            case 'today':
+                return isToday(invoiceDate);
+            case 'thisWeek':
+                return isThisWeek(invoiceDate);
+            case 'thisMonth':
+                return isThisMonth(invoiceDate);
+            case 'specificDate':
+                return selectedDate ? isSpecificDate(invoiceDate, selectedDate) : true;
+            case 'all':
+            default:
+                return true;
+        }
+    });
+
+    const filteredBySearch = filteredByPeriod.filter((invoice) => {
+        const searchLower = searchTerm.toLowerCase();
+        return (
+            invoice.invoiceCode.toLowerCase().includes(searchLower) ||
+            invoice.cashier.name.toLowerCase().includes(searchLower)
+        );
+    });
+
+    const sortedInvoices = filteredBySearch.sort((a, b) => {
+        let comparison = 0;
+        if (sortCriterion === 'invoiceCode') {
+            comparison = a.invoiceCode.localeCompare(b.invoiceCode);
+        } else if (sortCriterion === 'date') {
+            comparison = new Date(a.invoiceDate.$date) - new Date(b.invoiceDate.$date);
+        } else if (sortCriterion === 'totalAmount') {
+            comparison = a.totalAmount - b.totalAmount;
+        }
+        return sortOrder === 'asc' ? comparison : -comparison;
+    });
+
+    const calculateStatistics = () => {
+        const invoicesToAnalyze = sortedInvoices;
+        const totalInvoices = invoicesToAnalyze.length;
+        const totalProductsSold = invoicesToAnalyze.reduce((sum, invoice) => {
+            return sum + invoice.items.reduce((itemSum, item) => itemSum + item.quantity, 0);
+        }, 0);
+        const totalRevenue = invoicesToAnalyze.reduce((sum, invoice) => sum + invoice.totalAmount, 0);
+        const completedOrders = invoicesToAnalyze.filter((inv) => inv.status === 'completed').length;
+        const pendingOrders = invoicesToAnalyze.filter((inv) => inv.status === 'pending').length;
+        const datesWithInvoices = new Set(
+            invoicesToAnalyze.map((invoice) => {
+                const date = new Date(invoice.invoiceDate.$date);
+                return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+            }),
+        );
+        const numberOfDays = datesWithInvoices.size;
+        const averageDailyRevenue = numberOfDays > 0 ? totalRevenue / numberOfDays : 0;
+        const transferPayments = invoicesToAnalyze.filter((inv) => inv.paymentDetails.method === 'Chuyển khoản').length;
+        const cashPayments = invoicesToAnalyze.filter((inv) => inv.paymentDetails.method === 'Tiền mặt').length;
+        const highestInvoice = invoicesToAnalyze.reduce(
+            (maxInvoice, currentInvoice) => {
+                return maxInvoice.totalAmount > currentInvoice.totalAmount ? maxInvoice : currentInvoice;
+            },
+            { totalAmount: -1 },
+        );
+        return {
+            totalInvoices,
+            totalProductsSold,
+            totalRevenue,
+            averageDailyRevenue,
+            completedOrders,
+            pendingOrders,
+            transferPayments,
+            cashPayments,
+            highestInvoice,
+        };
+    };
+
+    const stats = calculateStatistics();
 
     // 🌟 Hiển thị giao diện dựa trên trạng thái isLoading và error
     if (isLoading) {
@@ -60,7 +191,7 @@ const BillLookup = () => {
                     <div className="search-bar">
                         <input
                             type="text"
-                            placeholder="Mã hóa đơn hoặc tên thu ngân..."
+                            placeholder="Mã HĐ hoặc tên thu ngân..."
                             value={pendingSearchTerm}
                             onChange={handleInputChange}
                             className="search-bar__input"
@@ -120,7 +251,7 @@ const BillLookup = () => {
                             filterPeriod === 'today' ? 'filter-buttons__item--active' : ''
                         }`}
                     >
-                        Hôm nay ({todayCount})
+                        Hôm nay ({invoices.filter((inv) => isToday(inv.invoiceDate.$date)).length})
                     </button>
                     <button
                         onClick={() => {
@@ -131,7 +262,7 @@ const BillLookup = () => {
                             filterPeriod === 'thisWeek' ? 'filter-buttons__item--active' : ''
                         }`}
                     >
-                        Tuần này ({thisWeekCount})
+                        Tuần này ({invoices.filter((inv) => isThisWeek(inv.invoiceDate.$date)).length})
                     </button>
                     <button
                         onClick={() => {
@@ -142,7 +273,7 @@ const BillLookup = () => {
                             filterPeriod === 'thisMonth' ? 'filter-buttons__item--active' : ''
                         }`}
                     >
-                        Tháng này ({thisMonthCount})
+                        Tháng này ({invoices.filter((inv) => isThisMonth(inv.invoiceDate.$date)).length})
                     </button>
                     <div className="date-picker-container">
                         <span className="sort-buttons__label">Tìm kiếm theo ngày:</span>
@@ -153,8 +284,8 @@ const BillLookup = () => {
             </div>
 
             <div className="bill-list">
-                {filteredAndSortedInvoices.length > 0 ? (
-                    filteredAndSortedInvoices.map((invoice) => (
+                {sortedInvoices.length > 0 ? (
+                    sortedInvoices.map((invoice) => (
                         <div
                             key={invoice._id.$oid}
                             className={`invoice-card ${
@@ -217,7 +348,7 @@ const BillLookup = () => {
             </div>
 
             {/* Thêm footer thống kê */}
-            {filteredAndSortedInvoices.length > 0 && (
+            {sortedInvoices.length > 0 && (
                 <div className="bill-lookup__footer">
                     <h3 className="footer__title">Thống Kê Tổng Hợp</h3>
                     <div className="footer__grid">
