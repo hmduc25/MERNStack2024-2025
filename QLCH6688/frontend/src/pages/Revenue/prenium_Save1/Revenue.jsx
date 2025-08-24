@@ -46,6 +46,26 @@ const Revenue = () => {
         return amount.toLocaleString('vi-VN') + ' ₫';
     };
 
+    // Custom Tooltip
+    const CustomTooltip = ({ active, payload, label }) => {
+        if (active && payload && payload.length) {
+            return (
+                <div
+                    className="custom-tooltip"
+                    style={{ backgroundColor: '#fff', padding: '10px', border: '1px solid #ccc' }}
+                >
+                    <p className="label">{`${label}`}</p>
+                    {payload.map((entry, index) => (
+                        <p key={`item-${index}`} style={{ color: entry.color || '#000' }}>
+                            {`${entry.name}: ${formatCurrency(entry.value)}`}
+                        </p>
+                    ))}
+                </div>
+            );
+        }
+        return null;
+    };
+
     return (
         <div className="revenue">
             <h1 className="revenue__title">
@@ -111,7 +131,7 @@ const Revenue = () => {
                             <div className="revenue__list-content">
                                 <span className="revenue__list-label">Lợi nhuận trung bình/ngày:</span>
                                 <span className="revenue__list-value highlight-profit">
-                                    {formatCurrency(Math.round(data.averageDailyProfit))}
+                                    {formatCurrency(data.averageDailyProfit)}
                                 </span>
                             </div>
                         </li>
@@ -127,46 +147,28 @@ const Revenue = () => {
                 </div>
             </div>
 
-            <div className="time-stats">
-                <h2 className="time-stats__title">
-                    <FaCalendarAlt className="time-stats__title-icon" /> Thống Kê Theo Thời Gian
-                </h2>
-                <div className="time-stats__grid">
-                    <div className="time-stats__card">
-                        <h3 className="time-stats__card-period">Ngày</h3>
-                        <p className="time-stats__card-revenue">
-                            Doanh thu: {data.dailyStats[todayKey]?.revenue.toLocaleString('vi-VN') || 0} ₫
-                        </p>
-                        <p className="time-stats__card-profit">
-                            Lợi nhuận: {data.dailyStats[todayKey]?.profit.toLocaleString('vi-VN') || 0} ₫
-                        </p>
+            <div>
+                <h2>Thống Kê Theo Thời Gian</h2>
+                <div className="time-stats-grid">
+                    <div className="stat-card">
+                        <h3>Ngày</h3>
+                        <p>Doanh thu: {data.dailyStats[todayKey]?.revenue.toLocaleString('vi-VN') || 0} ₫</p>
+                        <p>Lợi nhuận: {data.dailyStats[todayKey]?.profit.toLocaleString('vi-VN') || 0} ₫</p>
                     </div>
-                    <div className="time-stats__card">
-                        <h3 className="time-stats__card-period">Tuần</h3>
-                        <p className="time-stats__card-revenue">
-                            Doanh thu: {data.weeklyStats[thisWeekKey]?.revenue.toLocaleString('vi-VN') || 0} ₫
-                        </p>
-                        <p className="time-stats__card-profit">
-                            Lợi nhuận: {data.weeklyStats[thisWeekKey]?.profit.toLocaleString('vi-VN') || 0} ₫
-                        </p>
+                    <div className="stat-card">
+                        <h3>Tuần</h3>
+                        <p>Doanh thu: {data.weeklyStats[thisWeekKey]?.revenue.toLocaleString('vi-VN') || 0} ₫</p>
+                        <p>Lợi nhuận: {data.weeklyStats[thisWeekKey]?.profit.toLocaleString('vi-VN') || 0} ₫</p>
                     </div>
-                    <div className="time-stats__card">
-                        <h3 className="time-stats__card-period">Tháng</h3>
-                        <p className="time-stats__card-revenue">
-                            Doanh thu: {data.monthlyStats[thisMonthKey]?.revenue.toLocaleString('vi-VN') || 0} ₫
-                        </p>
-                        <p className="time-stats__card-profit">
-                            Lợi nhuận: {data.monthlyStats[thisMonthKey]?.profit.toLocaleString('vi-VN') || 0} ₫
-                        </p>
+                    <div className="stat-card">
+                        <h3>Tháng</h3>
+                        <p>Doanh thu: {data.monthlyStats[thisMonthKey]?.revenue.toLocaleString('vi-VN') || 0} ₫</p>
+                        <p>Lợi nhuận: {data.monthlyStats[thisMonthKey]?.profit.toLocaleString('vi-VN') || 0} ₫</p>
                     </div>
-                    <div className="time-stats__card">
-                        <h3 className="time-stats__card-period">Năm</h3>
-                        <p className="time-stats__card-revenue">
-                            Doanh thu: {data.yearlyStats[thisYearKey]?.revenue.toLocaleString('vi-VN') || 0} ₫
-                        </p>
-                        <p className="time-stats__card-profit">
-                            Lợi nhuận: {data.yearlyStats[thisYearKey]?.profit.toLocaleString('vi-VN') || 0} ₫
-                        </p>
+                    <div className="stat-card">
+                        <h3>Năm</h3>
+                        <p>Doanh thu: {data.yearlyStats[thisYearKey]?.revenue.toLocaleString('vi-VN') || 0} ₫</p>
+                        <p>Lợi nhuận: {data.yearlyStats[thisYearKey]?.profit.toLocaleString('vi-VN') || 0} ₫</p>
                     </div>
                 </div>
             </div>
@@ -174,7 +176,7 @@ const Revenue = () => {
             <hr className="revenue__divider" />
 
             <div className="revenue__charts-container">
-                <div className="revenue__chart-item revenue__chart-item--full-width">
+                <div className="revenue__chart-item">
                     <h2 className="revenue__section-title">
                         <FaChartLine /> Doanh thu theo thời gian
                     </h2>
@@ -191,36 +193,33 @@ const Revenue = () => {
                         </LineChart>
                     </ResponsiveContainer>
                 </div>
-
-                <div className="revenue__charts-group">
-                    <div className="revenue__chart-item">
-                        <h2 className="revenue__section-title">
-                            <FaTags /> Doanh thu theo thương hiệu
-                        </h2>
-                        <ResponsiveContainer width="100%" height={300}>
-                            <BarChart data={data.brandRevenueData}>
-                                <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis dataKey="name" />
-                                <YAxis />
-                                <Tooltip formatter={(value) => formatCurrency(value)} />
-                                <Bar dataKey="Doanh_thu" fill="#8884d8" name="Doanh thu" />
-                            </BarChart>
-                        </ResponsiveContainer>
-                    </div>
-                    <div className="revenue__chart-item">
-                        <h2 className="revenue__section-title">
-                            <FaClipboardList /> Doanh thu theo danh mục
-                        </h2>
-                        <ResponsiveContainer width="100%" height={300}>
-                            <BarChart data={data.categoryRevenueData}>
-                                <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis dataKey="name" />
-                                <YAxis />
-                                <Tooltip formatter={(value) => formatCurrency(value)} />
-                                <Bar dataKey="Doanh_thu" fill="#ffc658" name="Doanh thu" />
-                            </BarChart>
-                        </ResponsiveContainer>
-                    </div>
+                <div className="revenue__chart-item">
+                    <h2 className="revenue__section-title">
+                        <FaTags /> Doanh thu theo thương hiệu
+                    </h2>
+                    <ResponsiveContainer width="100%" height={300}>
+                        <BarChart data={data.brandRevenueData}>
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="name" />
+                            <YAxis />
+                            <Tooltip formatter={(value) => formatCurrency(value)} />
+                            <Bar dataKey="Doanh_thu" fill="#8884d8" name="Doanh thu" />
+                        </BarChart>
+                    </ResponsiveContainer>
+                </div>
+                <div className="revenue__chart-item">
+                    <h2 className="revenue__section-title">
+                        <FaClipboardList /> Doanh thu theo danh mục
+                    </h2>
+                    <ResponsiveContainer width="100%" height={300}>
+                        <BarChart data={data.categoryRevenueData}>
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="name" />
+                            <YAxis />
+                            <Tooltip formatter={(value) => formatCurrency(value)} />
+                            <Bar dataKey="Doanh_thu" fill="#ffc658" name="Doanh thu" />
+                        </BarChart>
+                    </ResponsiveContainer>
                 </div>
             </div>
 

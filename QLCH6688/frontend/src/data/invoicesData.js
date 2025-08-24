@@ -3,11 +3,11 @@
 export const invoicesData = [
     {
         _id: {
-            $oid: '68a1ae99a65c82ac4190341b',
+            $oid: '68a83a2d86261146c18ea09e',
         },
-        invoiceCode: 'HD202508170001',
+        invoiceCode: 'HD202508220001',
         invoiceDate: {
-            $date: '2025-08-17T10:27:37.924Z',
+            $date: '2025-08-22T09:36:45.178Z',
         },
         status: 'completed',
         customerName: 'Khách lẻ',
@@ -17,391 +17,7 @@ export const invoicesData = [
             },
             name: 'Min',
         },
-        totalAmount: 131000,
-        paymentDetails: {
-            method: 'Tiền mặt',
-            soTienDaNhan: 131000,
-        },
-        items: [
-            {
-                productId: {
-                    $oid: '6746d20bc8891dc803c97755',
-                },
-                productName: 'Thuốc lá con ngựa trắng',
-                quantity: 3,
-                unitPrice: 25000,
-                totalPrice: 75000,
-                batchInfo: [
-                    {
-                        batchId: {
-                            $oid: '6746d33bc8891dc803c9778d',
-                        },
-                        batchNumber: 'BATCH001',
-                        soldQuantity: 3,
-                        _id: {
-                            $oid: '68a1ae99a65c82ac4190341d',
-                        },
-                    },
-                ],
-                _id: {
-                    $oid: '68a1ae99a65c82ac4190341c',
-                },
-            },
-            {
-                productId: {
-                    $oid: '67470366c8891dc803c97b19',
-                },
-                productName: 'Mì tôm cung đình khoai tây hương vị sườn heo hầm măng (79g)',
-                quantity: 7,
-                unitPrice: 8000,
-                totalPrice: 56000,
-                batchInfo: [
-                    {
-                        batchId: {
-                            $oid: '67470366c8891dc803c97b1a',
-                        },
-                        batchNumber: 'BATCH001',
-                        soldQuantity: 7,
-                        _id: {
-                            $oid: '68a1ae99a65c82ac4190341f',
-                        },
-                    },
-                ],
-                _id: {
-                    $oid: '68a1ae99a65c82ac4190341e',
-                },
-            },
-        ],
-        discounts: 0,
-        createdAt: {
-            $date: '2025-08-17T10:27:37.962Z',
-        },
-        updatedAt: {
-            $date: '2025-08-17T10:27:37.962Z',
-        },
-        __v: 0,
-    },
-    {
-        _id: {
-            $oid: '68a1b08697591e5b405f67ee',
-        },
-        invoiceCode: 'HD202508170002',
-        invoiceDate: {
-            $date: '2025-08-17T10:35:50.171Z',
-        },
-        status: 'completed',
-        customerName: 'Khách lẻ',
-        cashier: {
-            id: {
-                $oid: '67462c8a77a41c1f4e5a9c0c',
-            },
-            name: 'Min',
-        },
-        totalAmount: 8000,
-        paymentDetails: {
-            method: 'Chuyển khoản',
-            soTienDaNhan: 10000,
-        },
-        items: [
-            {
-                productId: {
-                    $oid: '67470366c8891dc803c97b19',
-                },
-                productName: 'Mì tôm cung đình khoai tây hương vị sườn heo hầm măng (79g)',
-                quantity: 1,
-                unitPrice: 8000,
-                totalPrice: 8000,
-                batchInfo: [
-                    {
-                        batchId: {
-                            $oid: '67470366c8891dc803c97b1a',
-                        },
-                        batchNumber: 'BATCH001',
-                        soldQuantity: 1,
-                        _id: {
-                            $oid: '68a1b08697591e5b405f67f0',
-                        },
-                    },
-                ],
-                _id: {
-                    $oid: '68a1b08697591e5b405f67ef',
-                },
-            },
-        ],
-        discounts: 0,
-        createdAt: {
-            $date: '2025-08-17T10:35:50.219Z',
-        },
-        updatedAt: {
-            $date: '2025-08-17T10:35:50.219Z',
-        },
-        __v: 0,
-    },
-    {
-        _id: {
-            $oid: '68a1b0f297591e5b405f67f6',
-        },
-        invoiceCode: 'HD202508170003',
-        invoiceDate: {
-            $date: '2025-08-17T10:37:38.607Z',
-        },
-        status: 'completed',
-        customerName: 'Khách lẻ',
-        cashier: {
-            id: {
-                $oid: '67462c8a77a41c1f4e5a9c0c',
-            },
-            name: 'Min',
-        },
-        totalAmount: 75000,
-        paymentDetails: {
-            method: 'Tiền mặt',
-            soTienDaNhan: 75000,
-        },
-        items: [
-            {
-                productId: {
-                    $oid: '6746d20bc8891dc803c97755',
-                },
-                productName: 'Thuốc lá con ngựa trắng',
-                quantity: 3,
-                unitPrice: 25000,
-                totalPrice: 75000,
-                batchInfo: [
-                    {
-                        batchId: {
-                            $oid: '6746d33bc8891dc803c9778d',
-                        },
-                        batchNumber: 'BATCH001',
-                        soldQuantity: 3,
-                        _id: {
-                            $oid: '68a1b0f297591e5b405f67f8',
-                        },
-                    },
-                ],
-                _id: {
-                    $oid: '68a1b0f297591e5b405f67f7',
-                },
-            },
-        ],
-        discounts: 0,
-        createdAt: {
-            $date: '2025-08-17T10:37:38.658Z',
-        },
-        updatedAt: {
-            $date: '2025-08-17T10:37:38.658Z',
-        },
-        __v: 0,
-    },
-    {
-        _id: {
-            $oid: '68a1b11997591e5b405f67fe',
-        },
-        invoiceCode: 'HD202508170004',
-        invoiceDate: {
-            $date: '2025-08-17T10:38:17.450Z',
-        },
-        status: 'completed',
-        customerName: 'Khách lẻ',
-        cashier: {
-            id: {
-                $oid: '67462c8a77a41c1f4e5a9c0c',
-            },
-            name: 'Min',
-        },
-        totalAmount: 72000,
-        paymentDetails: {
-            method: 'Chuyển khoản',
-            soTienDaNhan: 80000,
-        },
-        items: [
-            {
-                productId: {
-                    $oid: '674c0d9fa5b2800db671994f',
-                },
-                productName: 'Mì Ly Modern Lẩu Thái Tôm Mì Ly, Mì Hộp (65g)',
-                quantity: 8,
-                unitPrice: 9000,
-                totalPrice: 72000,
-                batchInfo: [
-                    {
-                        batchId: {
-                            $oid: '674c0d9fa5b2800db6719950',
-                        },
-                        batchNumber: 'BATCH001',
-                        soldQuantity: 8,
-                        _id: {
-                            $oid: '68a1b11997591e5b405f6800',
-                        },
-                    },
-                ],
-                _id: {
-                    $oid: '68a1b11997591e5b405f67ff',
-                },
-            },
-        ],
-        discounts: 0,
-        createdAt: {
-            $date: '2025-08-17T10:38:17.485Z',
-        },
-        updatedAt: {
-            $date: '2025-08-17T10:38:17.485Z',
-        },
-        __v: 0,
-    },
-    {
-        _id: {
-            $oid: '68a1b313e2cc54416a5cf9e9',
-        },
-        invoiceCode: 'HD202508170005',
-        invoiceDate: {
-            $date: '2025-08-17T10:46:43.953Z',
-        },
-        status: 'pending',
-        customerName: 'Khách lẻ',
-        cashier: {
-            id: {
-                $oid: '67462c8a77a41c1f4e5a9c0c',
-            },
-            name: 'Min',
-        },
-        totalAmount: 180000,
-        paymentDetails: {
-            method: 'Chuyển khoản',
-            soTienDaNhan: 300000,
-        },
-        items: [
-            {
-                productId: {
-                    $oid: '674432a2352db71e5139d9f3',
-                },
-                productName: 'Kẹo nhai wrigleys doublemint (80g)',
-                quantity: 5,
-                unitPrice: 36000,
-                totalPrice: 180000,
-                batchInfo: [
-                    {
-                        batchId: {
-                            $oid: '674432a2352db71e5139d9f4',
-                        },
-                        batchNumber: 'BATCH001',
-                        soldQuantity: 5,
-                        _id: {
-                            $oid: '68a1b313e2cc54416a5cf9eb',
-                        },
-                    },
-                ],
-                _id: {
-                    $oid: '68a1b313e2cc54416a5cf9ea',
-                },
-            },
-        ],
-        discounts: 0,
-        createdAt: {
-            $date: '2025-08-17T10:46:44.042Z',
-        },
-        updatedAt: {
-            $date: '2025-08-17T10:46:44.042Z',
-        },
-        __v: 0,
-    },
-    {
-        _id: {
-            $oid: '68a1d278e2cc54416a5cfc96',
-        },
-        invoiceCode: 'HD202508170006',
-        invoiceDate: {
-            $date: '2025-08-17T13:00:40.365Z',
-        },
-        status: 'completed',
-        customerName: 'Khách lẻ',
-        cashier: {
-            id: {
-                $oid: '67462c8a77a41c1f4e5a9c0c',
-            },
-            name: 'Min',
-        },
-        totalAmount: 80000,
-        paymentDetails: {
-            method: 'Chuyển khoản',
-            soTienDaNhan: 500000,
-        },
-        items: [
-            {
-                productId: {
-                    $oid: '6747eb51c8891dc803c98307',
-                },
-                productName: 'Mì trộn cung đình Kool hương vị Spaghetti (105g)',
-                quantity: 5,
-                unitPrice: 8000,
-                totalPrice: 40000,
-                batchInfo: [
-                    {
-                        batchId: {
-                            $oid: '6747eb51c8891dc803c98308',
-                        },
-                        batchNumber: 'BATCH001',
-                        soldQuantity: 5,
-                        _id: {
-                            $oid: '68a1d278e2cc54416a5cfc98',
-                        },
-                    },
-                ],
-                _id: {
-                    $oid: '68a1d278e2cc54416a5cfc97',
-                },
-            },
-            {
-                productId: {
-                    $oid: '67470366c8891dc803c97b19',
-                },
-                productName: 'Mì tôm cung đình khoai tây hương vị sườn heo hầm măng (79g)',
-                quantity: 5,
-                unitPrice: 8000,
-                totalPrice: 40000,
-                batchInfo: [
-                    {
-                        batchId: {
-                            $oid: '67470366c8891dc803c97b1a',
-                        },
-                        batchNumber: 'BATCH001',
-                        soldQuantity: 5,
-                        _id: {
-                            $oid: '68a1d278e2cc54416a5cfc9a',
-                        },
-                    },
-                ],
-                _id: {
-                    $oid: '68a1d278e2cc54416a5cfc99',
-                },
-            },
-        ],
-        discounts: 0,
-        createdAt: {
-            $date: '2025-08-17T13:00:40.395Z',
-        },
-        updatedAt: {
-            $date: '2025-08-17T13:00:40.395Z',
-        },
-        __v: 0,
-    },
-    {
-        _id: {
-            $oid: '68a1d3d7e2cc54416a5cfe0c',
-        },
-        invoiceCode: 'HD202508170007',
-        invoiceDate: {
-            $date: '2025-08-17T13:06:31.179Z',
-        },
-        status: 'pending',
-        customerName: 'Khách lẻ',
-        cashier: {
-            id: {
-                $oid: '67462c8a77a41c1f4e5a9c0c',
-            },
-            name: 'Min',
-        },
-        totalAmount: 184000,
+        totalAmount: 200000,
         paymentDetails: {
             method: 'Tiền mặt',
             soTienDaNhan: 200000,
@@ -409,69 +25,69 @@ export const invoicesData = [
         items: [
             {
                 productId: {
-                    $oid: '67810b507ce00548d23f1ffe',
+                    $oid: '6795e18711581ca2b44ebe86',
                 },
-                productName: 'Lốc 4 Hộp Sữa YO Mocha Vị Cam Mộc Châu (110ml)',
-                quantity: 10,
-                unitPrice: 16000,
-                totalPrice: 160000,
-                batchInfo: [
-                    {
-                        batchId: {
-                            $oid: '67810b507ce00548d23f1fff',
-                        },
-                        batchNumber: 'BATCH001',
-                        soldQuantity: 10,
-                        _id: {
-                            $oid: '68a1d3d7e2cc54416a5cfe0e',
-                        },
-                    },
-                ],
-                _id: {
-                    $oid: '68a1d3d7e2cc54416a5cfe0d',
-                },
-            },
-            {
-                productId: {
-                    $oid: '6747063ac8891dc803c97c03',
-                },
-                productName: 'Mì tôm cung đình khoai tây hương vị sườn hầm ngũ quả (80g)',
+                productName: 'Nước rửa chén, bát POLAR BEAR (960ml)',
                 quantity: 3,
-                unitPrice: 8000,
-                totalPrice: 24000,
+                unitPrice: 42000,
+                totalPrice: 126000,
                 batchInfo: [
                     {
                         batchId: {
-                            $oid: '6747063ac8891dc803c97c04',
+                            $oid: '6795e18711581ca2b44ebe87',
                         },
                         batchNumber: 'BATCH001',
                         soldQuantity: 3,
                         _id: {
-                            $oid: '68a1d3d7e2cc54416a5cfe10',
+                            $oid: '68a83a2d86261146c18ea0a0',
                         },
                     },
                 ],
                 _id: {
-                    $oid: '68a1d3d7e2cc54416a5cfe0f',
+                    $oid: '68a83a2d86261146c18ea09f',
+                },
+            },
+            {
+                productId: {
+                    $oid: '675e62dcfd34b6d08c994af2',
+                },
+                productName: 'Cá hộp, Cá Ngừ Sốt Dầu VISSAN (170g)',
+                quantity: 2,
+                unitPrice: 37000,
+                totalPrice: 74000,
+                batchInfo: [
+                    {
+                        batchId: {
+                            $oid: '675e62dcfd34b6d08c994af3',
+                        },
+                        batchNumber: 'BATCH001',
+                        soldQuantity: 2,
+                        _id: {
+                            $oid: '68a83a2d86261146c18ea0a2',
+                        },
+                    },
+                ],
+                _id: {
+                    $oid: '68a83a2d86261146c18ea0a1',
                 },
             },
         ],
         discounts: 0,
         createdAt: {
-            $date: '2025-08-17T13:06:31.229Z',
+            $date: '2025-08-22T09:36:45.226Z',
         },
         updatedAt: {
-            $date: '2025-08-17T13:06:31.229Z',
+            $date: '2025-08-22T09:36:45.226Z',
         },
         __v: 0,
     },
     {
         _id: {
-            $oid: '68a2157de2cc54416a5d0a19',
+            $oid: '68a8a73f86261146c18ea4c3',
         },
-        invoiceCode: 'HD202508180001',
+        invoiceCode: 'HD202508230001',
         invoiceDate: {
-            $date: '2025-08-17T17:46:37.464Z',
+            $date: '2025-08-22T17:22:07.459Z',
         },
         status: 'completed',
         customerName: 'Khách lẻ',
@@ -481,245 +97,245 @@ export const invoicesData = [
             },
             name: 'Min',
         },
-        totalAmount: 430000,
+        totalAmount: 250000,
         paymentDetails: {
             method: 'Tiền mặt',
-            soTienDaNhan: 580000,
+            soTienDaNhan: 250000,
         },
         items: [
             {
                 productId: {
-                    $oid: '6743de16352db71e5139d942',
+                    $oid: '6767e66a42196dd482ebdb14',
                 },
-                productName: 'Thuốc lá vina bé',
-                quantity: 11,
-                unitPrice: 10000,
-                totalPrice: 110000,
+                productName: 'Bánh Custas Kem Trứng Orion Hộp (282g - 12gói x 23,5g)',
+                quantity: 5,
+                unitPrice: 50000,
+                totalPrice: 250000,
                 batchInfo: [
                     {
                         batchId: {
-                            $oid: '6743de16352db71e5139d943',
+                            $oid: '6767e66a42196dd482ebdb15',
                         },
                         batchNumber: 'BATCH001',
-                        soldQuantity: 11,
+                        soldQuantity: 5,
                         _id: {
-                            $oid: '68a2157de2cc54416a5d0a1b',
+                            $oid: '68a8a73f86261146c18ea4c5',
                         },
                     },
                 ],
                 _id: {
-                    $oid: '68a2157de2cc54416a5d0a1a',
-                },
-            },
-            {
-                productId: {
-                    $oid: '67442adf352db71e5139d9db',
-                },
-                productName: 'Thuốc lá sài gòn xanh',
-                quantity: 4,
-                unitPrice: 12000,
-                totalPrice: 48000,
-                batchInfo: [
-                    {
-                        batchId: {
-                            $oid: '6745a41eca3bf67212d52c7b',
-                        },
-                        batchNumber: 'BATCH001',
-                        soldQuantity: 4,
-                        _id: {
-                            $oid: '68a2157de2cc54416a5d0a1d',
-                        },
-                    },
-                ],
-                _id: {
-                    $oid: '68a2157de2cc54416a5d0a1c',
-                },
-            },
-            {
-                productId: {
-                    $oid: '67445b42352db71e5139da81',
-                },
-                productName: 'Thuốc lá gold lion',
-                quantity: 4,
-                unitPrice: 10000,
-                totalPrice: 40000,
-                batchInfo: [
-                    {
-                        batchId: {
-                            $oid: '6747de7cc8891dc803c97da3',
-                        },
-                        batchNumber: 'BATCH002',
-                        soldQuantity: 4,
-                        _id: {
-                            $oid: '68a2157de2cc54416a5d0a1f',
-                        },
-                    },
-                ],
-                _id: {
-                    $oid: '68a2157de2cc54416a5d0a1e',
-                },
-            },
-            {
-                productId: {
-                    $oid: '6744310c352db71e5139d9ee',
-                },
-                productName: 'Kẹo sing-gum doublemint (58,4g)',
-                quantity: 6,
-                unitPrice: 25000,
-                totalPrice: 150000,
-                batchInfo: [
-                    {
-                        batchId: {
-                            $oid: '6744310c352db71e5139d9ef',
-                        },
-                        batchNumber: 'BATCH001',
-                        soldQuantity: 6,
-                        _id: {
-                            $oid: '68a2157de2cc54416a5d0a21',
-                        },
-                    },
-                ],
-                _id: {
-                    $oid: '68a2157de2cc54416a5d0a20',
-                },
-            },
-            {
-                productId: {
-                    $oid: '6746d06fc8891dc803c9771a',
-                },
-                productName: 'Thuốc lá Souvenir',
-                quantity: 4,
-                unitPrice: 8000,
-                totalPrice: 32000,
-                batchInfo: [
-                    {
-                        batchId: {
-                            $oid: '6746d0bcc8891dc803c9773f',
-                        },
-                        batchNumber: 'BATCH001',
-                        soldQuantity: 4,
-                        _id: {
-                            $oid: '68a2157de2cc54416a5d0a23',
-                        },
-                    },
-                ],
-                _id: {
-                    $oid: '68a2157de2cc54416a5d0a22',
-                },
-            },
-            {
-                productId: {
-                    $oid: '6746e8dac8891dc803c978aa',
-                },
-                productName: 'Mì tôm kokomi bé hương vị mì tôm chua cay (65g)',
-                quantity: 2,
-                unitPrice: 3000,
-                totalPrice: 6000,
-                batchInfo: [
-                    {
-                        batchId: {
-                            $oid: '6765571284a715c428beb950',
-                        },
-                        batchNumber: 'BATCH001',
-                        soldQuantity: 2,
-                        _id: {
-                            $oid: '68a2157de2cc54416a5d0a25',
-                        },
-                    },
-                ],
-                _id: {
-                    $oid: '68a2157de2cc54416a5d0a24',
-                },
-            },
-            {
-                productId: {
-                    $oid: '674700ebc8891dc803c97a90',
-                },
-                productName: 'Mì tôm hảo hảo xào hương vị tôm xào chua ngọt (75g)',
-                quantity: 3,
-                unitPrice: 4000,
-                totalPrice: 12000,
-                batchInfo: [
-                    {
-                        batchId: {
-                            $oid: '674700ebc8891dc803c97a91',
-                        },
-                        batchNumber: 'BATCH001',
-                        soldQuantity: 3,
-                        _id: {
-                            $oid: '68a2157de2cc54416a5d0a27',
-                        },
-                    },
-                ],
-                _id: {
-                    $oid: '68a2157de2cc54416a5d0a26',
-                },
-            },
-            {
-                productId: {
-                    $oid: '67480295c8891dc803c98dfd',
-                },
-                productName: 'Mỳ bò cay VIFON (105g)',
-                quantity: 2,
-                unitPrice: 12000,
-                totalPrice: 24000,
-                batchInfo: [
-                    {
-                        batchId: {
-                            $oid: '67480295c8891dc803c98dfe',
-                        },
-                        batchNumber: 'BATCH001',
-                        soldQuantity: 2,
-                        _id: {
-                            $oid: '68a2157de2cc54416a5d0a29',
-                        },
-                    },
-                ],
-                _id: {
-                    $oid: '68a2157de2cc54416a5d0a28',
-                },
-            },
-            {
-                productId: {
-                    $oid: '6747ed6dc8891dc803c984a4',
-                },
-                productName: 'Mì trộn cung đình Kool hương vị BBQ sườn nướng (99g)',
-                quantity: 1,
-                unitPrice: 8000,
-                totalPrice: 8000,
-                batchInfo: [
-                    {
-                        batchId: {
-                            $oid: '6747ed6dc8891dc803c984a5',
-                        },
-                        batchNumber: 'BATCH001',
-                        soldQuantity: 1,
-                        _id: {
-                            $oid: '68a2157de2cc54416a5d0a2b',
-                        },
-                    },
-                ],
-                _id: {
-                    $oid: '68a2157de2cc54416a5d0a2a',
+                    $oid: '68a8a73f86261146c18ea4c4',
                 },
             },
         ],
         discounts: 0,
         createdAt: {
-            $date: '2025-08-17T17:46:37.510Z',
+            $date: '2025-08-22T17:22:07.474Z',
         },
         updatedAt: {
-            $date: '2025-08-17T17:46:37.510Z',
+            $date: '2025-08-22T17:22:07.474Z',
         },
         __v: 0,
     },
     {
         _id: {
-            $oid: '68a21934e2cc54416a5d0a34',
+            $oid: '68a8a77986261146c18ea4cf',
         },
-        invoiceCode: 'HD202508180002',
+        invoiceCode: 'HD202508230002',
         invoiceDate: {
-            $date: '2025-08-17T18:02:28.508Z',
+            $date: '2025-08-22T17:23:05.816Z',
+        },
+        status: 'completed',
+        customerName: 'Khách lẻ',
+        cashier: {
+            id: {
+                $oid: '67462c8a77a41c1f4e5a9c0c',
+            },
+            name: 'Min',
+        },
+        totalAmount: 54000,
+        paymentDetails: {
+            method: 'Chuyển khoản',
+            soTienDaNhan: 60000,
+        },
+        items: [
+            {
+                productId: {
+                    $oid: '6746cd5ac8891dc803c976db',
+                },
+                productName: 'Thuốc lá sài gòn đen (melon)',
+                quantity: 1,
+                unitPrice: 18000,
+                totalPrice: 18000,
+                batchInfo: [
+                    {
+                        batchId: {
+                            $oid: '6746cd5ac8891dc803c976dc',
+                        },
+                        batchNumber: 'BATCH001',
+                        soldQuantity: 1,
+                        _id: {
+                            $oid: '68a8a77986261146c18ea4d1',
+                        },
+                    },
+                ],
+                _id: {
+                    $oid: '68a8a77986261146c18ea4d0',
+                },
+            },
+            {
+                productId: {
+                    $oid: '6746ec4dc8891dc803c978f4',
+                },
+                productName: 'Mì tôm kokomi 90, kokomi đại (90g)',
+                quantity: 9,
+                unitPrice: 4000,
+                totalPrice: 36000,
+                batchInfo: [
+                    {
+                        batchId: {
+                            $oid: '6765574884a715c428beba79',
+                        },
+                        batchNumber: 'BATCH001',
+                        soldQuantity: 9,
+                        _id: {
+                            $oid: '68a8a77986261146c18ea4d3',
+                        },
+                    },
+                ],
+                _id: {
+                    $oid: '68a8a77986261146c18ea4d2',
+                },
+            },
+        ],
+        discounts: 0,
+        createdAt: {
+            $date: '2025-08-22T17:23:05.841Z',
+        },
+        updatedAt: {
+            $date: '2025-08-22T18:32:35.233Z',
+        },
+        __v: 0,
+    },
+    {
+        _id: {
+            $oid: '68a8b7ec2c53ade2804a8a4b',
+        },
+        invoiceCode: 'HD202508230003',
+        invoiceDate: {
+            $date: '2025-08-22T18:33:16.699Z',
+        },
+        status: 'completed',
+        customerName: 'Khách lẻ',
+        cashier: {
+            id: {
+                $oid: '67462c8a77a41c1f4e5a9c0c',
+            },
+            name: 'Min',
+        },
+        totalAmount: 108000,
+        paymentDetails: {
+            method: 'Chuyển khoản',
+            soTienDaNhan: 108000,
+        },
+        items: [
+            {
+                productId: {
+                    $oid: '674432a2352db71e5139d9f3',
+                },
+                productName: 'Kẹo nhai wrigleys doublemint (80g)',
+                quantity: 3,
+                unitPrice: 36000,
+                totalPrice: 108000,
+                batchInfo: [
+                    {
+                        batchId: {
+                            $oid: '674432a2352db71e5139d9f4',
+                        },
+                        batchNumber: 'BATCH001',
+                        soldQuantity: 3,
+                        _id: {
+                            $oid: '68a8b7ec2c53ade2804a8a4d',
+                        },
+                    },
+                ],
+                _id: {
+                    $oid: '68a8b7ec2c53ade2804a8a4c',
+                },
+            },
+        ],
+        discounts: 0,
+        createdAt: {
+            $date: '2025-08-22T18:33:16.756Z',
+        },
+        updatedAt: {
+            $date: '2025-08-22T18:33:53.725Z',
+        },
+        __v: 0,
+    },
+    {
+        _id: {
+            $oid: '68a8b7f72c53ade2804a8a53',
+        },
+        invoiceCode: 'HD202508230004',
+        invoiceDate: {
+            $date: '2025-08-22T18:33:27.187Z',
+        },
+        status: 'completed',
+        customerName: 'Khách lẻ',
+        cashier: {
+            id: {
+                $oid: '67462c8a77a41c1f4e5a9c0c',
+            },
+            name: 'Min',
+        },
+        totalAmount: 201000,
+        paymentDetails: {
+            method: 'Tiền mặt',
+            soTienDaNhan: 201000,
+        },
+        items: [
+            {
+                productId: {
+                    $oid: '6766a9b5eccbdf3c0acb2991',
+                },
+                productName: 'Mì chính, bột ngọt AJINOMOTO gói (1kg)',
+                quantity: 3,
+                unitPrice: 67000,
+                totalPrice: 201000,
+                batchInfo: [
+                    {
+                        batchId: {
+                            $oid: '6766a9b5eccbdf3c0acb2992',
+                        },
+                        batchNumber: 'BATCH001',
+                        soldQuantity: 3,
+                        _id: {
+                            $oid: '68a8b7f72c53ade2804a8a55',
+                        },
+                    },
+                ],
+                _id: {
+                    $oid: '68a8b7f72c53ade2804a8a54',
+                },
+            },
+        ],
+        discounts: 0,
+        createdAt: {
+            $date: '2025-08-22T18:33:27.215Z',
+        },
+        updatedAt: {
+            $date: '2025-08-22T18:33:59.355Z',
+        },
+        __v: 0,
+    },
+    {
+        _id: {
+            $oid: '68a8b8302c53ade2804a8be4',
+        },
+        invoiceCode: 'HD202508230005',
+        invoiceDate: {
+            $date: '2025-08-22T18:34:24.291Z',
         },
         status: 'pending',
         customerName: 'Khách lẻ',
@@ -729,67 +345,211 @@ export const invoicesData = [
             },
             name: 'Min',
         },
-        totalAmount: 205000,
+        totalAmount: 90000,
         paymentDetails: {
-            method: 'Chuyển khoản',
-            soTienDaNhan: 210000,
+            method: 'Tiền mặt',
+            soTienDaNhan: 90000,
         },
         items: [
             {
                 productId: {
-                    $oid: '6743de16352db71e5139d942',
+                    $oid: '6746e8dac8891dc803c978aa',
                 },
-                productName: 'Thuốc lá vina bé',
-                quantity: 16,
-                unitPrice: 10000,
-                totalPrice: 160000,
+                productName: 'Mì tôm kokomi bé hương vị mì tôm chua cay (65g)',
+                quantity: 30,
+                unitPrice: 3000,
+                totalPrice: 90000,
                 batchInfo: [
                     {
                         batchId: {
-                            $oid: '6743de16352db71e5139d943',
+                            $oid: '6765571284a715c428beb950',
                         },
                         batchNumber: 'BATCH001',
-                        soldQuantity: 16,
+                        soldQuantity: 30,
                         _id: {
-                            $oid: '68a21934e2cc54416a5d0a36',
+                            $oid: '68a8b8302c53ade2804a8be6',
                         },
                     },
                 ],
                 _id: {
-                    $oid: '68a21934e2cc54416a5d0a35',
-                },
-            },
-            {
-                productId: {
-                    $oid: '676e9da1c10bfb1465f0a6ce',
-                },
-                productName: 'Kẹo Béo Cứng Alpenliebe Kẹo Hương Dâu Kem gói (115,5g)',
-                quantity: 3,
-                unitPrice: 15000,
-                totalPrice: 45000,
-                batchInfo: [
-                    {
-                        batchId: {
-                            $oid: '676e9dc7c10bfb1465f0aa22',
-                        },
-                        batchNumber: 'BATCH001',
-                        soldQuantity: 3,
-                        _id: {
-                            $oid: '68a21934e2cc54416a5d0a38',
-                        },
-                    },
-                ],
-                _id: {
-                    $oid: '68a21934e2cc54416a5d0a37',
+                    $oid: '68a8b8302c53ade2804a8be5',
                 },
             },
         ],
         discounts: 0,
         createdAt: {
-            $date: '2025-08-17T18:02:28.533Z',
+            $date: '2025-08-22T18:34:24.307Z',
         },
         updatedAt: {
-            $date: '2025-08-17T18:02:28.533Z',
+            $date: '2025-08-22T18:34:24.307Z',
+        },
+        __v: 0,
+    },
+    {
+        _id: {
+            $oid: '68a8b8622c53ade2804a8d52',
+        },
+        invoiceCode: 'HD202508230006',
+        invoiceDate: {
+            $date: '2025-08-22T18:35:14.053Z',
+        },
+        status: 'completed',
+        customerName: 'Khách lẻ',
+        cashier: {
+            id: {
+                $oid: '67462c8a77a41c1f4e5a9c0c',
+            },
+            name: 'Min',
+        },
+        totalAmount: 104000,
+        paymentDetails: {
+            method: 'Tiền mặt',
+            soTienDaNhan: 500000,
+        },
+        items: [
+            {
+                productId: {
+                    $oid: '6746caafc8891dc803c976bc',
+                },
+                productName: 'Thuốc lá thăng long dẹp',
+                quantity: 8,
+                unitPrice: 13000,
+                totalPrice: 104000,
+                batchInfo: [
+                    {
+                        batchId: {
+                            $oid: '6746caafc8891dc803c976bd',
+                        },
+                        batchNumber: 'BATCH001',
+                        soldQuantity: 8,
+                        _id: {
+                            $oid: '68a8b8622c53ade2804a8d54',
+                        },
+                    },
+                ],
+                _id: {
+                    $oid: '68a8b8622c53ade2804a8d53',
+                },
+            },
+        ],
+        discounts: 0,
+        createdAt: {
+            $date: '2025-08-22T18:35:14.068Z',
+        },
+        updatedAt: {
+            $date: '2025-08-22T18:35:59.250Z',
+        },
+        __v: 0,
+    },
+    {
+        _id: {
+            $oid: '68a9547d6dcf8d5e5f2b5d51',
+        },
+        invoiceCode: 'HD202508230007',
+        invoiceDate: {
+            $date: '2025-08-23T05:41:17.834Z',
+        },
+        status: 'completed',
+        customerName: 'Khách lẻ',
+        cashier: {
+            id: {
+                $oid: '67462c8a77a41c1f4e5a9c0c',
+            },
+            name: 'Min',
+        },
+        totalAmount: 20000,
+        paymentDetails: {
+            method: 'Tiền mặt',
+            soTienDaNhan: 20000,
+        },
+        items: [
+            {
+                productId: {
+                    $oid: '67445b42352db71e5139da81',
+                },
+                productName: 'Thuốc lá gold lion',
+                quantity: 2,
+                unitPrice: 10000,
+                totalPrice: 20000,
+                batchInfo: [
+                    {
+                        batchId: {
+                            $oid: '6747de7cc8891dc803c97da3',
+                        },
+                        batchNumber: 'BATCH002',
+                        soldQuantity: 2,
+                        _id: {
+                            $oid: '68a9547d6dcf8d5e5f2b5d53',
+                        },
+                    },
+                ],
+                _id: {
+                    $oid: '68a9547d6dcf8d5e5f2b5d52',
+                },
+            },
+        ],
+        discounts: 0,
+        createdAt: {
+            $date: '2025-08-23T05:41:17.875Z',
+        },
+        updatedAt: {
+            $date: '2025-08-23T05:41:17.875Z',
+        },
+        __v: 0,
+    },
+    {
+        _id: {
+            $oid: '68a9547d6dcf8d5e5f2b5d51',
+        },
+        invoiceCode: 'HD202508230007',
+        invoiceDate: {
+            $date: '2025-08-23T05:41:17.834Z',
+        },
+        status: 'completed',
+        customerName: 'Khách lẻ',
+        cashier: {
+            id: {
+                $oid: '67462c8a77a41c1f4e5a9c0c',
+            },
+            name: 'Min',
+        },
+        totalAmount: 20000,
+        paymentDetails: {
+            method: 'Tiền mặt',
+            soTienDaNhan: 20000,
+        },
+        items: [
+            {
+                productId: {
+                    $oid: '67445b42352db71e5139da81',
+                },
+                productName: 'Thuốc lá gold lion',
+                quantity: 2,
+                unitPrice: 10000,
+                totalPrice: 20000,
+                batchInfo: [
+                    {
+                        batchId: {
+                            $oid: '6747de7cc8891dc803c97da3',
+                        },
+                        batchNumber: 'BATCH002',
+                        soldQuantity: 2,
+                        _id: {
+                            $oid: '68a9547d6dcf8d5e5f2b5d53',
+                        },
+                    },
+                ],
+                _id: {
+                    $oid: '68a9547d6dcf8d5e5f2b5d52',
+                },
+            },
+        ],
+        discounts: 0,
+        createdAt: {
+            $date: '2025-08-23T05:41:17.875Z',
+        },
+        updatedAt: {
+            $date: '2025-08-23T05:41:17.875Z',
         },
         __v: 0,
     },

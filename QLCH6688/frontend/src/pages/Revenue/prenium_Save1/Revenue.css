@@ -32,7 +32,8 @@
     gap: 2rem;
 }
 
-.revenue__stats {
+.revenue__stats,
+.revenue__charts-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
@@ -47,8 +48,7 @@
 
 .revenue__card,
 .revenue__section,
-.revenue__chart-item,
-.time-stats__card {
+.revenue__chart-item {
     background-color: white;
     padding: 2rem;
     border-radius: 12px;
@@ -154,12 +154,6 @@
 }
 
 /* Biểu đồ */
-.revenue__charts-container {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
-
 .revenue__chart-item {
     padding: 2rem 1rem;
 }
@@ -304,87 +298,11 @@
     border-radius: 4px;
 }
 
-/* BLOCK: time-stats */
-.time-stats {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-/* ELEMENT: time-stats__title */
-.time-stats__title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #555;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-}
-
-/* ELEMENT: time-stats__title-icon */
-.time-stats__title-icon {
-    color: #007bff;
-}
-
-/* ELEMENT: time-stats__grid */
-.time-stats__grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-}
-
-/* ELEMENT: time-stats__card */
-.time-stats__card {
-    background-color: white;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.time-stats__card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-}
-
-/* ELEMENT: time-stats__card-period */
-.time-stats__card-period {
-    font-size: 1.2rem;
-    color: #007bff;
-    margin-bottom: 1rem;
-    font-weight: bold;
-}
-
-/* ELEMENTS: time-stats__card-revenue, time-stats__card-profit */
-.time-stats__card-revenue,
-.time-stats__card-profit {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-    color: #555;
-}
-
-/* Bố cục cho biểu đồ */
-.revenue__charts-container {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
-
-.revenue__charts-group {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-}
-
-/* Modifier cho biểu đồ chiếm toàn bộ chiều ngang */
-.revenue__chart-item--full-width {
-    grid-column: 1 / -1;
-}
-
 /* Tối ưu responsive */
 @media (max-width: 768px) {
     .revenue__summary,
-    .revenue__stats {
+    .revenue__stats,
+    .revenue__charts-container {
         grid-template-columns: 1fr;
     }
 
@@ -395,9 +313,5 @@
 
     .revenue__card-value {
         font-size: 2rem;
-    }
-
-    .revenue__charts-group {
-        grid-template-columns: 1fr;
     }
 }
