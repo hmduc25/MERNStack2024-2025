@@ -4,6 +4,7 @@ import { createContext, useEffect, useState } from 'react';
 export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
+    console.log('1-STORECONTEXT ACTIVED');
     const [cartItems, setCartItems] = useState({});
     const url = import.meta.env.VITE_BACKEND_URL || process.env.VITE_BACKEND_URL;
     const urlImage = import.meta.env.VITE_BACKEND_IMAGE_URL || process.env.VITE_BACKEND_IMAGE_URL;
@@ -103,6 +104,7 @@ const StoreContextProvider = (props) => {
     const fetchProductList = async () => {
         const response = await axios.get(url + 'api/sanpham/danhsachsanpham');
         setProductList(response.data.data);
+        console.log('2-STORECONTEXT FECTH API');
     };
 
     /**

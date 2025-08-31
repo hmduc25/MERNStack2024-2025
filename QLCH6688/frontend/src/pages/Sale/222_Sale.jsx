@@ -1,5 +1,5 @@
 // src/components/Sale.jsx
-import { useState, useEffect, useRef, useContext, useMemo, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useContext, useMemo, useCallback } from 'react';
 import './Sale.css';
 import { StoreContext } from '../../context/StoreContext.jsx';
 import { icons } from '../../assets/products.js';
@@ -10,10 +10,8 @@ import { getPaymentSuggestions } from '../../utils/paymentSuggestions';
 import NoteProductPopup from './NoteProductPopup/NoteProductPopup';
 
 // SỬA ĐỔI CÁCH IMPORT WEB WORKER
-// Nếu bạn sử dụng Create React App hoặc Vite, bạn có thể dùng cú pháp đặc biệt này:
+// Cú pháp này được Vite hoặc một số bundler khác hỗ trợ để import worker như một module
 import SearchWorker from '../../workers/search.worker.js?worker';
-// Hoặc đơn giản và phổ biến hơn, sử dụng cú pháp URL như sau:
-// const searchWorkerUrl = new URL('../../workers/search.worker.js', import.meta.url);
 
 const MAX_QUANTITY = 999;
 
@@ -35,6 +33,7 @@ const Sale = () => {
 
     // State cho giao diện chính
     const [searchTerm, setSearchTerm] = useState('');
+    const [suggestions, setSuggestions] = useState([]);
     const [error, setError] = useState('');
     const [paymentWarning, setPaymentWarning] = useState('');
     const [giamGia, setGiamGia] = useState(0);
@@ -48,56 +47,11 @@ const Sale = () => {
     const [tempProducts, setTempProducts] = useState([]);
     const [selectedProductData, setSelectedProductData] = useState(null);
 
-    // Khai báo một state mới cho kết quả tìm kiếm từ worker
-    const [suggestions, setSuggestions] = useState([]);
-
-    // useRef để lưu instance của worker
-    const searchWorkerRef = useRef(null);
-
     const debouncedSearchTerm = useDebounce(searchTerm, 300);
     const searchRef = useRef(null);
 
-    // === MEMOIZED VALUES & FUNCTIONS ===
-    const TONG_SO_LUONG_SAN_PHAM = useMemo(() => {
-        return Object.values(cartItems).reduce((sum, quantity) => sum + quantity, 0);
-    }, [cartItems]);
-
-    // const suggestions = useMemo(() => {
-    //     if (!debouncedSearchTerm) return [];
-    //     return product_list.filter(
-    //         (item) =>
-    //             item.name.toLowerCase().includes(debouncedSearchTerm.toLowerCase()) ||
-    //             item.barcode.includes(debouncedSearchTerm),
-    //     );
-    // }, [debouncedSearchTerm, product_list]);
-
-    // const suggestions = useMemo(() => {
-    //     if (!debouncedSearchTerm) return [];
-
-    //     const lowerCaseSearchTerm = debouncedSearchTerm.toLowerCase();
-
-    //     // Check if the search term is a number to enable price search
-    //     const isPriceSearch = !isNaN(Number(lowerCaseSearchTerm));
-    //     const numericSearchTerm = isPriceSearch ? Number(lowerCaseSearchTerm) : null;
-
-    //     return product_list.filter((item) => {
-    //         // Search by name (Tên)
-    //         const nameMatch = item.name.toLowerCase().includes(lowerCaseSearchTerm);
-
-    //         // Search by barcode (Mã vạch)
-    //         const barcodeMatch = item.barcode && item.barcode.includes(lowerCaseSearchTerm);
-
-    //         // Search by productCode (Mã sản phẩm)
-    //         const productCodeMatch = item.productCode && item.productCode.toLowerCase().includes(lowerCaseSearchTerm);
-
-    //         // Search by sellingPrice (Giá bán)
-    //         // We only perform this if the input is a valid number
-    //         const priceMatch = isPriceSearch && item.sellingPrice === numericSearchTerm;
-
-    //         // The product matches if any of the criteria are met
-    //         return nameMatch || barcodeMatch || productCodeMatch || priceMatch;
-    //     });
-    // }, [debouncedSearchTerm, product_list]);
+    // useRef để lưu instance của worker
+    const searchWorkerRef = useRef(null);
 
     // === EFFECTS ===
     useEffect(() => {
@@ -109,23 +63,36 @@ const Sale = () => {
             setSuggestions(event.data);
         };
 
+        // Gửi toàn bộ danh sách sản phẩm đến worker MỘT LẦN duy nhất
+        if (product_list.length > 0) {
+            searchWorkerRef.current.postMessage({
+                type: 'init',
+                productList: product_list,
+            });
+        }
+
         // Dọn dẹp worker khi component unmount
         return () => {
             if (searchWorkerRef.current) {
                 searchWorkerRef.current.terminate();
             }
         };
-    }, []);
+    }, [product_list]);
 
     // Gửi yêu cầu tìm kiếm đến Web Worker mỗi khi `debouncedSearchTerm` thay đổi
     useEffect(() => {
         if (searchWorkerRef.current) {
             searchWorkerRef.current.postMessage({
+                type: 'search',
                 searchTerm: debouncedSearchTerm,
-                productList: product_list,
             });
         }
-    }, [debouncedSearchTerm, product_list]);
+    }, [debouncedSearchTerm]);
+
+    // === MEMOIZED VALUES & FUNCTIONS ===
+    const TONG_SO_LUONG_SAN_PHAM = useMemo(() => {
+        return Object.values(cartItems).reduce((sum, quantity) => sum + quantity, 0);
+    }, [cartItems]);
 
     const cartProducts = useMemo(() => {
         return product_list.filter((item) => cartItems[item._id] > 0);
@@ -189,14 +156,6 @@ const Sale = () => {
     );
 
     const handleAmountChange = (event) => {
-        // const rawValue = event.target.value.replace(/[^0-9]/g, '');
-        // // Chuyển đổi thành số nguyên
-        // const numericValue = parseInt(rawValue, 10) || 0;
-
-        // console.log('numericValue: ', numericValue);
-        // // Cập nhật state với giá trị số
-        // setKhachThanhToan(numericValue);
-
         const rawValue = event.target.value;
         const numericValue = parseInt(rawValue.replace(/[^0-9]/g, ''), 10) || 0;
         setKhachThanhToan(numericValue);
@@ -250,7 +209,6 @@ const Sale = () => {
         }
     };
 
-    // Gói dữ liệu để truyền cho InvoiceOverlay
     const invoiceData = {
         cartProducts,
         tongTien,
@@ -261,75 +219,41 @@ const Sale = () => {
         cartItems,
     };
 
-    // === HÀM TIỆN ÍCH PHÂN TÍCH TỪ KHÓA TÌM KIẾM ===
     const analyzeSearchTerm = useCallback(() => {
         const term = searchTerm.trim();
         if (!term) return { name: '', productCode: '', barcode: '', sellingPrice: '' };
-
-        // Regex để nhận diện Mã hàng (ví dụ: SP000000, P001,...)
         const productCodeRegex = /^[a-zA-Z]{1,2}\d{5,}$/i;
-        // Regex để nhận diện Mã vạch (thường là 12 hoặc 13 chữ số)
         const barcodeRegex = /^\d{12,13}$/;
-        // Regex để nhận diện Giá (chỉ gồm các chữ số)
         const priceRegex = /^\d+$/;
 
         if (barcodeRegex.test(term)) {
-            return {
-                name: '',
-                productCode: '',
-                barcode: term,
-                sellingPrice: '',
-            };
+            return { name: '', productCode: '', barcode: term, sellingPrice: '' };
         } else if (productCodeRegex.test(term)) {
-            return {
-                name: '',
-                productCode: term,
-                barcode: '',
-                sellingPrice: '',
-            };
+            return { name: '', productCode: term, barcode: '', sellingPrice: '' };
         } else if (priceRegex.test(term)) {
-            return {
-                name: '',
-                productCode: '',
-                barcode: '',
-                sellingPrice: term,
-            };
+            return { name: '', productCode: '', barcode: '', sellingPrice: term };
         } else {
-            // Mặc định là Tên sản phẩm nếu không khớp với các định dạng trên
-            return {
-                name: term,
-                productCode: '',
-                barcode: '',
-                sellingPrice: '',
-            };
+            return { name: term, productCode: '', barcode: '', sellingPrice: '' };
         }
     }, [searchTerm]);
 
-    // ⚡️ Thêm hàm xử lý khi đóng popup thêm sản phẩm
     const handleCloseAddProductPopup = useCallback(() => {
         setShowAddProductPopup(false);
     }, []);
 
-    // ⚡️ Thêm hàm xử lý khi lưu sản phẩm tạm thời
     const handleSaveNewProduct = useCallback((productData) => {
         setTempProducts((prevProducts) => [...prevProducts, productData]);
         console.log('Sản phẩm tạm thời đã được lưu:', productData);
         setShowAddProductPopup(false);
     }, []);
 
-    // const handleShowAddProductPopup = useCallback(() => {
-    //     setShowAddProductPopup(true);
-    // }, []);
-
     const handleShowAddProductPopup = useCallback(() => {
-        // Phân tích searchTerm để có dữ liệu điền sẵn
         const initialData = analyzeSearchTerm();
-        setSelectedProductData(initialData); // Lưu dữ liệu tạm vào state
+        setSelectedProductData(initialData);
         setShowAddProductPopup(true);
     }, [analyzeSearchTerm]);
 
     useEffect(() => {
-        // ⚡️ In danh sách sản phẩm tạm thời ra console mỗi khi có sự thay đổi
         console.log('Danh sách sản phẩm tạm thời hiện tại:', tempProducts);
     }, [tempProducts]);
 
@@ -343,11 +267,10 @@ const Sale = () => {
                         type="text"
                         ref={searchRef}
                         className="sale-search-input"
-                        placeholder="Tìm kiếm sản phẩm (Tên sản phẩm, Mã hàng, Mã vạch) - F3"
+                        placeholder="Tìm kiếm sản phẩm (Tên, Mã hàng, Mã vạch) - F3"
                         value={searchTerm}
                         onChange={handleSearchChange}
                         autoFocus
-                        maxLength={125}
                     />
                     <button type="submit" className="sale-btn-tim-kiem">
                         Tìm kiếm
@@ -375,7 +298,6 @@ const Sale = () => {
                 {error && (
                     <p className="sale-error-message">
                         {error}
-
                         <br />
                         {suggestions.length === 0 && (
                             <span onClick={handleShowAddProductPopup} className="add-product-link">
@@ -384,7 +306,6 @@ const Sale = () => {
                         )}
                     </p>
                 )}
-                {/* {error && <p className="sale-error-message">{error}</p>} */}
                 <div className="sale-cart-list">
                     {cartProducts.map((item) => (
                         <div key={item._id} className="cart-item-container">
@@ -452,8 +373,6 @@ const Sale = () => {
                 </div>
                 {selectedProduct && <ProductPopup product={selectedProduct} onClose={() => setSelectedProduct(null)} />}
             </div>
-
-            {/* Cột phải: Hóa đơn bán hàng */}
             <div className="sale-right">
                 <div className="cart-summary">
                     <h2>Hóa đơn bán hàng</h2>
@@ -525,7 +444,6 @@ const Sale = () => {
                     </button>
                 </div>
             </div>
-
             {showInvoiceOverlay && (
                 <InvoiceOverlay
                     data={invoiceData}
@@ -534,20 +452,13 @@ const Sale = () => {
                     url={url}
                 />
             )}
-
             {showAddProductPopup && (
-                // <NoteProductPopup
-                //     initialSearchTerm={searchTerm}
-                //     onClose={handleCloseAddProductPopup}
-                //     onSave={handleSaveNewProduct}
-                // />
                 <NoteProductPopup
                     initialData={selectedProductData}
                     onClose={handleCloseAddProductPopup}
                     onSave={handleSaveNewProduct}
                 />
             )}
-
             {tempProducts.length > 0 && (
                 <div className="temp-products-list">
                     <h3>Sản phẩm đã thêm tạm thời:</h3>

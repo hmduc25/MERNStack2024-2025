@@ -233,8 +233,8 @@ E:\MyProjects\QLCH6688\frontend\src\pages\AddProduct\save2\AddProduct.jsx
 E:\MyProjects\QLCH6688\frontend\src\pages\AddProduct\save3\AddProduct.jsx
 E:\MyProjects\QLCH6688\frontend\src\pages\AddProduct\save4_active_qua_ok\AddProduct.jsx
 E:\MyProjects\QLCH6688\frontend\src\pages\AddProduct\AddProduct.jsx
-E:\MyProjects\QLCH6688\frontend\src\pages\AddToInventory\AddToInventory.css
-E:\MyProjects\QLCH6688\frontend\src\pages\AddToInventory\AddToInventory.jsx
+E:\MyProjects\QLCH6688\frontend\src\pages\Notes\Notes.css
+E:\MyProjects\QLCH6688\frontend\src\pages\Notes\Notes.jsx
 E:\MyProjects\QLCH6688\frontend\src\pages\BillLookup\BillLookup.css
 E:\MyProjects\QLCH6688\frontend\src\pages\BillLookup\BillLookup.jsx
 E:\MyProjects\QLCH6688\frontend\src\pages\Home\Home copy.jsx

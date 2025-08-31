@@ -46,6 +46,11 @@ const Revenue = () => {
         return amount.toLocaleString('vi-VN') + ' ₫';
     };
 
+    const capitalizeFirstLetter = (string) => {
+        if (!string) return '';
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    };
+
     return (
         <div className="revenue">
             <h1 className="revenue__title">
@@ -186,7 +191,7 @@ const Revenue = () => {
                             <Tooltip formatter={(value) => formatCurrency(value)} />
 
                             <Legend />
-                            <Line type="monotone" dataKey="Doanh_thu" stroke="#8884d8" name="Doanh thu" />
+                            <Line type="monotone" dataKey="revenue" stroke="#8884d8" name="Doanh thu" />
                             <Line type="monotone" dataKey="profit" stroke="#82ca9d" name="Lợi nhuận" />
                         </LineChart>
                     </ResponsiveContainer>
@@ -200,7 +205,7 @@ const Revenue = () => {
                         <ResponsiveContainer width="100%" height={300}>
                             <BarChart data={data.brandRevenueData}>
                                 <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis dataKey="name" />
+                                <XAxis dataKey="name" tickFormatter={capitalizeFirstLetter} />
                                 <YAxis />
                                 <Tooltip formatter={(value) => formatCurrency(value)} />
                                 <Bar dataKey="Doanh_thu" fill="#8884d8" name="Doanh thu" />

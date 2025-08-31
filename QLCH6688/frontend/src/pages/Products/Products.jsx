@@ -213,8 +213,8 @@ const Products = () => {
                 <Link to="/sanpham/themmoisanpham" className="toggle-btn">
                     Thêm sản phẩm mới
                 </Link>
-                <Link to="/sanpham/nhapkho" className="toggle-btn">
-                    Nhập thêm hàng tồn kho
+                <Link to="/sanpham/ghichu" className="toggle-btn">
+                    Ghi chú
                 </Link>
                 <button className="toggle-btn" onClick={exportToExcel}>
                     Xuất file Excel

@@ -7,7 +7,7 @@ import Revenue from './pages/Revenue/Revenue';
 import BillLookup from './pages/BillLookup/BillLookup';
 import Products from './pages/Products/Products';
 import AddProduct from './pages/AddProduct/AddProduct';
-import AddToInventory from './pages/AddToInventory/AddToInventory';
+import Notes from './pages/Notes/Notes';
 import Navbar from './components/Navbar/Navbar';
 import ProductDetail from './pages/ProductDetail/ProductDetail';
 import ChiTietSanPhamPopup from './components/ChiTietSanPhamPopup';
@@ -30,7 +30,7 @@ const App = () => {
                     <Route path="/doanhthu" element={<Revenue />} />
                     <Route path="/tracuuhoadon" element={<BillLookup />} />
                     <Route path="/sanpham/themmoisanpham" element={<AddProduct />} />
-                    <Route path="/sanpham/nhapkho" element={<AddToInventory />} />
+                    <Route path="/sanpham/ghichu" element={<Notes />} />
                     <Route path="/sanpham/chitietsanpham/:id" element={<ProductDetail />} />
                     <Route path="/banhang" element={<Sale />} />
                 </Routes>

@@ -37,10 +37,26 @@ export const useBillForm = (invoices) => {
     };
 
     const isThisWeek = (invoiceDate) => {
+        // Tạo bản sao của ngày hiện tại để tránh thay đổi giá trị gốc
         const today = new Date();
+        today.setHours(0, 0, 0, 0); // Đặt giờ về 00:00:00 để so sánh chính xác
+
         const date = new Date(invoiceDate);
-        const startOfWeek = new Date(today.setDate(today.getDate() - today.getDay()));
-        const endOfWeek = new Date(today.setDate(today.getDate() - today.getDay() + 6));
+        date.setHours(0, 0, 0, 0); // Đặt giờ về 00:00:00 để so sánh chính xác
+
+        // Lấy ngày trong tuần của hôm nay, chuyển đổi để Thứ Hai là 0 và Chủ Nhật là 6
+        // getDay() trả về 0 (CN), 1 (T2), ..., 6 (T7)
+        // (today.getDay() + 6) % 7 sẽ trả về 0 (T2), 1 (T3), ..., 6 (CN)
+        const dayOfWeek = (today.getDay() + 6) % 7;
+
+        // Tính ngày bắt đầu của tuần (Thứ Hai)
+        const startOfWeek = new Date(today);
+        startOfWeek.setDate(today.getDate() - dayOfWeek);
+
+        // Tính ngày kết thúc của tuần (Chủ Nhật)
+        const endOfWeek = new Date(startOfWeek);
+        endOfWeek.setDate(startOfWeek.getDate() + 6);
+
         return date >= startOfWeek && date <= endOfWeek;
     };
 
