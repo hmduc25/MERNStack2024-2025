@@ -1,0 +1,94 @@
+/* BLOCK: home */
+.home {
+    max-width: 900px;
+    margin: 60px auto;
+    margin-bottom: 120px;
+    padding: 40px;
+    background-color: #f0f2f5;
+    border-radius: 20px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ELEMENT: home__title */
+.home__title {
+    font-size: 2.8rem;
+    color: #1a2a40;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+/* ELEMENT: home__subtitle */
+.home__subtitle {
+    font-size: 1.3rem;
+    color: #6a7c93;
+    margin-bottom: 30px;
+    font-weight: 400;
+}
+
+/* ELEMENT: home__divider */
+.home__divider {
+    border: none;
+    height: 2px;
+    background: linear-gradient(to right, #e0e0e0, #bdbdbd, #e0e0e0);
+    margin: 30px 0;
+}
+
+/* ELEMENT: home__links-container */
+.home__links-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    justify-content: center;
+    align-items: stretch;
+}
+
+/* ELEMENT: home__link-item */
+.home__link-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 30px 20px;
+    border-radius: 15px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+        box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    cursor: pointer;
+}
+
+/* Hiệu ứng khi di chuột qua */
+.home__link-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* ELEMENT: home__icon */
+.home__icon {
+    font-size: 3.5rem;
+    color: #007bff;
+    margin-bottom: 15px;
+    transition: color 0.3s ease;
+}
+
+/* Hiệu ứng màu icon khi di chuột */
+.home__link-item:hover .home__icon {
+    color: #0056b3;
+}
+
+/* ELEMENT: home__link-heading */
+.home__link-heading {
+    margin: 0;
+    font-size: 1.4rem;
+    color: #34495e;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+/* Hiệu ứng màu chữ khi di chuột */
+.home__link-item:hover .home__link-heading {
+    color: #007bff;
+}

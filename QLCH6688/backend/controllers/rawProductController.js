@@ -48,4 +48,27 @@ const removeRawProduct = async (req, res) => {
     }
 };
 
-export { addRawProduct, listRawProducts, removeRawProduct };
+//  Cập nhật trạng thái 'isUpdated' của một sản phẩm thô
+const updateRawStatus = async (req, res) => {
+    try {
+        const { id } = req.body;
+
+        const rawProduct = await rawProductModel.findByIdAndUpdate(
+            id,
+            { isUpdated: true },
+            { new: true }, // Lấy về tài liệu sau khi đã cập nhật
+        );
+
+        if (!rawProduct) {
+            return res
+                .status(404)
+                .json({ success: false, message: 'Không tìm thấy sản phẩm thô để cập nhật trạng thái' });
+        }
+
+        res.json({ success: true, message: 'Đã cập nhật trạng thái thành công', data: rawProduct });
+    } catch (error) {
+        res.status(500).json({ success: false, message: `Lỗi khi cập nhật trạng thái: ${error.message}` });
+    }
+};
+
+export { addRawProduct, listRawProducts, removeRawProduct, updateRawStatus };

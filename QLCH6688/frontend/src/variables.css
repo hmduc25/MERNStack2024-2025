@@ -1,4 +1,5 @@
 :root {
+    --errors-text-color: #dd0000;
     /* Fonts */
     --font-family-primary: 'Arial', sans-serif;
     --font-family-secondary: 'Times New Roman', Times, serif;

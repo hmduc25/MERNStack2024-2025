@@ -1,0 +1,90 @@
+/* BLOCK: notes */
+.notes {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: sans-serif;
+}
+
+/* ELEMENT: notes__title */
+.notes__title {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* ELEMENT: notes__list */
+.notes__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* ELEMENT: notes__item */
+.notes__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+/* ELEMENT: notes__info */
+.notes__info {
+    flex: 1;
+}
+
+/* ELEMENT: notes__name */
+.notes__name {
+    margin: 0;
+    font-size: 1.2em;
+    color: #007bff;
+}
+
+/* ELEMENT: notes__code */
+.notes__code,
+.notes__date,
+.notes__price {
+    margin: 5px 0 0;
+    color: #666;
+    font-size: 0.9em;
+}
+
+/* ELEMENT: notes__button */
+.notes__button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+/* MODIFIER: notes__button--update */
+.notes__button--update {
+    background-color: #28a745; /* Màu xanh lá cây */
+}
+
+/* MODIFIER: notes__button--update:hover */
+.notes__button--update:hover {
+    background-color: #218838;
+}
+
+/* ELEMENT: notes__status */
+.notes__status {
+    text-align: center;
+    font-style: italic;
+    color: #888;
+    margin-top: 20px;
+}
+
+/* MODIFIER: notes__status--error */
+.notes__status--error {
+    color: #dc3545; /* Màu đỏ */
+}

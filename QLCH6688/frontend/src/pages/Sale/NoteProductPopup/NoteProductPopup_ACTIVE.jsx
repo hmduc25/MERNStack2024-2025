@@ -1,19 +1,14 @@
 // src/components/Sale/NoteProductPopup.jsx
 import React, { useState } from 'react';
-import axios from 'axios';
 import './NoteProductPopup.css';
 
-// Đã loại bỏ prop 'onSaveSuccess' vì component cha không cần nhận lại dữ liệu
-const NoteProductPopup = ({ initialData, onClose, url }) => {
+const NoteProductPopup = ({ initialData, onClose, onSave }) => {
     const [productData, setProductData] = useState({
         name: initialData.name || '',
         productCode: initialData.productCode || '',
         barcode: initialData.barcode || '',
         sellingPrice: initialData.sellingPrice || '',
     });
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState('');
-    const [message, setMessage] = useState('');
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -23,49 +18,22 @@ const NoteProductPopup = ({ initialData, onClose, url }) => {
         }));
     };
 
-    const handleSave = async () => {
-        // Kiểm tra dữ liệu cần thiết trước khi gửi
-        if (!productData.name) {
-            setError('Tên sản phẩm là bắt buộc.');
-            return;
-        }
-
-        setLoading(true);
-        setError('');
-        setMessage('');
-
-        try {
-            // Gửi yêu cầu POST tới API để lưu sản phẩm thô
-            const response = await axios.post(`${url}api/raw-product/themghichu`, productData);
-            console.log('Sản phẩm thô đã được lưu vào database:', response.data);
-
-            // Đặt thông báo thành công và sau đó đóng popup sau 3 giây
-            setMessage(`Đã lưu sản phẩm với "${productData.name}" vào ghi chú thành công`);
-            // setTimeout(() => {
-            //     onClose();
-            // }, 3000);
-            alert(`Đã lưu sản phẩm với "${productData.name}" vào ghi chú thành công`);
-            onClose();
-        } catch (err) {
-            console.error('Lỗi khi lưu sản phẩm thô:', err);
-            setError('Lỗi khi lưu sản phẩm. Vui lòng thử lại.');
-        } finally {
-            setLoading(false);
-        }
+    const handleSave = () => {
+        onSave(productData);
     };
 
     return (
         <div className="note-product-popup">
             <div className="note-product-popup__container">
                 <div className="note-product-popup__header">
-                    <h2 className="note-product-popup__title">Thêm sản phẩm thô</h2>
+                    <h2 className="note-product-popup__title">Thêm sản phẩm mới</h2>
                     <span className="note-product-popup__close-btn" onClick={onClose}>
                         &times;
                     </span>
                 </div>
                 <div className="note-product-popup__body">
                     <p className="note-product-popup__description">
-                        Vui lòng điền thông tin cơ bản về sản phẩm để lưu vào database.
+                        Vui lòng điền thông tin cơ bản về sản phẩm để lưu tạm thời.
                     </p>
                     <form
                         onSubmit={(e) => {
@@ -75,7 +43,7 @@ const NoteProductPopup = ({ initialData, onClose, url }) => {
                     >
                         <div className="note-product-popup__form-group">
                             <label className="note-product-popup__label" htmlFor="name">
-                                Tên sản phẩm *
+                                Tên sản phẩm
                             </label>
                             <input
                                 className="note-product-popup__input"
@@ -106,7 +74,7 @@ const NoteProductPopup = ({ initialData, onClose, url }) => {
                             </label>
                             <input
                                 className="note-product-popup__input"
-                                type="number"
+                                type="text"
                                 id="barcode"
                                 name="barcode"
                                 value={productData.barcode}
@@ -126,16 +94,13 @@ const NoteProductPopup = ({ initialData, onClose, url }) => {
                                 onChange={handleChange}
                             />
                         </div>
-                        {error && <p className="note-product-popup__error">{error}</p>}
                     </form>
-                    {message && <div className="note-product-popup__message">{message}</div>}
                 </div>
                 <div className="note-product-popup__footer">
                     <button
                         type="button"
                         className="note-product-popup__btn note-product-popup__btn--cancel"
                         onClick={onClose}
-                        disabled={loading}
                     >
                         Hủy
                     </button>
@@ -143,9 +108,8 @@ const NoteProductPopup = ({ initialData, onClose, url }) => {
                         type="submit"
                         className="note-product-popup__btn note-product-popup__btn--save"
                         onClick={handleSave}
-                        disabled={loading}
                     >
-                        {loading ? 'Đang lưu...' : 'Lưu tạm thời'}
+                        Lưu tạm thời
                     </button>
                 </div>
             </div>

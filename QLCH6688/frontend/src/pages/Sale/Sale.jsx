@@ -45,7 +45,6 @@ const Sale = () => {
     const [loading, setLoading] = useState(false);
 
     const [showAddProductPopup, setShowAddProductPopup] = useState(false);
-    const [tempProducts, setTempProducts] = useState([]);
     const [selectedProductData, setSelectedProductData] = useState(null);
 
     // Khai báo một state mới cho kết quả tìm kiếm từ worker
@@ -272,24 +271,12 @@ const Sale = () => {
         setShowAddProductPopup(false);
     }, []);
 
-    // ⚡️ Thêm hàm xử lý khi lưu sản phẩm tạm thời
-    const handleSaveNewProduct = useCallback((productData) => {
-        setTempProducts((prevProducts) => [...prevProducts, productData]);
-        console.log('Sản phẩm tạm thời đã được lưu:', productData);
-        setShowAddProductPopup(false);
-    }, []);
-
     const handleShowAddProductPopup = useCallback(() => {
         // Phân tích searchTerm để có dữ liệu điền sẵn
         const initialData = analyzeSearchTerm();
-        setSelectedProductData(initialData); // Lưu dữ liệu tạm vào state
+        setSelectedProductData(initialData);
         setShowAddProductPopup(true);
     }, [analyzeSearchTerm]);
-
-    useEffect(() => {
-        // ⚡️ In danh sách sản phẩm tạm thời ra console mỗi khi có sự thay đổi
-        console.log('Danh sách sản phẩm tạm thời hiện tại:', tempProducts);
-    }, [tempProducts]);
 
     return (
         <div className="sale-container">
@@ -331,14 +318,16 @@ const Sale = () => {
                     )}
                 </form>
                 {error && (
-                    <p className="sale-error-message">
-                        {error}
-                        <br />
+                    <div className="sale-search__error">
+                        <p className="sale-error-message">{error}</p>
                         {suggestions.length === 0 && (
-                            <span onClick={handleShowAddProductPopup}>Sản phẩm chưa có? Thêm ngay!</span>
+                            <span className="sale-search__add-link" onClick={handleShowAddProductPopup}>
+                                Sản phẩm chưa có? Thêm ngay!
+                            </span>
                         )}
-                    </p>
+                    </div>
                 )}
+
                 {/* {error && <p className="sale-error-message">{error}</p>} */}
                 <div className="sale-cart-list">
                     {cartProducts.map((item) => (
@@ -491,25 +480,7 @@ const Sale = () => {
             )}
 
             {showAddProductPopup && (
-                <NoteProductPopup
-                    initialData={selectedProductData}
-                    onClose={handleCloseAddProductPopup}
-                    onSave={handleSaveNewProduct}
-                />
-            )}
-
-            {tempProducts.length > 0 && (
-                <div className="temp-products-list">
-                    <h3>Sản phẩm đã thêm tạm thời:</h3>
-                    <ul>
-                        {tempProducts.map((product, index) => (
-                            <li key={index}>
-                                Tên: {product.name}, Mã: {product.productCode || 'N/A'}, Mã vạch:{' '}
-                                {product.barcode || 'N/A'}, Giá: {product.sellingPrice || 'N/A'}
-                            </li>
-                        ))}
-                    </ul>
-                </div>
+                <NoteProductPopup initialData={selectedProductData} onClose={handleCloseAddProductPopup} url={url} />
             )}
         </div>
     );

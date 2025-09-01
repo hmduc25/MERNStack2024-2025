@@ -119,3 +119,6 @@
 .note-product-popup__btn--save:hover {
     background-color: var(--secondary-color);
 }
+.note-product-popup__error {
+    color: var(--errors-text-color);
+}

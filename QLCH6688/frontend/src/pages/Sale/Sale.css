@@ -1,7 +1,6 @@
 :root {
-    --primary-color: #3b82f6; /* Màu chủ đạo */
-    --secondary-color: #60a5fa; /* Màu phụ */
-    --accent-color: #ef4444; /* Màu nhấn */
+    --third-color: #3b82f6; /* Màu chủ đạo */
+    --fourth-color: #60a5fa; /* Màu phụ */
     --text-color: #333; /* Màu chữ */
     --bg-light: #f3f4f6; /* Nền sáng */
     --border-color: #e5e7eb; /* Màu viền */
@@ -150,12 +149,33 @@
     margin-left: auto;
 }
 
-.sale-error-message {
-    color: var(--accent-color);
+.sale-search__error {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+/* Style cho đoạn văn bản lỗi */
+.sale-search__error .sale-error-message {
+    color: var(--errors-text-color);
     font-size: 14px;
-    margin-top: 5px;
+    margin: 0;
     animation: showOpacity 0.3s ease-in-out;
     will-change: opacity;
+}
+
+/* Style cho liên kết "Thêm ngay" */
+.sale-search__add-link {
+    color: var(--third-color);
+    cursor: pointer;
+    text-decoration: underline;
+    font-weight: 600;
+    font-size: 12px;
+    transition: color 0.2s;
+}
+
+.sale-search__add-link:hover {
+    color: var(--fourth-color);
 }
 
 @keyframes showOpacity {
