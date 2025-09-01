@@ -198,17 +198,6 @@
     -webkit-user-drag: none;
 } */
 
-:root {
-    --primary-color: #3b82f6; /* Màu chủ đạo */
-    --secondary-color: #60a5fa; /* Màu phụ */
-    --accent-color: #ef4444; /* Màu nhấn */
-    --text-color: #333; /* Màu chữ */
-    --bg-light: #f3f4f6; /* Nền sáng */
-    --border-color: #e5e7eb; /* Màu viền */
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-}
-
 .sale-container {
     display: grid;
     grid-template-columns: 7fr 3fr;

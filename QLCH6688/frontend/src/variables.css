@@ -1,0 +1,8 @@
+:root {
+    /* Fonts */
+    --font-family-primary: 'Arial', sans-serif;
+    --font-family-secondary: 'Times New Roman', Times, serif;
+    --font-family-segoe: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --font-family-magnificent: 'Magnificent', sans-serif;
+    --border-radius: 8px;
+}

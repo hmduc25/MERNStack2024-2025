@@ -11,11 +11,14 @@
 /* src: url('../public/fonts/2/svn-sofia/SVN-Sofia.ttf') format('truetype'); */
 /* src: url('../public/fonts/2/vn-sunshine-script/vn-sunshine-script.ttf') format('truetype'); */
 
+@import './variables.css';
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: var(--font-family-primary);
+    /* font-family: Arial, sans-serif; */
     /* font-family: 'Times New Roman', Times, serif; */
     /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
     /* font-family: 'Magnificent', sans-serif; */

@@ -5,6 +5,7 @@ import productRouter from './routes/productRoute.js';
 import saleRouter from './routes/saleRoute.js';
 import invoiceRouter from './routes/invoiceRoute.js';
 import { logBatchInfo } from './controllers/utilityController.js';
+import rawProductRouter from './routes/rawProductRoute.js';
 // import 'dotenv/config';
 
 const app = express();
@@ -21,6 +22,7 @@ connectDB();
 app.use('/api/sanpham', productRouter);
 app.use('/api/banhang', saleRouter);
 app.use('/api/hoadon', invoiceRouter);
+app.use('/api/rawproduct', rawProductRouter);
 app.use('/images', express.static('uploads'));
 
 app.get('/', (req, res) => {

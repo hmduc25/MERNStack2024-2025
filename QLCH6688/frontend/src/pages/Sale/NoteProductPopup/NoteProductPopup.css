@@ -1,5 +1,5 @@
-/* src/components/Sale/NewProductPopup.css */
-.new-product-popup-overlay {
+/* src/components/Sale/NoteProductPopup.css */
+.note-product-popup {
     position: fixed;
     top: 0;
     left: 0;
@@ -12,33 +12,33 @@
     z-index: 1000;
 }
 
-.new-product-popup-container {
+.note-product-popup__container {
     background-color: #fff;
     padding: 24px;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-md); /* Sử dụng biến từ Sale.css */
     width: 90%;
     max-width: 500px;
     display: flex;
     flex-direction: column;
 }
 
-.new-product-popup-header {
+.note-product-popup__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border-color); /* Sử dụng biến */
     padding-bottom: 12px;
     margin-bottom: 12px;
 }
 
-.new-product-popup-header h2 {
+.note-product-popup__title {
     margin: 0;
     font-size: 1.5rem;
-    color: #333;
+    color: var(--text-color); /* Sử dụng biến */
 }
 
-.close-btn {
+.note-product-popup__close-btn {
     font-size: 2rem;
     font-weight: bold;
     color: #aaa;
@@ -46,40 +46,54 @@
     transition: color 0.2s;
 }
 
-.close-btn:hover {
+.note-product-popup__close-btn:hover {
     color: #666;
 }
 
-.new-product-popup-body .form-group {
+.note-product-popup__body {
+    padding: 12px 0;
+}
+
+.note-product-popup__description {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.note-product-popup__form-group {
     margin-bottom: 16px;
 }
 
-.new-product-popup-body label {
+.note-product-popup__label {
     display: block;
     font-weight: 500;
     margin-bottom: 6px;
-    color: #555;
+    color: var(--text-color);
 }
 
-.new-product-popup-body input {
+.note-product-popup__input {
     width: 100%;
     padding: 10px 12px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
     border-radius: 4px;
     font-size: 1rem;
 }
 
-.new-product-popup-footer {
+.note-product-popup__input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.note-product-popup__footer {
     display: flex;
     justify-content: flex-end;
     gap: 12px;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--border-color);
     padding-top: 16px;
     margin-top: 12px;
 }
 
-.btn-cancel,
-.btn-save {
+.note-product-popup__btn {
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
@@ -88,34 +102,20 @@
     transition: background-color 0.2s;
 }
 
-.btn-cancel {
-    background-color: #f0f0f0;
-    color: #555;
+.note-product-popup__btn--cancel {
+    background-color: var(--bg-light);
+    color: var(--text-color);
 }
 
-.btn-cancel:hover {
+.note-product-popup__btn--cancel:hover {
     background-color: #e0e0e0;
 }
 
-.btn-save {
-    background-color: #4caf50;
-    color: white;
+.note-product-popup__btn--save {
+    background-color: var(--primary-color);
+    color: #fff;
 }
 
-.btn-save:hover {
-    background-color: #45a049;
-}
-
-.add-product-link {
-    color: #007bff;
-    cursor: pointer;
-    text-decoration: underline;
-    font-weight: bold;
-    font-size: 0.9em;
-    margin-left: 8px;
-    transition: color 0.2s;
-}
-
-.add-product-link:hover {
-    color: #0056b3;
+.note-product-popup__btn--save:hover {
+    background-color: var(--secondary-color);
 }

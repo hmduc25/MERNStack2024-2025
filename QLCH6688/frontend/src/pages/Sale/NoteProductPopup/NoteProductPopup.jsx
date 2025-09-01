@@ -1,9 +1,8 @@
 // src/components/Sale/NoteProductPopup.jsx
 import React, { useState } from 'react';
-import './NoteProductPopup.css'; // Tạo file CSS tương ứng
+import './NoteProductPopup.css';
 
 const NoteProductPopup = ({ initialData, onClose, onSave }) => {
-    // Sử dụng từ khóa tìm kiếm ban đầu để điền sẵn vào tên sản phẩm
     const [productData, setProductData] = useState({
         name: initialData.name || '',
         productCode: initialData.productCode || '',
@@ -20,30 +19,34 @@ const NoteProductPopup = ({ initialData, onClose, onSave }) => {
     };
 
     const handleSave = () => {
-        // Gọi hàm onSave được truyền từ component cha
         onSave(productData);
     };
 
     return (
-        <div className="new-product-popup-overlay">
-            <div className="new-product-popup-container">
-                <div className="new-product-popup-header">
-                    <h2>Thêm sản phẩm mới</h2>
-                    <span className="close-btn" onClick={onClose}>
+        <div className="note-product-popup">
+            <div className="note-product-popup__container">
+                <div className="note-product-popup__header">
+                    <h2 className="note-product-popup__title">Thêm sản phẩm mới</h2>
+                    <span className="note-product-popup__close-btn" onClick={onClose}>
                         &times;
                     </span>
                 </div>
-                <div className="new-product-popup-body">
-                    <p>Vui lòng điền thông tin cơ bản về sản phẩm để lưu tạm thời.</p>
+                <div className="note-product-popup__body">
+                    <p className="note-product-popup__description">
+                        Vui lòng điền thông tin cơ bản về sản phẩm để lưu tạm thời.
+                    </p>
                     <form
                         onSubmit={(e) => {
                             e.preventDefault();
                             handleSave();
                         }}
                     >
-                        <div className="form-group">
-                            <label htmlFor="name">Tên sản phẩm</label>
+                        <div className="note-product-popup__form-group">
+                            <label className="note-product-popup__label" htmlFor="name">
+                                Tên sản phẩm
+                            </label>
                             <input
+                                className="note-product-popup__input"
                                 type="text"
                                 id="name"
                                 name="name"
@@ -52,9 +55,12 @@ const NoteProductPopup = ({ initialData, onClose, onSave }) => {
                                 required
                             />
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="productCode">Mã sản phẩm</label>
+                        <div className="note-product-popup__form-group">
+                            <label className="note-product-popup__label" htmlFor="productCode">
+                                Mã sản phẩm
+                            </label>
                             <input
+                                className="note-product-popup__input"
                                 type="text"
                                 id="productCode"
                                 name="productCode"
@@ -62,9 +68,12 @@ const NoteProductPopup = ({ initialData, onClose, onSave }) => {
                                 onChange={handleChange}
                             />
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="barcode">Mã vạch</label>
+                        <div className="note-product-popup__form-group">
+                            <label className="note-product-popup__label" htmlFor="barcode">
+                                Mã vạch
+                            </label>
                             <input
+                                className="note-product-popup__input"
                                 type="text"
                                 id="barcode"
                                 name="barcode"
@@ -72,9 +81,12 @@ const NoteProductPopup = ({ initialData, onClose, onSave }) => {
                                 onChange={handleChange}
                             />
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="sellingPrice">Giá bán</label>
+                        <div className="note-product-popup__form-group">
+                            <label className="note-product-popup__label" htmlFor="sellingPrice">
+                                Giá bán
+                            </label>
                             <input
+                                className="note-product-popup__input"
                                 type="number"
                                 id="sellingPrice"
                                 name="sellingPrice"
@@ -84,11 +96,19 @@ const NoteProductPopup = ({ initialData, onClose, onSave }) => {
                         </div>
                     </form>
                 </div>
-                <div className="new-product-popup-footer">
-                    <button type="button" className="btn-cancel" onClick={onClose}>
+                <div className="note-product-popup__footer">
+                    <button
+                        type="button"
+                        className="note-product-popup__btn note-product-popup__btn--cancel"
+                        onClick={onClose}
+                    >
                         Hủy
                     </button>
-                    <button type="submit" className="btn-save" onClick={handleSave}>
+                    <button
+                        type="submit"
+                        className="note-product-popup__btn note-product-popup__btn--save"
+                        onClick={handleSave}
+                    >
                         Lưu tạm thời
                     </button>
                 </div>

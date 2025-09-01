@@ -62,43 +62,6 @@ const Sale = () => {
         return Object.values(cartItems).reduce((sum, quantity) => sum + quantity, 0);
     }, [cartItems]);
 
-    // const suggestions = useMemo(() => {
-    //     if (!debouncedSearchTerm) return [];
-    //     return product_list.filter(
-    //         (item) =>
-    //             item.name.toLowerCase().includes(debouncedSearchTerm.toLowerCase()) ||
-    //             item.barcode.includes(debouncedSearchTerm),
-    //     );
-    // }, [debouncedSearchTerm, product_list]);
-
-    // const suggestions = useMemo(() => {
-    //     if (!debouncedSearchTerm) return [];
-
-    //     const lowerCaseSearchTerm = debouncedSearchTerm.toLowerCase();
-
-    //     // Check if the search term is a number to enable price search
-    //     const isPriceSearch = !isNaN(Number(lowerCaseSearchTerm));
-    //     const numericSearchTerm = isPriceSearch ? Number(lowerCaseSearchTerm) : null;
-
-    //     return product_list.filter((item) => {
-    //         // Search by name (Tên)
-    //         const nameMatch = item.name.toLowerCase().includes(lowerCaseSearchTerm);
-
-    //         // Search by barcode (Mã vạch)
-    //         const barcodeMatch = item.barcode && item.barcode.includes(lowerCaseSearchTerm);
-
-    //         // Search by productCode (Mã sản phẩm)
-    //         const productCodeMatch = item.productCode && item.productCode.toLowerCase().includes(lowerCaseSearchTerm);
-
-    //         // Search by sellingPrice (Giá bán)
-    //         // We only perform this if the input is a valid number
-    //         const priceMatch = isPriceSearch && item.sellingPrice === numericSearchTerm;
-
-    //         // The product matches if any of the criteria are met
-    //         return nameMatch || barcodeMatch || productCodeMatch || priceMatch;
-    //     });
-    // }, [debouncedSearchTerm, product_list]);
-
     // === EFFECTS ===
     useEffect(() => {
         // Khởi tạo Web Worker khi component được mount
@@ -295,7 +258,6 @@ const Sale = () => {
                 sellingPrice: term,
             };
         } else {
-            // Mặc định là Tên sản phẩm nếu không khớp với các định dạng trên
             return {
                 name: term,
                 productCode: '',
@@ -316,10 +278,6 @@ const Sale = () => {
         console.log('Sản phẩm tạm thời đã được lưu:', productData);
         setShowAddProductPopup(false);
     }, []);
-
-    // const handleShowAddProductPopup = useCallback(() => {
-    //     setShowAddProductPopup(true);
-    // }, []);
 
     const handleShowAddProductPopup = useCallback(() => {
         // Phân tích searchTerm để có dữ liệu điền sẵn
@@ -375,12 +333,9 @@ const Sale = () => {
                 {error && (
                     <p className="sale-error-message">
                         {error}
-
                         <br />
                         {suggestions.length === 0 && (
-                            <span onClick={handleShowAddProductPopup} className="add-product-link">
-                                Sản phẩm chưa có? Thêm ngay!
-                            </span>
+                            <span onClick={handleShowAddProductPopup}>Sản phẩm chưa có? Thêm ngay!</span>
                         )}
                     </p>
                 )}
@@ -536,11 +491,6 @@ const Sale = () => {
             )}
 
             {showAddProductPopup && (
-                // <NoteProductPopup
-                //     initialSearchTerm={searchTerm}
-                //     onClose={handleCloseAddProductPopup}
-                //     onSave={handleSaveNewProduct}
-                // />
                 <NoteProductPopup
                     initialData={selectedProductData}
                     onClose={handleCloseAddProductPopup}
