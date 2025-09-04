@@ -1,19 +1,24 @@
-Inventory.css
-
-/* --- B: Block --- */
-.inventory {
+---B: Block --- .inventory {
     max-width: 1500px;
     margin: 32px auto;
     background: #fff;
     border-radius: 12px;
-    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     padding: 32px;
     font-family: 'Segoe UI', Arial, sans-serif;
 }
 
 /* --- E: Elements --- */
+.inventory__header-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 45px;
+    margin-bottom: 25px;
+}
+
 .inventory__header {
-    margin-bottom: 24px;
     font-weight: 700;
     font-size: 28px;
     color: #2d3748;
@@ -22,83 +27,125 @@ Inventory.css
 
 .inventory__controls {
     display: flex;
-    gap: 12px;
-    margin-bottom: 20px;
+    gap: 16px;
+    margin-bottom: 24px;
     flex-wrap: wrap;
     align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.inventory__input-wrapper,
+.inventory__select-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-width: 200px;
+}
+
+.inventory__icon {
+    position: absolute;
+    left: 12px;
+    color: #94a3b8;
+    font-size: 20px;
+    pointer-events: none;
 }
 
 .inventory__input,
 .inventory__select {
-    padding: 8px 12px;
-    border-radius: 6px;
+    width: 100%;
+    padding: 10px 12px 10px 40px; /* Thêm padding trái để tạo không gian cho icon */
+    border-radius: 8px;
     border: 1px solid #cbd5e1;
-    font-size: 16px;
+    font-size: 15px;
     outline: none;
-    transition: border 0.2s;
-}
-/* Thêm hover state cho input/select */
-.inventory__input:focus,
-.inventory__select:focus {
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
-}
-
-.inventory__input {
-    min-width: 300px;
+    transition: border 0.2s, box-shadow 0.2s;
+    background-color: #f8fafc;
+    color: #334155;
+    -webkit-appearance: none; /* Loại bỏ style mặc định của select */
+    -moz-appearance: none;
+    appearance: none;
 }
 
 .inventory__select {
-    background: #f8fafc;
-    cursor: pointer;
+    padding-right: 12px;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-chevron-down'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+}
+
+.inventory__input:focus,
+.inventory__select:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
 }
 
 .inventory__table-wrap {
     overflow-x: auto;
-    border-radius: 10px;
-    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.04);
-    background: #f9fafb;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    background: #fff;
+    border: 1px solid #e2e8f0;
 }
 
 .inventory__table {
     width: 100%;
     border-collapse: collapse;
     font-size: 15px;
-    background: #fff;
 }
 
 .inventory__table-header-cell {
     background: #f1f5f9;
-    color: #374151;
+    color: #475569;
     font-weight: 600;
-    padding: 12px 8px;
-    border-bottom: 1px solid #e5e7eb;
+    padding: 14px 12px;
+    border-bottom: 1px solid #e2e8f0;
     text-align: center;
     white-space: nowrap;
+    position: sticky;
+    top: 0;
+}
+
+.inventory__table-header-cell:first-child {
+    border-top-left-radius: 12px;
+}
+
+.inventory__table-header-cell:last-child {
+    border-top-right-radius: 12px;
 }
 
 .inventory__table-cell {
-    padding: 10px 8px;
-    border-bottom: 1px solid #f3f4f6;
-    text-align: center;
+    padding: 12px;
+    border-bottom: 1px solid #f1f5f9;
     background: #fff;
-    transition: background 0.2s;
-    max-width: 500px;
+    transition: background-color 0.2s;
+    color: #475569;
+    text-align: center;
+    white-space: normal;
+    word-wrap: break-word;
+    line-height: 1.4;
 }
 
-.inventory__table-row {
-    transition: background 0.2s;
+.inventory__table-cell:nth-child(2) {
+    max-width: 350px;
 }
 
-.inventory__table-row:hover {
-    background: #f3f4f6;
+.inventory__table-cell:not(:nth-child(2)) {
+    max-width: 150px;
+}
+
+.inventory__table-row:hover .inventory__table-cell {
+    background-color: #f8fafc;
 }
 
 .inventory__no-data {
     text-align: center;
     color: #64748b;
-    padding: 24px;
+    padding: 40px 20px;
     font-size: 16px;
+    font-style: italic;
+    background-color: #fcfcfc;
 }
 
 .inventory__dashboard {
@@ -106,25 +153,33 @@ Inventory.css
     gap: 24px;
     margin-bottom: 32px;
     flex-wrap: wrap;
+    padding-left: 18px;
+    padding-right: 18px;
 }
 
 .inventory__stat-card {
     flex: 1;
-    min-width: 200px;
-    padding: 20px;
-    background: #f1f5f9;
+    min-width: 220px;
+    padding: 24px;
+    background: #f8fafc;
     border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    padding-left: 18px;
+    padding-right: 18px;
 }
 
 .inventory__stat-title {
-    font-size: 16px;
+    font-size: 15px;
     color: #64748b;
     margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .inventory__stat-value {
-    font-size: 28px;
+    font-size: 32px;
     font-weight: 700;
     color: #2d3748;
 }
@@ -134,15 +189,33 @@ Inventory.css
     gap: 24px;
     margin-bottom: 32px;
     flex-wrap: wrap;
+    padding-left: 18px;
+    padding-right: 18px;
 }
 
 .inventory__top-products-card {
     flex: 1;
     min-width: 400px;
-    padding: 20px;
-    background: #f1f5f9;
+    padding: 24px;
+    background: #f8fafc;
     border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.inventory__card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 18px;
+    color: #475569;
+    margin-bottom: 16px;
+}
+
+.inventory__card-icon {
+    color: #4c82f7;
+    font-size: 20px;
 }
 
 .inventory__top-products-list {
@@ -154,9 +227,11 @@ Inventory.css
 .inventory__top-product-item {
     display: flex;
     justify-content: space-between;
-    padding: 8px 0;
+    padding: 10px 0;
     border-bottom: 1px solid #e2e8f0;
     align-items: center;
+    font-size: 15px;
+    color: #475569;
 }
 
 .inventory__top-product-name {
@@ -181,6 +256,14 @@ Inventory.css
     background: #fffbeb;
 }
 
+.inventory__table-row--expired:hover .inventory__table-cell {
+    background-color: #ffcccc;
+}
+
+.inventory__table-row--near-expired:hover .inventory__table-cell {
+    background-color: #fff4cc;
+}
+
 .inventory__text--expired {
     color: #ef4444;
     font-weight: 600;
@@ -191,52 +274,6 @@ Inventory.css
     font-weight: 600;
 }
 
-/* CSS cho ProductRow mới */
-.inventory__table-cell--expandable {
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.inventory__expand-icon {
-    display: inline-block;
-    width: 0;
-    height: 0;
-    margin-right: 8px;
-    border-top: 6px solid transparent;
-    border-bottom: 6px solid transparent;
-    border-left: 6px solid #555;
-    transition: transform 0.2s ease-in-out;
-}
-
-.inventory__expand-icon--expanded {
-    transform: rotate(90deg);
-}
-
-.inventory__table-cell--indent {
-    padding-left: 40px !important; /* Tạo khoảng cách thụt vào cho các lô hàng */
-    font-style: italic;
-    color: #888;
-}
-
-.inventory__total-quantity {
-    font-weight: bold;
-    color: #007bff;
-}
-
-/* Thêm hiệu ứng hover cho các hàng */
-.inventory__table-row:hover {
-    background-color: #f2f2f2;
-}
-
-.inventory__table-row--expired:hover {
-    background-color: #ffcccc;
-}
-
-.inventory__table-row--near-expired:hover {
-    background-color: #ffebcc;
-}
-
-/* --- A: Atoms (Đã có sẵn đây chỉ là phần bổ sung) --- */
 .inventory__summary {
     display: flex;
     justify-content: space-between;
@@ -277,4 +314,16 @@ Inventory.css
     background-color: #f8fafc;
     border-top: 2px solid #e2e8f0;
     padding: 0;
+}
+
+@media (max-width: 768px) {
+    .inventory__table-header-cell,
+    .inventory__table-cell {
+        padding: 8px;
+        font-size: 13px;
+    }
+
+    .inventory__table-cell:not(:nth-child(2)) {
+        max-width: 100px;
+    }
 }

@@ -3,13 +3,6 @@ import classNames from 'classnames';
 import { StoreContext } from '../../context/StoreContext';
 import './Inventory.css';
 import StatusDisplaySpinner from '../../components/StatusDisplaySpinner/StatusDisplaySpinner';
-import {
-    MdSearch,
-    MdFilterList,
-    MdAssignment,
-    MdKeyboardDoubleArrowRight,
-    MdKeyboardDoubleArrowUp,
-} from 'react-icons/md';
 
 // Hàm helper: Dùng để kiểm tra trạng thái hạn sử dụng
 const getExpiryStatus = (expirationDate) => {
@@ -159,9 +152,7 @@ const Inventory = () => {
 
     return (
         <div className="inventory">
-            <div className="inventory__header-container">
-                <div className="inventory__header">QUẢN LÝ TỒN KHO</div>
-            </div>
+            <div className="inventory__header">Quản lý Tồn kho theo Lô hàng</div>
 
             <div className="inventory__dashboard">
                 <div className="inventory__stat-card">
@@ -176,10 +167,7 @@ const Inventory = () => {
 
             <div className="inventory__top-products-container">
                 <div className="inventory__top-products-card">
-                    <div className="inventory__card-header">
-                        <MdKeyboardDoubleArrowRight className="inventory__card-icon" />
-                        Top 10 sản phẩm tồn kho nhiều nhất
-                    </div>
+                    <div className="inventory__header">Top 10 sản phẩm tồn kho nhiều nhất</div>
                     <ul className="inventory__top-products-list">
                         {top10ByQuantity.map((p, index) => (
                             <li
@@ -198,10 +186,7 @@ const Inventory = () => {
                 </div>
 
                 <div className="inventory__top-products-card">
-                    <div className="inventory__card-header">
-                        <MdKeyboardDoubleArrowUp className="inventory__card-icon" />
-                        Top 10 sản phẩm giá trị tồn kho cao nhất
-                    </div>
+                    <div className="inventory__header">Top 10 sản phẩm giá trị tồn kho cao nhất</div>
                     <ul className="inventory__top-products-list">
                         {top10ByValue.map((p, index) => (
                             <li
@@ -221,41 +206,30 @@ const Inventory = () => {
             </div>
 
             <div className="inventory__controls">
-                <div className="inventory__input-wrapper mw-300">
-                    <MdSearch className="inventory__icon" />
-                    <input
-                        type="text"
-                        placeholder="Tìm kiếm sản phẩm hoặc mã..."
-                        value={search}
-                        onChange={(e) => setSearch(e.target.value)}
-                        className="inventory__input"
-                    />
-                </div>
-
-                <div className="inventory__select-wrapper">
-                    <MdFilterList className="inventory__icon" />
-                    <select value={filter} onChange={(e) => setFilter(e.target.value)} className="inventory__select">
-                        {categories.map((c) => (
-                            <option key={c} value={c}>
-                                {c.charAt(0).toUpperCase() + c.slice(1)}
-                            </option>
-                        ))}
-                    </select>
-                </div>
-
-                <div className="inventory__select-wrapper">
-                    <MdAssignment className="inventory__icon" />
-                    <select
-                        value={expiryFilter}
-                        onChange={(e) => setExpiryFilter(e.target.value)}
-                        className="inventory__select"
-                    >
-                        <option value="Tất cả">Trạng thái HSD</option>
-                        <option value="Hết hạn">🔴 Hết hạn</option>
-                        <option value="Sắp hết hạn">🟠 Sắp hết hạn ({`<= 30 ngày`})</option>
-                        <option value="Bình thường">🟢 Bình thường</option>
-                    </select>
-                </div>
+                <input
+                    type="text"
+                    placeholder="🔍 Tìm kiếm sản phẩm hoặc mã..."
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    className="inventory__input"
+                />
+                <select value={filter} onChange={(e) => setFilter(e.target.value)} className="inventory__select">
+                    {categories.map((c) => (
+                        <option key={c} value={c}>
+                            {c.charAt(0).toUpperCase() + c.slice(1)}
+                        </option>
+                    ))}
+                </select>
+                <select
+                    value={expiryFilter}
+                    onChange={(e) => setExpiryFilter(e.target.value)}
+                    className="inventory__select"
+                >
+                    <option value="Tất cả">Trạng thái HSD</option>
+                    <option value="Hết hạn">🔴 Hết hạn</option>
+                    <option value="Sắp hết hạn">🟠 Sắp hết hạn ({`<= 30 ngày`})</option>
+                    <option value="Bình thường">🟢 Bình thường</option>
+                </select>
             </div>
 
             <div className="inventory__table-wrap">
@@ -291,14 +265,10 @@ const Inventory = () => {
                                 'inventory__table-row--near-expired': expiryStatus === 'near-expired',
                             });
 
-                            const expiryTextClasses = classNames(
-                                'inventory__table-cell',
-                                'inventory__table-cell--expiry',
-                                {
-                                    'inventory__text--expired': expiryStatus === 'expired',
-                                    'inventory__text--near-expired': expiryStatus === 'near-expired',
-                                },
-                            );
+                            const expiryTextClasses = classNames('inventory__table-cell', {
+                                'inventory__text--expired': expiryStatus === 'expired',
+                                'inventory__text--near-expired': expiryStatus === 'near-expired',
+                            });
 
                             return (
                                 <tr key={rowKey} className={rowClasses}>

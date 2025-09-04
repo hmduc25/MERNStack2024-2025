@@ -1,12 +1,16 @@
 - `DetailProduct`, `AddProduct` (hiển thị tên file) - ok
 - tích hợp github - ok
-- pages hóa đơn -> ok, doanh thu -> ok, trang chủ, ghi chú (sử dụng cho những sản phẩm chưa có trong database - có thể tích hợp trong trang hàng hóa)
+- pages hóa đơn -> ok, doanh thu -> ok, trang chủ, ghi chú (sử dụng cho những sản phẩm chưa có trong database - có thể tích hợp trong trang hàng hóa) -> ok
+- ứng dụng bằng python chạy dữ án bằng cách chạy file `khoi_dong_ung_dung.exe, run_app.py` (phù hợp cho người dùng cuối) -> ok
+- cần nâng cấp `khoi_dong_ung_dung.exe, run_app.py` để có thể cập nhật code mới nhất từ github (git pull or something, sử dụng máy máy để test) /de sau
+- tích hợp custom barcode cho những sản phẩm không có mã vạch (SKU) -> ok, chỉnh lại cho `ProductDetail, ProductDetailPopups`
+- đồng bộ style cho `Tồn kho, Ghi chú`
+- xóa `Tồn kho` đang dư thừa (stock - database) <-> đổi stock thành trạng thái hàng (VD: Ngừng kinh doanh/`active`, `hidden`, `peding`)
 - loại, nhóm hàng (cần gộp và bổ sung), 
 - hóa đơn tạm thời (sử dụng cho các khá ăn uống xong mới thanh toán, có thể thay đổi thêm bớt sản phẩm đa năng, thêm tiền công hoặc custom giá sản phẩm...)
-- xóa `Tồn kho` đang dư thừa (stock - database) - đổi stock thành trạng thái hàng (VD: Ngừng kinh doanh/`active`, `hidden`, `peding`)
 - đăng nhập (phân quyền: `admin`, `manager` ,`seller`)
 - đổi thông báo qua toast message
-- add AI
+- add AI (AI gợi ý, đề xuất - API GEMENI hoặc chatGPT)
 - chế độ khi k có mạng (local)
 
 => lưu sẵn dữ liệu product vào localstore để khi tìm kiếm đỡ lag (khi nào load lại trang mới cập nhật lại dữ liệu - kiểm tra xem StoreContext có được load - gọi lại api khi refresh không?)

@@ -7,3 +7,8 @@
     --font-family-magnificent: 'Magnificent', sans-serif;
     --border-radius: 8px;
 }
+
+/* VALUE DEFAULT */
+.mw-300 {
+    min-width: 300px !important;
+}

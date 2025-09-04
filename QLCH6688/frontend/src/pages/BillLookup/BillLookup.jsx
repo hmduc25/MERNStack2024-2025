@@ -74,7 +74,7 @@ const BillLookup = () => {
 
     return (
         <div className="bill-lookup">
-            <h2 className="bill-lookup__title">Lịch Sử Hóa Đơn</h2>
+            <h2 className="bill-lookup__title">LỊCH SỬ HÓA ĐƠN</h2>
 
             <div className="bill-lookup__controls">
                 <div className="bill-lookup__search-sort">

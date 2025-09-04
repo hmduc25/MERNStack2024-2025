@@ -53,9 +53,7 @@ const Revenue = () => {
 
     return (
         <div className="revenue">
-            <h1 className="revenue__title">
-                <FaChartLine className="revenue__title-icon" /> Thống kê Doanh thu & Lợi nhuận
-            </h1>
+            <h1 className="revenue__title">DOANH THU & LỢI NHUẬN</h1>
 
             <div className="revenue__summary">
                 <div className="revenue__card revenue__card--revenue">

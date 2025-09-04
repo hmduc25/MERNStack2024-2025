@@ -167,7 +167,7 @@ const ProductDetail = () => {
                                 name="barcode"
                                 value={product.barcode}
                                 onChange={(e) => handleChange(e, 'barcode')}
-                                disabled={!isEditMode}
+                                disabled={!isEditMode || product.barcode.startsWith('SKU_')}
                             />
                         </div>
                         <div className="detail-product-form__group">
@@ -501,10 +501,17 @@ const ProductDetail = () => {
                                         >
                                             <div className="detail-product-form__batch-info">
                                                 <b>Số lô {index + 1}:</b>
-                                                <p>Ngày nhập: {formatDateFromYYYYMMDDToVietNamDate(batch.entryDate)}</p>
+                                                <p>
+                                                    Ngày nhập:{' '}
+                                                    {batch.entryDate
+                                                        ? formatDateFromYYYYMMDDToVietNamDate(batch.entryDate)
+                                                        : 'Không có'}
+                                                </p>
                                                 <p>
                                                     Ngày hết hạn:{' '}
-                                                    {formatDateFromYYYYMMDDToVietNamDate(batch.expirationDate)}
+                                                    {batch.expirationDate
+                                                        ? formatDateFromYYYYMMDDToVietNamDate(batch.expirationDate)
+                                                        : 'Không có'}
                                                 </p>
                                                 <p>Giá nhập: {formatCurrency(batch.purchasePrice)}</p>
                                                 <p>Số lượng: {batch.quantity}</p>

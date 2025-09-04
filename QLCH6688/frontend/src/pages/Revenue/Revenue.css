@@ -1,7 +1,8 @@
 /* BLOCK: revenue */
 .revenue {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    padding: 2rem;
+    padding: 18px;
+    padding-top: 20px;
     background-color: #f0f2f5;
     color: #333;
     display: flex;
@@ -12,18 +13,11 @@
 /* ELEMENTS: Các thành phần chính của block */
 .revenue__title {
     text-align: center;
-    color: #007bff;
-    font-size: 2.5rem;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    color: #2c3e50;
+    font-size: 28px;
     font-weight: 600;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
-}
-
-.revenue__title-icon {
-    font-size: 2.5rem;
 }
 
 .revenue__summary {

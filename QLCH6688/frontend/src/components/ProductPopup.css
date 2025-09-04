@@ -129,32 +129,17 @@
 .detail-value {
     margin: 0;
     text-align: right;
-    flex-shrink: 0; /* Ngăn giá trị bị co lại */
+    flex-shrink: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 300px;
 }
 
 .selling-price {
     font-weight: bold;
     color: var(--primary-color);
     font-size: 1.1rem;
-}
-
-.price-row {
-    justify-content: flex-start;
-    gap: 16px;
-}
-
-.price-toggle-button {
-    background-color: var(--primary-color);
-    color: var(--white);
-    border: none;
-    padding: 4px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.price-toggle-button:hover {
-    background-color: #388e3c;
 }
 
 /* === Supplier & Batches Info === */

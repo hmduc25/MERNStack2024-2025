@@ -11,18 +11,12 @@ const ProductPopup = ({ product, onClose }) => {
         convertCategory,
     } = utilityFunctions;
 
-    const [isPriceVisible, setIsPriceVisible] = useState(false);
-
     if (!product) return null;
 
     const handleOverlayClick = (e) => {
         if (e.target.classList.contains('popup-overlay')) {
             onClose();
         }
-    };
-
-    const togglePriceVisibility = () => {
-        setIsPriceVisible(!isPriceVisible);
     };
 
     return (
@@ -49,7 +43,9 @@ const ProductPopup = ({ product, onClose }) => {
                     <div className="product-details">
                         <div className="detail-group">
                             <p className="detail-label">Tên sản phẩm:</p>
-                            <p className="detail-value">{product.name}</p>
+                            <p className="detail-value" title={product.name}>
+                                {product.name}
+                            </p>
                         </div>
                         <div className="detail-group">
                             <p className="detail-label">Mã sản phẩm:</p>
@@ -86,16 +82,6 @@ const ProductPopup = ({ product, onClose }) => {
                             <p className="detail-value">
                                 {formatDateTimeFromISO8601ToVietNamDateTime(product.updatedAt)}
                             </p>
-                        </div>
-
-                        <div className="detail-group price-row">
-                            <p className="detail-label">Giá nhập:</p>
-                            <p className="detail-value">
-                                {isPriceVisible ? formatCurrency(product.purchasePrice) : '******'}
-                            </p>
-                            <button className="price-toggle-button" onClick={togglePriceVisibility}>
-                                {isPriceVisible ? 'Ẩn' : 'Hiện'}
-                            </button>
                         </div>
 
                         <div className="detail-group">
