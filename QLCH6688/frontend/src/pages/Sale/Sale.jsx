@@ -125,7 +125,14 @@ const Sale = () => {
 
     // === HANDLERS ===
     const handleSearchChange = (event) => {
-        setSearchTerm(event.target.value);
+        const rawValue = event.target.value;
+        const regex = /[!@#$%^&*()\-+=\[\]{}|\\;:'",.<>/?~`]/g;
+
+        // Áp dụng regex để thay thế các ký tự không hợp lệ
+        const sanitizedValue = rawValue.replace(regex, '');
+
+        // Cập nhật state với giá trị đã được làm sạch
+        setSearchTerm(sanitizedValue);
         setError('');
         setShowAddProductPopup(false);
     };

@@ -371,6 +371,31 @@
     justify-content: center;
 }
 
+/* Thêm styles cho dòng gợi ý mã vạch */
+.detail-product-form__help-text {
+    font-size: 0.85rem;
+    color: #6c757d;
+    margin-top: 4px;
+}
+
+.detail-product-form__help-text span {
+    color: #007bff;
+    text-decoration: underline;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.detail-product-form__help-text span:hover {
+    color: #0056b3;
+}
+
+.detail-product-form__help-text--disabled {
+    color: #333;
+    font-style: italic;
+    opacity: 0.7;
+    transition: color 0.3s ease, opacity 0.3s ease;
+}
+
 /* Media Queries cho màn hình từ 1600px trở xuống (phù hợp 15.6 inch) */
 @media (max-width: 1600px) {
     .detail-product-form {

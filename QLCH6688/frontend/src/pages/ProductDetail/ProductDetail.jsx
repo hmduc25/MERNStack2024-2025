@@ -28,7 +28,6 @@ const ProductDetail = () => {
         purchasePrice: '',
         sellingPrice: '',
         unit: '',
-        stock: '',
         description: '',
         notes: '',
         image: '',
@@ -265,18 +264,7 @@ const ProductDetail = () => {
                                 onChange={(e) => handleChange(e, 'sellingPrice')}
                             />
                         </div>
-                        <div className="detail-product-form__group">
-                            <label className="detail-product-form__label--required">Số lượng tồn kho:</label>
-                            <input
-                                className="detail-product-form__input"
-                                disabled={!isEditMode}
-                                required
-                                type="number"
-                                name="stock"
-                                value={product.stock}
-                                onChange={(e) => handleChange(e, 'stock')}
-                            />
-                        </div>
+
                         <div className="detail-product-form__image-section">
                             <label className="detail-product-form__label">Ảnh sản phẩm hiện tại:</label>
                             <div className="detail-product-form__image-upload-container">

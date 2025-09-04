@@ -1,4 +1,4 @@
-import { useEffect, useContext, useRef, useCallback } from 'react';
+import { useContext, useRef, useCallback, useState } from 'react'; // Thêm useState
 import { useNavigate, Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { motion } from 'framer-motion';
@@ -17,6 +17,9 @@ const AddProduct = () => {
     const navigate = useNavigate();
     const fileInputRef = useRef(null);
 
+    // Thêm state mới để quản lý trạng thái của trường mã vạch
+    const [isBarcodeDisabled, setIsBarcodeDisabled] = useState(false);
+
     const initialProductState = {
         supplier: { name: '', contact: '', address: '' },
         productCode: '',
@@ -27,7 +30,6 @@ const AddProduct = () => {
         purchasePrice: '',
         sellingPrice: '',
         unit: '',
-        stock: '',
         description: '',
         notes: '',
         image: '',
@@ -35,6 +37,7 @@ const AddProduct = () => {
     };
 
     // Sử dụng custom hook để quản lý API, chỉ cần addProduct
+    // LƯU Ý: Giả định hook useProductApi có hàm fetchLastProductCode
     const { isLoading, error, addProduct, fetchLastProductCode } = useProductApi();
 
     // Sử dụng useCallback để đảm bảo fetchLastProductCode không thay đổi
@@ -61,9 +64,36 @@ const AddProduct = () => {
         handleSelectBatch,
     } = useProductForm(initialProductState, removeSpecialChars, 'add', memoizedFetchLastProductCode);
 
+    const handleNoBarcodeClick = async () => {
+        setIsBarcodeDisabled(true); // Vô hiệu hóa trường nhập mã vạch
+        try {
+            // Gọi API để lấy mã vạch tùy chỉnh
+            const result = await memoizedFetchLastProductCode();
+            console.log('result_out: ', result);
+
+            // Sửa logic kiểm tra: chỉ cần kiểm tra customBarcode tồn tại
+            if (result && result.customBarcode) {
+                console.log('result_in: ', result);
+                console.log('result.customBarcode: ', result.customBarcode);
+                setProduct({
+                    ...product,
+                    barcode: result.customBarcode,
+                });
+            } else {
+                console.error('Không lấy được mã vạch tùy chỉnh từ API.');
+                alert('Có lỗi xảy ra khi tạo mã vạch tự động. Vui lòng thử lại!');
+            }
+        } catch (error) {
+            console.error('Lỗi khi gọi API lấy mã vạch:', error);
+            alert('Có lỗi xảy ra khi kết nối máy chủ. Vui lòng thử lại!');
+        }
+    };
+
     // Xử lý khi gửi form
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        // Cập nhật logic kiểm tra: Bỏ bắt buộc mã vạch và hạn sử dụng
         if (
             !product.name.trim() ||
             !product.category ||
@@ -76,19 +106,28 @@ const AddProduct = () => {
             return;
         }
 
+        const finalProduct = {
+            ...product,
+            barcode: product.barcode || '',
+            batches: product.batches.map((b) => ({
+                ...b,
+                expirationDate: b.expirationDate || '',
+            })),
+        };
+
         const confirmSubmit = window.confirm('Sản phẩm mới sẽ được thêm vào hệ thống. Bạn có chắc chắn muốn tiếp tục?');
         if (!confirmSubmit) return;
 
         const formData = new FormData();
-        Object.keys(product).forEach((key) => {
+        Object.keys(finalProduct).forEach((key) => {
             if (key === 'supplier') {
-                Object.keys(product.supplier).forEach((subKey) => {
-                    formData.append(`supplier.${subKey}`, product.supplier[subKey]);
+                Object.keys(finalProduct.supplier).forEach((subKey) => {
+                    formData.append(`supplier.${subKey}`, finalProduct.supplier[subKey]);
                 });
             } else if (key === 'batches') {
-                formData.append(key, JSON.stringify(product.batches));
+                formData.append(key, JSON.stringify(finalProduct.batches));
             } else {
-                formData.append(key, product[key]);
+                formData.append(key, finalProduct[key]);
             }
         });
         if (file) formData.append('image', file);
@@ -132,15 +171,25 @@ const AddProduct = () => {
                             />
                         </div>
                         <div className="detail-product-form__group">
-                            <label className="detail-product-form__label--required">Mã vạch:</label>
+                            <label className="detail-product-form__label">Mã vạch:</label>
                             <input
                                 className="detail-product-form__input"
                                 type="text"
                                 name="barcode"
                                 value={product.barcode}
                                 onChange={(e) => handleChange(e, 'barcode')}
-                                required
+                                readOnly={isBarcodeDisabled}
+                                disabled={isBarcodeDisabled}
                             />
+                            {/* Dòng gợi ý mới */}
+                            {!isBarcodeDisabled && (
+                                <p className="detail-product-form__help-text">
+                                    <span onClick={handleNoBarcodeClick}>Sản phẩm không có mã vạch?</span>
+                                </p>
+                            )}
+                            {isBarcodeDisabled && (
+                                <p className="detail-product-form__help-text--disabled">Mã vạch đã được tạo tự động</p>
+                            )}
                         </div>
                         <div className="detail-product-form__group">
                             <label className="detail-product-form__label--required">Tên sản phẩm:</label>
@@ -230,17 +279,7 @@ const AddProduct = () => {
                                 onChange={(e) => handleChange(e, 'sellingPrice')}
                             />
                         </div>
-                        <div className="detail-product-form__group">
-                            <label className="detail-product-form__label--required">Số lượng tồn kho:</label>
-                            <input
-                                className="detail-product-form__input"
-                                required
-                                type="number"
-                                name="stock"
-                                value={product.stock}
-                                onChange={(e) => handleChange(e, 'stock')}
-                            />
-                        </div>
+
                         <div className="detail-product-form__image-section">
                             <label className="detail-product-form__label--required">Ảnh sản phẩm:</label>
                             <div className="detail-product-form__image-upload-container">
@@ -259,28 +298,6 @@ const AddProduct = () => {
                                 </div>
                                 <div className="detail-product-form__file-upload">
                                     <div className="file-input-wrapper">
-                                        {/* <label className="detail-product-form__label">Chọn ảnh</label>
-                                        <div className="custom-file-upload">
-                                            <label htmlFor="file-upload" className="custom-file-label">
-                                                Chọn ảnh mới
-                                            </label>
-                                            <input id="file-upload" type="file" onChange={handleImageChange} required />
-                                        </div> */}
-                                        {/* 
-                                        <div className="custom-file-upload">
-                                            <label htmlFor="file-upload" className="custom-file-label">
-                                                {imagePreview ? 'Chọn ảnh khác' : 'Chọn ảnh mới'}
-                                            </label>
-                                            <input id="file-upload" type="file" onChange={handleImageChange} required />
-                                        </div>
-                                    </div>
-                                    {file && (
-                                        <div className="detail-product-form__file-name">
-                                            <p>
-                                                File đã chọn: <b>{file.name}</b>
-                                            </p>
-                                        </div>
-                                    )} */}
                                         <label className="detail-product-form__label">Thay ảnh mới</label>
                                         <div className="custom-file-upload">
                                             <label htmlFor="file-upload" className="custom-file-label">
@@ -473,10 +490,17 @@ const AddProduct = () => {
                                         >
                                             <div className="detail-product-form__batch-info">
                                                 <b>Số lô {index + 1}:</b>
-                                                <p>Ngày nhập: {formatDateFromYYYYMMDDToVietNamDate(batch.entryDate)}</p>
+                                                <p>
+                                                    Ngày nhập:{' '}
+                                                    {batch.entryDate
+                                                        ? formatDateFromYYYYMMDDToVietNamDate(batch.entryDate)
+                                                        : 'Không có'}
+                                                </p>
                                                 <p>
                                                     Ngày hết hạn:{' '}
-                                                    {formatDateFromYYYYMMDDToVietNamDate(batch.expirationDate)}
+                                                    {batch.expirationDate
+                                                        ? formatDateFromYYYYMMDDToVietNamDate(batch.expirationDate)
+                                                        : 'Không có'}
                                                 </p>
                                                 <p>Giá nhập: {formatCurrency(batch.purchasePrice)}</p>
                                                 <p>Số lượng: {batch.quantity}</p>

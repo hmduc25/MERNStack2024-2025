@@ -30,10 +30,11 @@ const useProductForm = (initialState, removeSpecialChars, mode = 'edit', fetchLa
     useEffect(() => {
         if (mode === 'add' && fetchLastProductCode) {
             const getNewCode = async () => {
-                const lastCode = await fetchLastProductCode();
-                if (lastCode) {
-                    const newCode = `SP${(parseInt(lastCode.slice(2)) + 1).toString().padStart(6, '0')}`;
-                    setProduct((prev) => ({ ...prev, productCode: newCode }));
+                const result = await fetchLastProductCode();
+                if (result) {
+                    if (result?.lastCode) {
+                        setProduct((prev) => ({ ...prev, productCode: result.lastCode }));
+                    }
                 }
             };
             getNewCode();
@@ -83,12 +84,6 @@ const useProductForm = (initialState, removeSpecialChars, mode = 'edit', fetchLa
                     return null;
                 }
                 break;
-            case 'stock':
-                if (value.length > 5) {
-                    alert('Số lượng tồn không được dài hơn 5 ký tự.');
-                    return null;
-                }
-                break;
             case 'quantity': {
                 if (value.length > 5) {
                     alert('Số lượng không được dài hơn 5 ký tự.');
@@ -113,6 +108,7 @@ const useProductForm = (initialState, removeSpecialChars, mode = 'edit', fetchLa
 
         setProduct((prev) => {
             if (name === 'supplier.name') {
+                console.log('comeeee');
                 const selectedSupplier = suppliers.find((supp) => supp.value === value);
                 return {
                     ...prev,
@@ -188,8 +184,8 @@ const useProductForm = (initialState, removeSpecialChars, mode = 'edit', fetchLa
             batchToAdd.purchasePrice = product.purchasePrice;
         }
 
-        if (!batchToAdd.entryDate || !batchToAdd.expirationDate || !batchToAdd.purchasePrice || !batchToAdd.quantity) {
-            alert('Vui lòng điền đầy đủ thông tin lô hàng!');
+        if (!batchToAdd.quantity) {
+            alert('Vui lòng điền số lượng!');
             return;
         }
 

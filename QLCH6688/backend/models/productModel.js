@@ -1,37 +1,36 @@
+// productModel.js
 import mongoose from 'mongoose';
 
 const batchSchema = new mongoose.Schema({
-    entryDate: { type: String, required: true }, // Ngày nhập hàng
-    batchNumber: { type: String, required: true }, // Số lô hàng
-    expirationDate: { type: String, required: true }, // Hạn sử dụng của lô hàng
-    purchasePrice: { type: Number, required: true }, // Giá nhập của lô hàng
-    quantity: { type: Number, required: true }, // Số lượng hàng nhập
+    entryDate: { type: String },
+    batchNumber: { type: String, required: true },
+    expirationDate: { type: String },
+    purchasePrice: { type: Number, required: true },
+    quantity: { type: Number, required: true },
     remaining: { type: Number, required: true },
 });
 
 const productSchema = new mongoose.Schema({
-    productCode: { type: String, required: true, unique: true }, // Mã hàng
-    barcode: { type: String, required: true, unique: true }, // Mã vạch
-    name: { type: String, required: true }, // Tên sản phẩm
-    category: { type: String, required: true }, // Danh mục
-    brand: { type: String }, // Thương hiệu
-    purchasePrice: { type: Number, required: true }, // Giá nhập chung
-    sellingPrice: { type: Number, required: true }, // Giá bán
-    unit: { type: String, required: true }, // Đơn vị tính
-    totalQuantity: { type: Number, required: true }, // Tổng số lượng sản phẩm
-    stock: { type: Number, required: true }, // Tồn kho
-    description: { type: String }, // Mô tả
-    notes: { type: String }, // Ghi chú
+    productCode: { type: String, required: true, unique: true },
+    barcode: { type: String, required: true, unique: true },
+    name: { type: String, required: true },
+    category: { type: String, required: true },
+    brand: { type: String },
+    purchasePrice: { type: Number, required: true },
+    sellingPrice: { type: Number, required: true },
+    unit: { type: String, required: true },
+    totalQuantity: { type: Number, required: true },
+    description: { type: String },
+    notes: { type: String },
     supplier: {
-        // Nhà cung cấp
         name: { type: String, required: true },
         contact: { type: String },
         address: { type: String },
     },
-    image: { type: String }, // Hình ảnh
-    createdAt: { type: Date, default: Date.now }, // Ngày tạo
-    updatedAt: { type: Date, default: Date.now }, // Ngày cập nhật
-    batches: [batchSchema], // Mảng các lô hàng
+    image: { type: String },
+    createdAt: { type: Date, default: Date.now },
+    updatedAt: { type: Date, default: Date.now },
+    batches: [batchSchema],
 });
 
 // Middleware để tự động cập nhật `updatedAt` khi chỉnh sửa
@@ -40,7 +39,6 @@ productSchema.pre('save', function (next) {
     next();
 });
 
-// Tạo model từ schema
 const productModel = mongoose.model.Product || mongoose.model('Product', productSchema);
 
 export default productModel;

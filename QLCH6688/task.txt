@@ -10,3 +10,6 @@
 - chế độ khi k có mạng (local)
 
 => lưu sẵn dữ liệu product vào localstore để khi tìm kiếm đỡ lag (khi nào load lại trang mới cập nhật lại dữ liệu - kiểm tra xem StoreContext có được load - gọi lại api khi refresh không?)
+
+//Lọc ký tự đặc biệt (trừ dấu _)
+const regex = /[!@#$%^&*()\-+=\[\]{}|\\;:'",.<>/?~`]/g;

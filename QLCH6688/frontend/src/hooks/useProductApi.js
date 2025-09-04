@@ -30,11 +30,17 @@ const useProductApi = () => {
         setError(null);
         try {
             const response = await axios.get(`${url}api/sanpham/laymasanphamcuoicung`);
-            return response.data.lastCode || 'SP000000';
+            return {
+                lastCode: response.data.lastCode || 'SP000000',
+                customBarcode: response.data.customBarcode || '',
+            };
         } catch (err) {
             console.error('Lỗi khi lấy mã sản phẩm cuối:', err);
             setError('Không thể lấy mã sản phẩm.');
-            return null;
+            return {
+                lastCode: null,
+                customBarcode: null,
+            };
         } finally {
             setIsLoading(false);
         }

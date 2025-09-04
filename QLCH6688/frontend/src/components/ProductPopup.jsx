@@ -104,7 +104,7 @@ const ProductPopup = ({ product, onClose }) => {
                         </div>
                         <div className="detail-group">
                             <p className="detail-label">Tồn kho:</p>
-                            <p className="detail-value">{product.stock}</p>
+                            <p className="detail-value">{product.totalQuantity}</p>
                         </div>
                         <div className="detail-group">
                             <p className="detail-label">Ghi chú:</p>

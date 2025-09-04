@@ -1,5 +1,22 @@
 import productModel from '../models/productModel.js';
 import fs from 'fs';
+import path from 'path';
+
+// Hàm xử lý lỗi tập trung
+const handleMongoError = (res, error) => {
+    console.error('Lỗi MongoDB:', error);
+    if (error.name === 'ValidationError') {
+        return res.status(400).json({ success: false, message: `Lỗi xác thực: ${error.message}` });
+    }
+    if (error.code === 11000) {
+        // Kiểm tra lỗi trùng lặp cho trường barcode
+        if (error.keyPattern && error.keyPattern.barcode) {
+            return res.status(409).json({ success: false, message: `Mã vạch (barcode) đã tồn tại. ${error.message}` });
+        }
+        return res.status(409).json({ success: false, message: `Dữ liệu đã tồn tại (trùng lặp). ${error.message}` });
+    }
+    res.status(500).json({ success: false, message: `Lỗi máy chủ: ${error.message}` });
+};
 
 const addProduct = async (req, res) => {
     let image_filename = req.file ? `${req.file.filename}` : null;
@@ -14,15 +31,21 @@ const addProduct = async (req, res) => {
         }
     }
 
+    const today = new Date();
+    const todayISO = today.toISOString().split('T')[0];
+    const futureDate = new Date(today);
+    futureDate.setFullYear(2099);
+    const defaultExpirationDate = futureDate.toISOString().split('T')[0];
+
     batches = batches.map((batch, index) => {
         const quantity = parseInt(batch.quantity);
         return {
-            entryDate: batch.entryDate,
+            entryDate: batch.entryDate || todayISO,
             batchNumber: `BATCH${(index + 1).toString().padStart(3, '0')}`,
-            expirationDate: batch.expirationDate,
+            expirationDate: batch.expirationDate || defaultExpirationDate,
             purchasePrice: parseInt(batch.purchasePrice),
             quantity: quantity,
-            remaining: quantity, // Gán remaining = quantity khi tạo mới
+            remaining: quantity,
         };
     });
 
@@ -44,7 +67,6 @@ const addProduct = async (req, res) => {
         sellingPrice: parseInt(req.body.sellingPrice),
         unit: req.body.unit,
         totalQuantity: totalQuantity,
-        stock: parseInt(req.body.stock),
         description: req.body.description,
         notes: req.body.notes,
         supplier: supplier,
@@ -57,15 +79,15 @@ const addProduct = async (req, res) => {
         await product.save();
         res.json({ success: true, message: 'Đã thêm sản phẩm thành công', data: product });
     } catch (error) {
-        res.status(500).json({ success: false, message: `Lỗi: ${error.message}` });
+        handleMongoError(res, error);
     }
 };
 
 const updateProduct = async (req, res) => {
-    let image_filename = req.file ? `${req.file.filename}` : null;
     try {
         const productId = req.params.id;
         const updatedData = req.body;
+        const newImageFilename = req.file ? `${req.file.filename}` : null;
 
         const product = await productModel.findById(productId);
         if (!product) {
@@ -76,9 +98,30 @@ const updateProduct = async (req, res) => {
             return res.status(400).json({ success: false, message: 'Không thể thay đổi productCode' });
         }
 
-        if (image_filename) {
-            updatedData.image = image_filename;
+        if (newImageFilename) {
+            if (product.image) {
+                const oldImagePath = path.join('uploads', product.image);
+
+                try {
+                    // Kiểm tra xem file có tồn tại không trước khi xóa
+                    if (fs.existsSync(oldImagePath)) {
+                        fs.unlinkSync(oldImagePath); // Sử dụng fs.unlinkSync để đồng bộ và dễ xử lý lỗi
+                        console.log('Đã xóa ảnh cũ thành công:', oldImagePath);
+                    } else {
+                        console.log('Tệp ảnh cũ không tồn tại:', oldImagePath);
+                    }
+                } catch (err) {
+                    console.error('Lỗi khi xóa ảnh cũ:', err);
+                }
+            }
+            updatedData.image = newImageFilename;
         }
+
+        const today = new Date();
+        const todayISO = today.toISOString().split('T')[0];
+        const futureDate = new Date(today);
+        futureDate.setFullYear(2099);
+        const defaultExpirationDate = futureDate.toISOString().split('T')[0];
 
         // Cập nhật các trường dữ liệu chung của sản phẩm
         product.barcode = updatedData.barcode || product.barcode;
@@ -88,10 +131,9 @@ const updateProduct = async (req, res) => {
         product.purchasePrice = updatedData.purchasePrice ? parseInt(updatedData.purchasePrice) : product.purchasePrice;
         product.sellingPrice = updatedData.sellingPrice ? parseInt(updatedData.sellingPrice) : product.sellingPrice;
         product.unit = updatedData.unit || product.unit;
-        product.stock = updatedData.stock ? parseInt(updatedData.stock) : product.stock;
         product.description = updatedData.description || product.description;
         product.notes = updatedData.notes || product.notes;
-        product.image = updatedData.image || product.image;
+        product.image = newImageFilename || product.image; // Sử dụng newImageFilename nếu có
 
         if (updatedData.batches) {
             let newBatches = [];
@@ -122,17 +164,17 @@ const updateProduct = async (req, res) => {
                         existingBatch.quantity = quantity;
                         existingBatch.remaining = quantity;
                     }
-                    existingBatch.entryDate = newBatch.entryDate;
-                    existingBatch.expirationDate = newBatch.expirationDate;
+                    existingBatch.entryDate = newBatch.entryDate || todayISO;
+                    existingBatch.expirationDate = newBatch.expirationDate || defaultExpirationDate;
                     existingBatch.purchasePrice = parseInt(newBatch.purchasePrice);
                 } else {
                     // Thêm lô hàng mới
                     const quantity = parseInt(newBatch.quantity);
                     const newBatchNumber = `BATCH${(product.batches.length + 1).toString().padStart(3, '0')}`;
                     product.batches.push({
-                        entryDate: newBatch.entryDate,
+                        entryDate: newBatch.entryDate || todayISO,
                         batchNumber: newBatchNumber,
-                        expirationDate: newBatch.expirationDate,
+                        expirationDate: newBatch.expirationDate || defaultExpirationDate,
                         purchasePrice: parseInt(newBatch.purchasePrice),
                         quantity: quantity,
                         remaining: quantity,
@@ -149,7 +191,7 @@ const updateProduct = async (req, res) => {
         await product.save();
         res.json({ success: true, message: 'Cập nhật sản phẩm thành công', data: product });
     } catch (error) {
-        res.status(500).json({ success: false, message: `Lỗi: ${error.message}` });
+        handleMongoError(res, error);
     }
 };
 
@@ -159,7 +201,7 @@ const listAllProducts = async (req, res) => {
         const products = await productModel.find({});
         res.json({ success: true, data: products });
     } catch (error) {
-        res.json({ success: false, message: `Lỗi: ${error.message}` });
+        handleMongoError(res, error);
     }
 };
 
@@ -167,14 +209,14 @@ const listAllProducts = async (req, res) => {
 const removeProduct = async (req, res) => {
     try {
         const product = await productModel.findById(req.body.id);
-
-        // Xoá ảnh trong `uploads`
-        fs.unlink(`uploads/${product.image}`, () => {});
-
+        if (product) {
+            // Xoá ảnh trong `uploads`
+            fs.unlink(`uploads/${product.image}`, () => {});
+        }
         await productModel.findByIdAndDelete(req.body.id);
         res.json({ success: true, message: `Đã xóa sản phẩm thành công ${req.body.id}` });
     } catch (error) {
-        res.json({ success: false, message: `Lỗi: ${error.message}` });
+        handleMongoError(res, error);
     }
 };
 
@@ -182,7 +224,7 @@ const removeProduct = async (req, res) => {
 const addBatchToProduct = async (req, res) => {
     const { productCode, entryDate, expirationDate, purchasePrice, quantity } = req.body;
 
-    if (!productCode || !entryDate || !expirationDate || !purchasePrice || !quantity) {
+    if (!productCode || !entryDate || !purchasePrice || !quantity) {
         return res.status(400).json({ success: false, message: 'Thông tin không đầy đủ' });
     }
 
@@ -192,13 +234,17 @@ const addBatchToProduct = async (req, res) => {
             return res.status(404).json({ success: false, message: 'Sản phẩm không tìm thấy' });
         }
 
+        const today = new Date();
+        const defaultExpirationDate = new Date(today.getFullYear() + 74, today.getMonth(), today.getDate())
+            .toISOString()
+            .split('T')[0];
         const newBatchNumber = `BATCH${(product.batches.length + 1).toString().padStart(3, '0')}`;
         const newQuantity = parseInt(quantity);
 
         const newBatch = {
             entryDate,
             batchNumber: newBatchNumber,
-            expirationDate,
+            expirationDate: expirationDate || defaultExpirationDate,
             purchasePrice: parseInt(purchasePrice),
             quantity: newQuantity,
             remaining: newQuantity, // Gán remaining = quantity
@@ -211,18 +257,33 @@ const addBatchToProduct = async (req, res) => {
         await product.save();
         res.json({ success: true, message: 'Đã thêm lô hàng thành công', data: product });
     } catch (error) {
-        res.status(500).json({ success: false, message: `Lỗi: ${error.message}` });
+        handleMongoError(res, error);
     }
 };
 
-// Lấy mã sản phẩm cuối cùng
+// Lấy mã sản phẩm cuối cùng và tạo mã barcode tương ứng
 const getLastProductCode = async (req, res) => {
     try {
         const lastProduct = await productModel.findOne().sort({ createdAt: -1 }).select('productCode');
-        const lastCode = lastProduct?.productCode || 'SP000000'; // Nếu không có sản phẩm nào, bắt đầu từ SP000000
-        res.json({ success: true, lastCode });
+        const lastProductCode = lastProduct?.productCode || 'SP000000';
+        const lastNumber = parseInt(lastProductCode.substring(2));
+
+        // Tăng giá trị số lên 1 cho mã sản phẩm mới
+        const newProductNumber = (lastNumber + 1).toString().padStart(6, '0');
+        const newProductCode = `SP${newProductNumber}`;
+
+        // Tăng giá trị số lên 1 cho mã vạch tùy chỉnh mới
+        const newBarcodeNumber = (lastNumber + 1).toString().padStart(9, '0');
+        const newCustomBarcode = `SKU_${newBarcodeNumber}`;
+
+        // Gửi dữ liệu về frontend
+        res.json({
+            success: true,
+            lastCode: newProductCode,
+            customBarcode: newCustomBarcode,
+        });
     } catch (error) {
-        res.status(500).json({ success: false, message: `Lỗi: ${error.message}` });
+        handleMongoError(res, error);
     }
 };
 
@@ -234,7 +295,7 @@ const getDetailProduct = async (req, res) => {
         }
         res.json(product);
     } catch (error) {
-        res.status(500).json({ message: 'Lỗi máy chủ' });
+        handleMongoError(res, error);
     }
 };
 
@@ -244,7 +305,7 @@ const getDistinctBrands = async (req, res) => {
         const brands = await productModel.distinct('brand');
         res.status(200).json(brands);
     } catch (error) {
-        res.status(500).json({ message: 'Lỗi khi lấy danh sách brand', error });
+        handleMongoError(res, error);
     }
 };
 
@@ -254,7 +315,7 @@ const getDistinctUnits = async (req, res) => {
         const units = await productModel.distinct('unit');
         res.status(200).json(units);
     } catch (error) {
-        res.status(500).json({ message: 'Lỗi khi lấy danh sách unit', error });
+        handleMongoError(res, error);
     }
 };
 
@@ -264,7 +325,7 @@ const getDistinctSuppliers = async (req, res) => {
         const suppliers = await productModel.distinct('supplier.name');
         res.status(200).json(suppliers);
     } catch (error) {
-        res.status(500).json({ message: 'Lỗi khi lấy danh sách nhà cung cấp', error });
+        handleMongoError(res, error);
     }
 };
 
@@ -310,7 +371,7 @@ const updateAllBrands = async (req, res) => {
 
         res.status(200).json({ success: true, message: 'Cập nhật thương hiệu thành công' });
     } catch (error) {
-        res.status(500).json({ success: false, message: 'Lỗi khi cập nhật thương hiệu', error });
+        handleMongoError(res, error);
     }
 };
 
