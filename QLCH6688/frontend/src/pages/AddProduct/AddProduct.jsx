@@ -10,6 +10,7 @@ import { brands, suppliers, units } from '../../assets/brandsAndSuppliers';
 import useProductApi from '../../hooks/useProductApi';
 import useProductForm from '../../hooks/useProductForm';
 import StatusDisplaySpinner from '../../components/StatusDisplaySpinner/StatusDisplaySpinner';
+import { toast } from 'react-toastify';
 
 const AddProduct = () => {
     const { utilityFunctions } = useContext(StoreContext);
@@ -65,13 +66,12 @@ const AddProduct = () => {
     } = useProductForm(initialProductState, removeSpecialChars, 'add', memoizedFetchLastProductCode);
 
     const handleNoBarcodeClick = async () => {
-        setIsBarcodeDisabled(true); // Vô hiệu hóa trường nhập mã vạch
+        setIsBarcodeDisabled(true);
         try {
             // Gọi API để lấy mã vạch tùy chỉnh
             const result = await memoizedFetchLastProductCode();
             console.log('result_out: ', result);
 
-            // Sửa logic kiểm tra: chỉ cần kiểm tra customBarcode tồn tại
             if (result && result.customBarcode) {
                 console.log('result_in: ', result);
                 console.log('result.customBarcode: ', result.customBarcode);
@@ -79,13 +79,14 @@ const AddProduct = () => {
                     ...product,
                     barcode: result.customBarcode,
                 });
+                toast.success(`Mã vạch ${result.customBarcode} đã được tạo tự động`);
             } else {
                 console.error('Không lấy được mã vạch tùy chỉnh từ API.');
-                alert('Có lỗi xảy ra khi tạo mã vạch tự động. Vui lòng thử lại!');
+                toast.error('Có lỗi xảy ra khi tạo mã vạch tự động. Vui lòng thử lại!');
             }
         } catch (error) {
             console.error('Lỗi khi gọi API lấy mã vạch:', error);
-            alert('Có lỗi xảy ra khi kết nối máy chủ. Vui lòng thử lại!');
+            toast.error('Có lỗi xảy ra khi kết nối máy chủ. Vui lòng thử lại!');
         }
     };
 
@@ -102,7 +103,7 @@ const AddProduct = () => {
             !product.supplier.name ||
             product.batches.length === 0
         ) {
-            alert('Vui lòng điền đầy đủ thông tin sản phẩm và lô hàng!');
+            toast.warning('Vui lòng điền đầy đủ thông tin sản phẩm và lô hàng!');
             return;
         }
 
@@ -134,10 +135,10 @@ const AddProduct = () => {
 
         const result = await addProduct(formData);
         if (result.success) {
-            alert(result.message);
+            toast.info(result.message);
             navigate('/sanpham');
         } else {
-            alert(result.message);
+            toast.error(result.message);
         }
     };
 

@@ -6,6 +6,7 @@ import { saveAs } from 'file-saver';
 import { Link } from 'react-router-dom';
 import defaultImage from '../../assets/images/Mystery-products.png';
 import StatusDisplaySpinner from '../../components/StatusDisplaySpinner/StatusDisplaySpinner';
+import { toast } from 'react-toastify';
 
 // Tách riêng component cho một hàng sản phẩm để tối ưu hiệu suất.
 // Sử dụng memo để ngăn việc render lại hàng khi các props không đổi.
@@ -104,7 +105,7 @@ const Products = () => {
 
     const exportToExcel = useCallback(() => {
         if (!product_list?.length) {
-            alert('Không có sản phẩm để xuất!');
+            toast.warning('Không có sản phẩm để xuất!');
             return;
         }
 
@@ -118,7 +119,6 @@ const Products = () => {
             'Mã vạch': product.barcode,
             'Tên sản phẩm': product.name,
             'Nhóm hàng': convertCategory(product.category),
-            'Giá nhập': product.purchasePrice,
             'Giá bán': product.sellingPrice,
             'Tồn kho': product.totalQuantity,
         }));

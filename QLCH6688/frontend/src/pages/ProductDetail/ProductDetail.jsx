@@ -11,6 +11,7 @@ import { brands, suppliers, units } from '../../assets/brandsAndSuppliers';
 import useProductApi from '../../hooks/useProductApi';
 import useProductForm from '../../hooks/useProductForm';
 import StatusDisplaySpinner from '../../components/StatusDisplaySpinner/StatusDisplaySpinner';
+import { toast } from 'react-toastify';
 
 const ProductDetail = () => {
     const { urlImage, utilityFunctions } = useContext(StoreContext);
@@ -82,7 +83,7 @@ const ProductDetail = () => {
             !product.supplier.name ||
             product.batches.length === 0
         ) {
-            alert('Vui lòng điền đầy đủ thông tin sản phẩm và lô hàng!');
+            toast.warning('Vui lòng điền đầy đủ thông tin sản phẩm và lô hàng!');
             return;
         }
 
@@ -107,10 +108,10 @@ const ProductDetail = () => {
 
         const result = await updateProduct(id, formData);
         if (result.success) {
-            alert(result.message);
+            toast.success(result.message);
             navigate('/sanpham');
         } else {
-            alert(result.message);
+            toast.error(result.message);
         }
     };
 
@@ -122,10 +123,10 @@ const ProductDetail = () => {
 
         const result = await deleteProduct(id);
         if (result.success) {
-            alert(result.message);
+            toast.success(result.message);
             navigate('/sanpham');
         } else {
-            alert(result.message);
+            toast.error(result.message);
         }
     };
 

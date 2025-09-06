@@ -2,8 +2,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './NoteProductPopup.css';
+import { toast } from 'react-toastify';
 
-// Đã loại bỏ prop 'onSaveSuccess' vì component cha không cần nhận lại dữ liệu
 const NoteProductPopup = ({ initialData, onClose, url }) => {
     const [productData, setProductData] = useState({
         name: initialData.name || '',
@@ -12,8 +12,6 @@ const NoteProductPopup = ({ initialData, onClose, url }) => {
         sellingPrice: initialData.sellingPrice || '',
     });
     const [loading, setLoading] = useState(false);
-    const [error, setError] = useState('');
-    const [message, setMessage] = useState('');
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -24,31 +22,25 @@ const NoteProductPopup = ({ initialData, onClose, url }) => {
     };
 
     const handleSave = async () => {
-        // Kiểm tra dữ liệu cần thiết trước khi gửi
         if (!productData.name) {
-            setError('Tên sản phẩm là bắt buộc.');
+            toast.error('Tên sản phẩm là bắt buộc.');
             return;
         }
 
         setLoading(true);
-        setError('');
-        setMessage('');
 
         try {
-            // Gửi yêu cầu POST tới API để lưu sản phẩm thô
             const response = await axios.post(`${url}api/raw-product/themghichu`, productData);
             console.log('Sản phẩm thô đã được lưu vào database:', response.data);
 
-            // Đặt thông báo thành công và sau đó đóng popup sau 3 giây
-            setMessage(`Đã lưu sản phẩm với "${productData.name}" vào ghi chú thành công`);
-            // setTimeout(() => {
-            //     onClose();
-            // }, 3000);
-            alert(`Đã lưu sản phẩm với "${productData.name}" vào ghi chú thành công`);
-            onClose();
+            toast.success(`Đã lưu sản phẩm với "${productData.name}" vào ghi chú thành công`);
+
+            setTimeout(() => {
+                onClose();
+            }, 2000); // Đóng popup sau 2 giây
         } catch (err) {
             console.error('Lỗi khi lưu sản phẩm thô:', err);
-            setError('Lỗi khi lưu sản phẩm. Vui lòng thử lại.');
+            toast.error('Lỗi khi lưu sản phẩm. Vui lòng thử lại.');
         } finally {
             setLoading(false);
         }
@@ -126,9 +118,7 @@ const NoteProductPopup = ({ initialData, onClose, url }) => {
                                 onChange={handleChange}
                             />
                         </div>
-                        {error && <p className="note-product-popup__error">{error}</p>}
                     </form>
-                    {message && <div className="note-product-popup__message">{message}</div>}
                 </div>
                 <div className="note-product-popup__footer">
                     <button

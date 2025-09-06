@@ -12,6 +12,9 @@ import Navbar from './components/Navbar/Navbar';
 import ProductDetail from './pages/ProductDetail/ProductDetail';
 import ChiTietSanPhamPopup from './components/ChiTietSanPhamPopup';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const App = () => {
     // const [showLogin, setShowLogin] = useState(false);
     // const [showChiTietSanPham, setShowChiTietSanPham] = useState(true);
@@ -36,6 +39,7 @@ const App = () => {
                 </Routes>
             </div>
             {/* <Footer /> */}
+            <ToastContainer theme="dark" />
         </>
     );
 };

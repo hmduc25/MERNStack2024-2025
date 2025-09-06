@@ -7,13 +7,12 @@
 - đồng bộ style cho `Tồn kho -> ok, Ghi chú`
 - xóa `Tồn kho` đang dư thừa (stock - database) <-> đổi stock thành trạng thái hàng (VD: Ngừng kinh doanh/`active`, `hidden`, `inactive`) -> ok
 - loại, nhóm hàng (cần gộp và bổ sung) -> ok
-- hóa đơn tạm thời (sử dụng cho các khá ăn uống xong mới thanh toán, có thể thay đổi thêm bớt sản phẩm đa năng, thêm tiền công hoặc custom giá sản phẩm...)
-- đăng nhập (phân quyền: `admin`, `manager` ,`seller`)
-- đổi thông báo qua toast message
+- hóa đơn tạm thời (sử dụng cho các khá ăn uống xong mới thanh toán, có thể thay đổi thêm bớt sản phẩm đa năng, thêm tiền công hoặc custom giá sản phẩm...)  /sau
+- đăng nhập (phân quyền: `admin`, `manager` ,`seller`) /sau
+- đổi thông báo qua toast message -> ok
 - add AI (AI gợi ý, đề xuất - API GEMENI hoặc chatGPT)
 - chế độ khi k có mạng (local)
 
-=> lưu sẵn dữ liệu product vào localstore để khi tìm kiếm đỡ lag (khi nào load lại trang mới cập nhật lại dữ liệu - kiểm tra xem StoreContext có được load - gọi lại api khi refresh không?)
 
 //Lọc ký tự đặc biệt (trừ dấu _)
 const regex = /[!@#$%^&*()\-+=\[\]{}|\\;:'",.<>/?~`]/g;

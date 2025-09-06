@@ -8,6 +8,7 @@ import useDebounce from '../../hooks/useDebounce.js';
 import InvoiceOverlay from './InvoiceOverlay/InvoiceOverlay';
 import { getPaymentSuggestions } from '../../utils/paymentSuggestions';
 import NoteProductPopup from './NoteProductPopup/NoteProductPopup';
+import { toast } from 'react-toastify';
 
 // SỬA ĐỔI CÁCH IMPORT WEB WORKER
 // Nếu bạn sử dụng Create React App hoặc Vite, bạn có thể dùng cú pháp đặc biệt này:
@@ -146,6 +147,7 @@ const Sale = () => {
             setSearchTerm('');
         } else if (searchTerm) {
             setError(`Không tìm thấy sản phẩm nào phù hợp với từ khóa "${searchTerm}"`);
+            toast.error(`Không tìm thấy sản phẩm nào phù hợp với từ khóa "${searchTerm}"`);
         }
     };
 
@@ -185,12 +187,56 @@ const Sale = () => {
         setKhachThanhToanDisplay(formatCurrencyForInput(amount, false));
     }, []);
 
+    // const handleCheckoutButton = () => {
+    //     if (Object.keys(cartItems).length === 0) {
+    //         setPaymentWarning('Giỏ hàng trống. Vui lòng thêm sản phẩm để thanh toán.');
+    //         toast.warning('Giỏ hàng trống. Vui lòng thêm sản phẩm để thanh toán.');
+    //         return;
+    //     }
+
+    //     const hasZeroQuantityItem = Object.values(cartItems).some((quantity) => quantity === 0);
+    //     if (hasZeroQuantityItem) {
+    //         toast.warning('Vui lòng thêm sản phẩm để tiến hành thanh toán.');
+
+    //         console.log('hasZeroQuantityItem: ', hasZeroQuantityItem);
+    //     console.log('cartItems: ', cartItems);
+
+    //         return;
+    //     }
+
+    //     const totalDue = tongTienSauGiamGia;
+    //     if (khachThanhToan < totalDue && tongTien > 0) {
+    //         setPaymentWarning(`Tiền khách trả không đủ. Còn thiếu ${formatCurrency(totalDue - khachThanhToan)}.`);
+    //         toast.warning(`Tiền khách trả không đủ. Còn thiếu ${formatCurrency(totalDue - khachThanhToan)}.`);
+    //         return;
+    //     }
+
+    //     console.log('cartItems: ', cartItems);
+    //     // setShowInvoiceOverlay(true);
+    // };
     const handleCheckoutButton = () => {
+        // 1. Kiểm tra và xóa các sản phẩm có số lượng bằng 0
+        let hasZeroQuantityItem = false;
+        for (const id in cartItems) {
+            if (cartItems[id] === 0) {
+                hasZeroQuantityItem = true;
+                removeFromCart(id);
+            }
+        }
+
+        // 2. Kiểm tra lại giỏ hàng sau khi đã dọn dẹp
         if (Object.keys(cartItems).length === 0) {
+            toast.warning('Giỏ hàng trống. Vui lòng thêm sản phẩm để thanh toán.');
             setPaymentWarning('Giỏ hàng trống. Vui lòng thêm sản phẩm để thanh toán.');
             return;
         }
 
+        if (hasZeroQuantityItem) {
+            return;
+        }
+        console.log('cartItems: ', cartItems);
+
+        // 4. Tiếp tục logic thanh toán như cũ
         const totalDue = tongTienSauGiamGia;
         if (khachThanhToan < totalDue && tongTien > 0) {
             setPaymentWarning(`Tiền khách trả không đủ. Còn thiếu ${formatCurrency(totalDue - khachThanhToan)}.`);
@@ -376,7 +422,7 @@ const Sale = () => {
                                         let value = parseInt(e.target.value, 10) || 0;
                                         if (value > MAX_QUANTITY) {
                                             value = MAX_QUANTITY;
-                                            alert(`Số lượng sản phẩm không thể vượt quá ${MAX_QUANTITY}.`);
+                                            toast.error(`Số lượng sản phẩm không thể vượt quá ${MAX_QUANTITY}.`);
                                         }
                                         updateCartItemQuantity(item._id, value);
                                     }}
@@ -388,7 +434,7 @@ const Sale = () => {
                                         if (currentQuantity < MAX_QUANTITY) {
                                             addToCart(item._id);
                                         } else {
-                                            alert(`Số lượng sản phẩm không thể vượt quá ${MAX_QUANTITY}.`);
+                                            toast.error(`Số lượng sản phẩm không thể vượt quá ${MAX_QUANTITY}.`);
                                         }
                                     }}
                                     src={icons.add_icon_green}

@@ -1,6 +1,7 @@
 // src/hooks/useProductForm.js
 import { useState, useEffect } from 'react';
 import { suppliers } from '../assets/brandsAndSuppliers';
+import { toast } from 'react-toastify';
 
 /**
  * Custom hook để quản lý state và logic của form sản phẩm (thêm/chỉnh sửa).
@@ -46,47 +47,47 @@ const useProductForm = (initialState, removeSpecialChars, mode = 'edit', fetchLa
         switch (key) {
             case 'barcode': {
                 if (!/^\d*$/.test(value)) {
-                    alert('Mã vạch chỉ được chứa số.');
+                    toast.warning('Mã vạch chỉ được chứa số.');
                     return null;
                 }
                 if (value.length > 13) {
-                    alert('Mã vạch không được vượt quá 13 ký tự.');
+                    toast.warning('Mã vạch không được vượt quá 13 ký tự.');
                     return null;
                 }
                 break;
             }
             case 'name':
                 if (value.length > 100) {
-                    alert('Tên sản phẩm không được dài hơn 100 ký tự.');
+                    toast.warning('Tên sản phẩm không được dài hơn 100 ký tự.');
                     return null;
                 }
                 break;
             case 'description':
                 if (value.length > 200) {
-                    alert('Mô tả không được dài hơn 200 ký tự.');
+                    toast.warning('Mô tả không được dài hơn 200 ký tự.');
                     return null;
                 }
                 break;
             case 'notes':
                 if (value.length > 100) {
-                    alert('Ghi chú không được dài hơn 100 ký tự.');
+                    toast.warning('Ghi chú không được dài hơn 100 ký tự.');
                     return null;
                 }
                 break;
             case 'sellingPrice':
             case 'purchasePrice':
                 if (value.length > 10) {
-                    alert('Giá không được dài hơn 10 ký tự.');
+                    toast.warning('Giá không được dài hơn 10 ký tự.');
                     return null;
                 }
                 if (!/^\d*$/.test(value)) {
-                    alert('Giá chỉ được chứa số.');
+                    toast.warning('Giá chỉ được chứa số.');
                     return null;
                 }
                 break;
             case 'quantity': {
                 if (value.length > 5) {
-                    alert('Số lượng không được dài hơn 5 ký tự.');
+                    toast.warning('Số lượng không được dài hơn 5 ký tự.');
                     return null;
                 }
                 break;
@@ -178,14 +179,14 @@ const useProductForm = (initialState, removeSpecialChars, mode = 'edit', fetchLa
 
         if (!batchToAdd.purchasePrice || batchToAdd.purchasePrice === '') {
             if (!product.purchasePrice || product.purchasePrice === '') {
-                alert('Vui lòng nhập giá nhập sản phẩm trước khi thêm lô hàng.');
+                toast.warning('Vui lòng nhập giá nhập sản phẩm trước khi thêm lô hàng.');
                 return;
             }
             batchToAdd.purchasePrice = product.purchasePrice;
         }
 
         if (!batchToAdd.quantity) {
-            alert('Vui lòng điền số lượng!');
+            toast.warning('Vui lòng điền số lượng!');
             return;
         }
 

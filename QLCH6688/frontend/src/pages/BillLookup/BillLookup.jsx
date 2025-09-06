@@ -1,10 +1,10 @@
 import { useState, useContext, useEffect } from 'react';
 import './BillLookup.css';
-
 import useInvoicesApi from '../../hooks/useInvoicesApi';
 import { StoreContext } from '../../context/StoreContext';
 import { useBillForm } from '../../hooks/useBillForm';
 import StatusDisplaySpinner from '../../components/StatusDisplaySpinner/StatusDisplaySpinner';
+import { toast } from 'react-toastify';
 
 const BillLookup = () => {
     const { url } = useContext(StoreContext);
@@ -50,9 +50,9 @@ const BillLookup = () => {
         // Gọi hàm cập nhật từ hook
         const result = await updateInvoiceStatus(invoiceId, 'completed');
         if (result.success) {
-            alert('Cập nhật trạng thái thành công!');
+            toast.success('Cập nhật trạng thái thành công!');
         } else {
-            alert('Cập nhật trạng thái thất bại. Vui lòng thử lại.');
+            toast.error('Cập nhật trạng thái thất bại. Vui lòng thử lại.');
         }
     };
 

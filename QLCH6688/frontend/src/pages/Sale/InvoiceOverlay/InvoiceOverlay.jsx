@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './InvoiceOverlay.css';
 import QRCodeOverlay from '../QRCodeOverlay/QRCodeOverlay';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const InvoiceOverlay = ({ data, onClose, setLoading, url }) => {
     const [paymentMethod, setPaymentMethod] = useState('cash');
@@ -21,7 +22,7 @@ const InvoiceOverlay = ({ data, onClose, setLoading, url }) => {
 
     const handleCheckout = async (status) => {
         if (Object.keys(data.cartItems).length === 0) {
-            alert('Giỏ hàng trống. Vui lòng thêm sản phẩm để thanh toán.');
+            toast.warning('Giỏ hàng trống. Vui lòng thêm sản phẩm để thanh toán.');
             onClose(false);
             return;
         }
@@ -30,7 +31,7 @@ const InvoiceOverlay = ({ data, onClose, setLoading, url }) => {
         const itemsToSell = Object.entries(data.cartItems).filter(([id, quantity]) => quantity > 0);
 
         if (itemsToSell.length === 0) {
-            alert('Giỏ hàng không có sản phẩm nào có số lượng > 0. Vui lòng kiểm tra lại.');
+            toast.warning('Giỏ hàng không có sản phẩm nào có số lượng > 0. Vui lòng kiểm tra lại.');
             onClose(false);
             return;
         }
@@ -83,15 +84,17 @@ const InvoiceOverlay = ({ data, onClose, setLoading, url }) => {
             const response = await axios.post(`${url}api/banhang/sell`, postData);
 
             if (response.data.success) {
-                alert(`Thanh toán ${status === 'completed' ? 'thành công' : 'chờ xử lý'}! Hóa đơn đã được ghi nhận.`);
+                toast.success(
+                    `Thanh toán ${status === 'completed' ? 'thành công' : 'chờ xử lý'}! Hóa đơn đã được ghi nhận.`,
+                );
                 onClose(true);
             } else {
-                alert(`Thanh toán thất bại: ${response.data.message}`);
+                toast.error(`Thanh toán thất bại: ${response.data.message}`);
                 onClose(false);
             }
         } catch (error) {
             console.error('Lỗi khi thanh toán:', error);
-            alert(`Đã xảy ra lỗi: ${error.response?.data?.message || error.message}`);
+            toast.error(`Đã xảy ra lỗi: ${error.response?.data?.message || error.message}`);
             onClose(false);
         } finally {
             setLoading(false);

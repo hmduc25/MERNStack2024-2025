@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 import './Notes.css';
 
 const API_BASE_URL = 'http://localhost:6868/api/raw-product';
@@ -58,13 +59,13 @@ const Notes = () => {
                         product._id === productId ? { ...product, isUpdated: true } : product,
                     ),
                 );
-                alert(response.data.message);
+                toast.success(response.data.message);
             } else {
-                alert(response.data.message);
+                toast.error(response.data.message);
             }
         } catch (err) {
             console.error('Lỗi khi cập nhật trạng thái:', err);
-            alert('Lỗi khi cập nhật trạng thái. Vui lòng kiểm tra console.');
+            toast.error('Lỗi khi cập nhật trạng thái. Vui lòng kiểm tra console.');
         }
     };
 

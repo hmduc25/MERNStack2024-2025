@@ -70,6 +70,12 @@ const ProductPopup = ({ product, onClose }) => {
                             <p className="detail-value">{convertUnit(product.unit)}</p>
                         </div>
                         <div className="detail-group">
+                            <p className="detail-label">Đơn vị tính:</p>
+                            <p className="detail-value">
+                                {product.productStatus === 'active' ? 'Đang hoạt động' : 'Ngừng kinh doanh'}
+                            </p>
+                        </div>
+                        <div className="detail-group">
                             <p className="detail-label">Loại hàng:</p>
                             <p className="detail-value">{convertCategory(product.category)}</p>
                         </div>
