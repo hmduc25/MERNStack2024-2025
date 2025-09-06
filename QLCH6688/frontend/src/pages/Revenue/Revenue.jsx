@@ -20,13 +20,18 @@ import {
     BarChart,
     Bar,
 } from 'recharts';
+import { useContext } from 'react';
 
 import './Revenue.css';
 import StatusDisplaySpinner from '../../components/StatusDisplaySpinner/StatusDisplaySpinner';
 import { useRevenueData } from '../../hooks/useRevenueData';
+import { StoreContext } from '../../context/StoreContext';
 
 const Revenue = () => {
     const { data, loading, error } = useRevenueData();
+    const { utilityFunctions } = useContext(StoreContext);
+
+    const { convertCategory, convertBrand, convertUnit } = utilityFunctions;
 
     if (loading || error) {
         return (
@@ -44,11 +49,6 @@ const Revenue = () => {
 
     const formatCurrency = (amount) => {
         return amount.toLocaleString('vi-VN') + ' ₫';
-    };
-
-    const capitalizeFirstLetter = (string) => {
-        if (!string) return '';
-        return string.charAt(0).toUpperCase() + string.slice(1);
     };
 
     return (
@@ -203,7 +203,7 @@ const Revenue = () => {
                         <ResponsiveContainer width="100%" height={300}>
                             <BarChart data={data.brandRevenueData}>
                                 <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis dataKey="name" tickFormatter={capitalizeFirstLetter} />
+                                <XAxis dataKey="name" tickFormatter={(name) => utilityFunctions.convertBrand(name)} />
                                 <YAxis />
                                 <Tooltip formatter={(value) => formatCurrency(value)} />
                                 <Bar dataKey="Doanh_thu" fill="#8884d8" name="Doanh thu" />
@@ -217,7 +217,7 @@ const Revenue = () => {
                         <ResponsiveContainer width="100%" height={300}>
                             <BarChart data={data.categoryRevenueData}>
                                 <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis dataKey="name" />
+                                <XAxis dataKey="name" tickFormatter={(name) => convertCategory(name)} />
                                 <YAxis />
                                 <Tooltip formatter={(value) => formatCurrency(value)} />
                                 <Bar dataKey="Doanh_thu" fill="#ffc658" name="Doanh thu" />

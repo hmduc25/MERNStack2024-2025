@@ -1,0 +1,620 @@
+[
+  {
+    "productId": "6743de16352db71e5139d942",
+    "productCode": "SP000001",
+    "barcode": "8936009052394",
+    "unit": "khac"
+  },
+  {
+    "productId": "67442adf352db71e5139d9db",
+    "productCode": "SP000002",
+    "barcode": "8934603000247",
+    "unit": "khac"
+  },
+  {
+    "productId": "6744310c352db71e5139d9ee",
+    "productCode": "SP000003",
+    "barcode": "8936114080084",
+    "unit": "khac"
+  },
+  {
+    "productId": "674432a2352db71e5139d9f3",
+    "productCode": "SP000004",
+    "barcode": "9555192508786",
+    "unit": "khac"
+  },
+  {
+    "productId": "67445b42352db71e5139da81",
+    "productCode": "SP000006",
+    "barcode": "8934647036981",
+    "unit": "khac"
+  },
+  {
+    "productId": "6746caafc8891dc803c976bc",
+    "productCode": "SP000008",
+    "barcode": "8935047690476",
+    "unit": "khac"
+  },
+  {
+    "productId": "6746cc22c8891dc803c976cb",
+    "productCode": "SP000009",
+    "barcode": "8934603302174",
+    "unit": "khac"
+  },
+  {
+    "productId": "6746cd5ac8891dc803c976db",
+    "productCode": "SP000010",
+    "barcode": "8934603000353",
+    "unit": "khac"
+  },
+  {
+    "productId": "6746ce78c8891dc803c976ec",
+    "productCode": "SP000011",
+    "barcode": "8934603000193",
+    "unit": "khac"
+  },
+  {
+    "productId": "6746d06fc8891dc803c9771a",
+    "productCode": "SP000012",
+    "barcode": "8934603102040",
+    "unit": "khac"
+  },
+  {
+    "productId": "6746d20bc8891dc803c97755",
+    "productCode": "SP000013",
+    "barcode": "8934647041206",
+    "unit": "khac"
+  },
+  {
+    "productId": "6746d3dcc8891dc803c977a2",
+    "productCode": "SP000014",
+    "barcode": "8936009053193",
+    "unit": "khac"
+  },
+  {
+    "productId": "6746d50ec8891dc803c977d9",
+    "productCode": "SP000015",
+    "barcode": "8934603302105",
+    "unit": "khac"
+  },
+  {
+    "productId": "6746d90dc8891dc803c97801",
+    "productCode": "SP000016",
+    "barcode": "8935004401572",
+    "unit": "khac"
+  },
+  {
+    "productId": "6746df38c8891dc803c97856",
+    "productCode": "SP000017",
+    "barcode": "8934563138165",
+    "unit": "khac"
+  },
+  {
+    "productId": "674700ebc8891dc803c97a90",
+    "productCode": "SP000021",
+    "barcode": "8934563151157",
+    "unit": "khac"
+  },
+  {
+    "productId": "67470366c8891dc803c97b19",
+    "productCode": "SP000022",
+    "barcode": "8936010680395",
+    "unit": "khac"
+  },
+  {
+    "productId": "674704e2c8891dc803c97b8d",
+    "productCode": "SP000023",
+    "barcode": "8936010680388",
+    "unit": "khac"
+  },
+  {
+    "productId": "6747063ac8891dc803c97c03",
+    "productCode": "SP000024",
+    "barcode": "8936010681200",
+    "unit": "khac"
+  },
+  {
+    "productId": "67470835c8891dc803c97c60",
+    "productCode": "SP000025",
+    "barcode": "8936010680555",
+    "unit": "khac"
+  },
+  {
+    "productId": "6747de29c8891dc803c97d3d",
+    "productCode": "SP000026",
+    "barcode": "8936010680449",
+    "unit": "khac"
+  },
+  {
+    "productId": "6747e230c8891dc803c97e42",
+    "productCode": "SP000000",
+    "barcode": "8935047670256",
+    "unit": "khac"
+  },
+  {
+    "productId": "6747eb51c8891dc803c98307",
+    "productCode": "SP000027",
+    "barcode": "8936010680807",
+    "unit": "khac"
+  },
+  {
+    "productId": "6747ed6dc8891dc803c984a4",
+    "productCode": "SP000028",
+    "barcode": "8936010682542",
+    "unit": "khac"
+  },
+  {
+    "productId": "6747ef9fc8891dc803c985e0",
+    "productCode": "SP000029",
+    "barcode": "8936010681422",
+    "unit": "khac"
+  },
+  {
+    "productId": "6747f04bc8891dc803c98672",
+    "productCode": "SP000030",
+    "barcode": "8936010681415",
+    "unit": "khac"
+  },
+  {
+    "productId": "6747f43cc8891dc803c98754",
+    "productCode": "SP000031",
+    "barcode": "8935311110464",
+    "unit": "khac"
+  },
+  {
+    "productId": "6747f5f8c8891dc803c98888",
+    "productCode": "SP000032",
+    "barcode": "8935311110808",
+    "unit": "khac"
+  },
+  {
+    "productId": "6747f753c8891dc803c9894d",
+    "productCode": "SP000033",
+    "barcode": "8935311110440",
+    "unit": "khac"
+  },
+  {
+    "productId": "6747f914c8891dc803c98a17",
+    "productCode": "SP000034",
+    "barcode": "8936136167923",
+    "unit": "khac"
+  },
+  {
+    "productId": "6747fe9ac8891dc803c98b6d",
+    "productCode": "SP000035",
+    "barcode": "8935311102476",
+    "unit": "khac"
+  },
+  {
+    "productId": "67480170c8891dc803c98c9b",
+    "productCode": "SP000036",
+    "barcode": "8935311101899",
+    "unit": "khac"
+  },
+  {
+    "productId": "67480295c8891dc803c98dfd",
+    "productCode": "SP000037",
+    "barcode": "8935311101882",
+    "unit": "khac"
+  },
+  {
+    "productId": "6748035ac8891dc803c98eb3",
+    "productCode": "SP000038",
+    "barcode": "8935311101462",
+    "unit": "khac"
+  },
+  {
+    "productId": "67480574c8891dc803c98fc8",
+    "productCode": "SP000039",
+    "barcode": "8936010682122",
+    "unit": "khac"
+  },
+  {
+    "productId": "674809a8c8891dc803c99238",
+    "productCode": "SP000041",
+    "barcode": "8936032780110",
+    "unit": "khac"
+  },
+  {
+    "productId": "67481433c8891dc803c9959b",
+    "productCode": "SP000043",
+    "barcode": "8935311102858",
+    "unit": "khac"
+  },
+  {
+    "productId": "67486132c8891dc803c998aa",
+    "productCode": "SP000044",
+    "barcode": "8935311112604",
+    "unit": "khac"
+  },
+  {
+    "productId": "674866e6c8891dc803c99a8b",
+    "productCode": "SP000045",
+    "barcode": "8935311112703",
+    "unit": "khac"
+  },
+  {
+    "productId": "67486b27c8891dc803c99b2e",
+    "productCode": "SP000046",
+    "barcode": "8935311112680",
+    "unit": "khac"
+  },
+  {
+    "productId": "67486cc1c8891dc803c99c0b",
+    "productCode": "SP000047",
+    "barcode": "8935311112581",
+    "unit": "khac"
+  },
+  {
+    "productId": "67486e6ec8891dc803c99d98",
+    "productCode": "SP000048",
+    "barcode": "8936221042272",
+    "unit": "khac"
+  },
+  {
+    "productId": "67491a3ac8891dc803c99f9b",
+    "productCode": "SP000049",
+    "barcode": "8936221041121",
+    "unit": "khac"
+  },
+  {
+    "productId": "67491e89c8891dc803c9a0fa",
+    "productCode": "SP000050",
+    "barcode": "8936221041749",
+    "unit": "khac"
+  },
+  {
+    "productId": "67491fc6c8891dc803c9a1e7",
+    "productCode": "SP000051",
+    "barcode": "8936136164663",
+    "unit": "khac"
+  },
+  {
+    "productId": "67492437c8891dc803c9a40b",
+    "productCode": "SP000053",
+    "barcode": "8936032780219",
+    "unit": "khac"
+  },
+  {
+    "productId": "674af672a5b2800db6718998",
+    "productCode": "SP000055",
+    "barcode": "8935311110549",
+    "unit": "khac"
+  },
+  {
+    "productId": "674af71ea5b2800db6718aa2",
+    "productCode": "SP000056",
+    "barcode": "8935311110624",
+    "unit": "khac"
+  },
+  {
+    "productId": "674affdba5b2800db6718d47",
+    "productCode": "SP000057",
+    "barcode": "8935311110600",
+    "unit": "khac"
+  },
+  {
+    "productId": "674bfb3ea5b2800db6718e9b",
+    "productCode": "SP000058",
+    "barcode": "8936136164700",
+    "unit": "khac"
+  },
+  {
+    "productId": "674bfc26a5b2800db671903a",
+    "productCode": "SP000059",
+    "barcode": "8936136164717",
+    "unit": "khac"
+  },
+  {
+    "productId": "674c00c7a5b2800db6719346",
+    "productCode": "SP000060",
+    "barcode": "8936136164632",
+    "unit": "khac"
+  },
+  {
+    "productId": "674c01dfa5b2800db671941d",
+    "productCode": "SP000061",
+    "barcode": "8936010680104",
+    "unit": "khac"
+  },
+  {
+    "productId": "674c0366a5b2800db671961b",
+    "productCode": "SP000063",
+    "barcode": "8936010680098",
+    "unit": "khac"
+  },
+  {
+    "productId": "674c0737a5b2800db671978d",
+    "productCode": "SP000064",
+    "barcode": "8936010680241",
+    "unit": "khac"
+  },
+  {
+    "productId": "674c0d9fa5b2800db671994f",
+    "productCode": "SP000065",
+    "barcode": "8934563619138",
+    "unit": "khac"
+  },
+  {
+    "productId": "674c1327a5b2800db6719bac",
+    "productCode": "SP000066",
+    "barcode": "8936136167879",
+    "unit": "khac"
+  },
+  {
+    "productId": "674c1acea5b2800db6719f04",
+    "productCode": "SP000068",
+    "barcode": "8936221041794",
+    "unit": "khac"
+  },
+  {
+    "productId": "674c1d1ea5b2800db671a21d",
+    "productCode": "SP000069",
+    "barcode": "8936221041787",
+    "unit": "khac"
+  },
+  {
+    "productId": "674ff2f146eeb73b96cafdbb",
+    "productCode": "SP000070",
+    "barcode": "8936010680906",
+    "unit": "khac"
+  },
+  {
+    "productId": "674ff62b46eeb73b96caff51",
+    "productCode": "SP000071",
+    "barcode": "8936010680500",
+    "unit": "khac"
+  },
+  {
+    "productId": "674ff97a46eeb73b96cb00ec",
+    "productCode": "SP000072",
+    "barcode": "8936010680470",
+    "unit": "khac"
+  },
+  {
+    "productId": "674ffb3346eeb73b96cb023a",
+    "productCode": "SP000073",
+    "barcode": "8936010680487",
+    "unit": "khac"
+  },
+  {
+    "productId": "67503dda5ea923fd2cae9ac6",
+    "productCode": "SP000074",
+    "barcode": "8936010680481",
+    "unit": "khac"
+  },
+  {
+    "productId": "677e14d97e744d08827acf98",
+    "productCode": "SP000225",
+    "barcode": "8934673100618",
+    "unit": "khac"
+  },
+  {
+    "productId": "67810a427ce00548d23f1c44",
+    "productCode": "SP000226",
+    "barcode": "8936012060843",
+    "unit": "khac"
+  },
+  {
+    "productId": "67810b507ce00548d23f1ffe",
+    "productCode": "SP000227",
+    "barcode": "8936012060966",
+    "unit": "khac"
+  },
+  {
+    "productId": "67810bef7ce00548d23f22cc",
+    "productCode": "SP000228",
+    "barcode": "8936012062618",
+    "unit": "khac"
+  },
+  {
+    "productId": "6785cdf911a9f0daee862ea9",
+    "productCode": "SP000229",
+    "barcode": "8936012060942",
+    "unit": "khac"
+  },
+  {
+    "productId": "6785d49711a9f0daee86335f",
+    "productCode": "SP000230",
+    "barcode": "8935302301093",
+    "unit": "khac"
+  },
+  {
+    "productId": "6785d63f11a9f0daee863636",
+    "productCode": "SP000231",
+    "barcode": "8936012062656",
+    "unit": "khac"
+  },
+  {
+    "productId": "6785e637f29167156306c8be",
+    "productCode": "SP000232",
+    "barcode": "8935217466214",
+    "unit": "khac"
+  },
+  {
+    "productId": "6785f427f29167156306d33c",
+    "productCode": "SP000233",
+    "barcode": "8935217400164",
+    "unit": "khac"
+  },
+  {
+    "productId": "6785f4aaf29167156306d61c",
+    "productCode": "SP000234",
+    "barcode": "8935217400362",
+    "unit": "khac"
+  },
+  {
+    "productId": "6785f591f29167156306d9f4",
+    "productCode": "SP000235",
+    "barcode": "8853002316134",
+    "unit": "khac"
+  },
+  {
+    "productId": "6785f73cf29167156306e39b",
+    "productCode": "SP000236",
+    "barcode": "8936012060799",
+    "unit": "khac"
+  },
+  {
+    "productId": "6785f80ff29167156306e77d",
+    "productCode": "SP000237",
+    "barcode": "8936012060249",
+    "unit": "khac"
+  },
+  {
+    "productId": "6785f9fef29167156306ea69",
+    "productCode": "SP000238",
+    "barcode": "8935217400263",
+    "unit": "khac"
+  },
+  {
+    "productId": "6785fe38f29167156306ed58",
+    "productCode": "SP000239",
+    "barcode": "8936025773082",
+    "unit": "khac"
+  },
+  {
+    "productId": "678632e3f29167156306f433",
+    "productCode": "SP000240",
+    "barcode": "8935217466313",
+    "unit": "khac"
+  },
+  {
+    "productId": "67863646f29167156306fe0b",
+    "productCode": "SP000241",
+    "barcode": "8934804025742",
+    "unit": "khac"
+  },
+  {
+    "productId": "67863835f2916715630706fb",
+    "productCode": "SP000242",
+    "barcode": "8934804025766",
+    "unit": "khac"
+  },
+  {
+    "productId": "678639e0f291671563070af6",
+    "productCode": "SP000243",
+    "barcode": "8936199520116",
+    "unit": "khac"
+  },
+  {
+    "productId": "678654d1f2916715630713eb",
+    "productCode": "SP000244",
+    "barcode": "8936199520109",
+    "unit": "khac"
+  },
+  {
+    "productId": "678dbf07634cf63caaeaa65c",
+    "productCode": "SP000245",
+    "barcode": "8853002316196",
+    "unit": "khac"
+  },
+  {
+    "productId": "678dc426634cf63caaeaab61",
+    "productCode": "SP000246",
+    "barcode": "8934614031230",
+    "unit": "khac"
+  },
+  {
+    "productId": "678dc4b3634cf63caaeaae68",
+    "productCode": "SP000247",
+    "barcode": "8934614031247",
+    "unit": "khac"
+  },
+  {
+    "productId": "678e3df223166915cdb8d250",
+    "productCode": "SP000248",
+    "barcode": "8934614030851",
+    "unit": "khac"
+  },
+  {
+    "productId": "678e3ef123166915cdb8d96f",
+    "productCode": "SP000249",
+    "barcode": "8934614030349",
+    "unit": "khac"
+  },
+  {
+    "productId": "678e3fb023166915cdb8dc7f",
+    "productCode": "SP000250",
+    "barcode": "8934614031346",
+    "unit": "khac"
+  },
+  {
+    "productId": "678f4da423166915cdb8f539",
+    "productCode": "SP000255",
+    "barcode": "8935217466999",
+    "unit": "khac"
+  },
+  {
+    "productId": "67933df711581ca2b44e756d",
+    "productCode": "SP000256",
+    "barcode": "8934614015025",
+    "unit": "khac"
+  },
+  {
+    "productId": "67933e8311581ca2b44e7892",
+    "productCode": "SP000257",
+    "barcode": "8934614030424",
+    "unit": "khac"
+  },
+  {
+    "productId": "67977aca11581ca2b44f5832",
+    "productCode": "SP000302",
+    "barcode": "8938508191642",
+    "unit": "khac"
+  },
+  {
+    "productId": "67977c2c11581ca2b44f6209",
+    "productCode": "SP000303",
+    "barcode": "8938508191765",
+    "unit": "khac"
+  },
+  {
+    "productId": "67977d6311581ca2b44f65bd",
+    "productCode": "SP000304",
+    "barcode": "8938553715022",
+    "unit": "khac"
+  },
+  {
+    "productId": "67977ffc11581ca2b44f6974",
+    "productCode": "SP000305",
+    "barcode": "8938504958080",
+    "unit": "khac"
+  },
+  {
+    "productId": "6797807411581ca2b44f6d2c",
+    "productCode": "SP000306",
+    "barcode": "8936037589879",
+    "unit": "khac"
+  },
+  {
+    "productId": "679f3b8d11581ca2b44f8739",
+    "productCode": "SP000307",
+    "barcode": "8938533492011",
+    "unit": "khac"
+  },
+  {
+    "productId": "679f3f2411581ca2b44f8eb2",
+    "productCode": "SP000308",
+    "barcode": "8938533492387",
+    "unit": "khac"
+  },
+  {
+    "productId": "679f472c11581ca2b44f93b2",
+    "productCode": "SP000309",
+    "barcode": "8938533492103",
+    "unit": "khac"
+  },
+  {
+    "productId": "679f4b8e11581ca2b44f98b6",
+    "productCode": "SP000310",
+    "barcode": "8938533492066",
+    "unit": "khac"
+  },
+  {
+    "productId": "679f4c9b11581ca2b44f9c7d",
+    "productCode": "SP000311",
+    "barcode": "8938533492042",
+    "unit": "khac"
+  }
+]

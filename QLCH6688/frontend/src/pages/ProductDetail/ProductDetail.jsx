@@ -31,6 +31,7 @@ const ProductDetail = () => {
         description: '',
         notes: '',
         image: '',
+        productStatus: 'active',
         batches: [],
     };
 
@@ -237,6 +238,22 @@ const ProductDetail = () => {
                             </select>
                         </div>
                         <div className="detail-product-form__group">
+                            <label className="detail-product-form__label--required">Trạng thái sản phẩm:</label>
+                            <select
+                                className="detail-product-form__select"
+                                disabled={!isEditMode}
+                                required
+                                name="productStatus"
+                                value={product.productStatus}
+                                onChange={handleChange}
+                            >
+                                <option value="">-- Chọn trạng thái --</option>
+                                <option value="active">Đang hoạt động</option>
+                                <option value="inactive">Ngừng kinh doanh</option>
+                                <option value="hidden">Ẩn sản phẩm</option>
+                            </select>
+                        </div>
+                        <div className="detail-product-form__group">
                             <label className="detail-product-form__label--required">
                                 Giá nhập: ({formatCurrency(product.purchasePrice)})
                             </label>
@@ -308,16 +325,20 @@ const ProductDetail = () => {
                                         </div>
                                     </div>
                                     <div className="detail-product-form__guidelines">
-                                        <a href="#" target="_blank">
+                                        <a href="#" target="">
+                                            {/* _blank */}
                                             Hướng dẫn thêm sản phẩm mới
                                         </a>
-                                        <a href="#" target="_blank">
+                                        <a href="#" target="">
+                                            {/* _blank */}
                                             Hướng dẫn chỉnh sửa sản phẩm
                                         </a>
-                                        <a href="#" target="_blank">
+                                        <a href="#" target="">
+                                            {/* _blank */}
                                             Hướng dẫn xóa sản phẩm
                                         </a>
-                                        <a href="#" target="_blank">
+                                        <a href="#" target="">
+                                            {/* _blank */}
                                             Hướng dẫn thêm hàng tồn kho (thêm, sửa, xóa lô hàng)
                                         </a>
                                     </div>

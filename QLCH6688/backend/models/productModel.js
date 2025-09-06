@@ -31,6 +31,11 @@ const productSchema = new mongoose.Schema({
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
     batches: [batchSchema],
+    productStatus: {
+        type: String,
+        enum: ['active', 'inactive', 'hidden'],
+        default: 'active',
+    },
 });
 
 // Middleware để tự động cập nhật `updatedAt` khi chỉnh sửa

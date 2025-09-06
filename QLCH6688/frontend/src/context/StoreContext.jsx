@@ -1,10 +1,12 @@
 import axios from 'axios';
 import { createContext, useEffect, useState } from 'react';
 
+import { categories } from '../assets/categories';
+import { brands, units } from '../assets/brandsAndSuppliers';
+
 export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
-    console.log('1-STORECONTEXT ACTIVED');
     const [cartItems, setCartItems] = useState({});
     const url = import.meta.env.VITE_BACKEND_URL || process.env.VITE_BACKEND_URL;
     const urlImage = import.meta.env.VITE_BACKEND_IMAGE_URL || process.env.VITE_BACKEND_IMAGE_URL;
@@ -104,7 +106,6 @@ const StoreContextProvider = (props) => {
     const fetchProductList = async () => {
         const response = await axios.get(url + 'api/sanpham/danhsachsanpham');
         setProductList(response.data.data);
-        console.log('2-STORECONTEXT FECTH API');
     };
 
     /**
@@ -126,6 +127,21 @@ const StoreContextProvider = (props) => {
         }
         loadData();
     }, []);
+
+    const categoryMap = categories.reduce((map, category) => {
+        map[category.value] = category.label;
+        return map;
+    }, {});
+
+    const brandMap = brands.reduce((map, brand) => {
+        map[brand.value] = brand.label;
+        return map;
+    }, {});
+
+    const unitMap = units.reduce((map, unit) => {
+        map[unit.value] = unit.label;
+        return map;
+    }, {});
 
     const utilityFunctions = {
         calculateDiscount: (totalAmount, discountPercentage) => totalAmount * (1 - discountPercentage / 100),
@@ -150,48 +166,33 @@ const StoreContextProvider = (props) => {
             return `${day}/${month}/${year}`;
         },
         convertCategory: (category) => {
-            const categoryMap = {
-                dientu: 'Điện tử',
-                thoitrang: 'Thời trang',
-                giadung: 'Gia dụng',
-                thucpham: 'Thực phẩm',
-                mypham: 'Mỹ phẩm',
-                thuocla: 'Thuốc lá',
-                sua: 'Sữa',
-                keocaosu: 'Kẹo cao su',
-                nuocngot: 'Nước ngọt',
-                thucphamanlien: 'Thực phẩm ăn liền',
-                caphe: 'Cà phê',
-                mitom: 'Mì tôm',
-                pho: 'Phở',
-                bun: 'Bún',
-                chao: 'Cháo',
-                mien: 'Miến',
-                giavi: 'Gia vị',
-                nuocmam: 'Nước mắm',
-                thucphamdonghop: 'Thực phẩm đóng hộp',
-                dauan: 'Dầu ăn',
-                dodungnhabep: 'Đồ dùng nhà bếp',
-                nguyenlieu: 'Nguyên liệu',
-                banhkeo: 'Bánh, kẹo',
-                thach: 'Thạch',
-            };
             return categoryMap[category.toLowerCase()] || category;
         },
+        convertBrand: (brand) => {
+            return brandMap[brand.toLowerCase()] || brand;
+        },
+        convertUnit: (unit) => {
+            return unitMap[unit.toLowerCase()] || unit;
+        },
         removeSpecialChars: (input, key) => {
-            const specialChars = '!@#$%^&*()_+={}[]|\\:;"\'<>,.?/~`-';
+            const specialChars = '!@#$%^&*()_+={}[]|\\:;"\'<>,.?/~`'; // Bỏ gạch ngang '-' ra khỏi chuỗi
+
             if (key === 'name') {
+                const allowedSpecialCharsForName = ['(', ')', '-', ','];
                 return input
                     .split('')
-                    .filter((char) => !specialChars.includes(char) || ['(', ')', '-', ','].includes(char))
+                    .filter((char) => !specialChars.includes(char) || allowedSpecialCharsForName.includes(char))
                     .join('');
             }
+
             if (key === 'unit') {
+                const allowedSpecialCharsForUnit = ['-', '_'];
                 return input
                     .split('')
-                    .filter((char) => !specialChars.includes(char) || char === ',')
+                    .filter((char) => !specialChars.includes(char) || allowedSpecialCharsForUnit.includes(char))
                     .join('');
             }
+
             return input
                 .split('')
                 .filter((char) => !specialChars.includes(char))

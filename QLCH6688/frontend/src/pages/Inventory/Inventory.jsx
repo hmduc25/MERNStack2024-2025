@@ -2,6 +2,7 @@ import { useState, useContext, useMemo, useEffect } from 'react';
 import classNames from 'classnames';
 import { StoreContext } from '../../context/StoreContext';
 import './Inventory.css';
+import helpers from '../../utils/helpers';
 import StatusDisplaySpinner from '../../components/StatusDisplaySpinner/StatusDisplaySpinner';
 import {
     MdSearch,
@@ -11,7 +12,6 @@ import {
     MdKeyboardDoubleArrowUp,
 } from 'react-icons/md';
 
-// Hàm helper: Dùng để kiểm tra trạng thái hạn sử dụng
 const getExpiryStatus = (expirationDate) => {
     const today = new Date();
     const expiry = new Date(expirationDate);
@@ -26,14 +26,16 @@ const getExpiryStatus = (expirationDate) => {
 };
 
 const Inventory = () => {
-    // 👇 Bắt đầu với tất cả các Hooks 👇
-    const { product_list } = useContext(StoreContext);
+    const { product_list, utilityFunctions } = useContext(StoreContext);
+    const { convertCategory } = utilityFunctions;
     const [search, setSearch] = useState('');
     const [filter, setFilter] = useState('Tất cả');
     const [expiryFilter, setExpiryFilter] = useState('Tất cả');
+    const [productStatusFilter, setProductStatusFilter] = useState('Tất cả');
     const [isLoading, setIsLoading] = useState(true);
 
-    // Sử dụng useEffect để cập nhật trạng thái tải khi product_list thay đổi
+    const { formatDate } = helpers;
+
     useEffect(() => {
         if (product_list.length > 0) {
             setIsLoading(false);
@@ -101,17 +103,25 @@ const Inventory = () => {
                     productName: product.name,
                     productCategory: product.category,
                     productCode: product.productCode,
+                    productStatus: product.productStatus,
                     batchIndex: index + 1,
                     totalBatches: totalBatches,
                 }));
             })
             .filter((batch) => {
+                const categoryFilterValue = filter === 'Tất cả' ? 'Tất cả' : convertCategory(filter);
+                const batchCategoryValue = convertCategory(batch.productCategory);
+
                 const matchesSearchAndCategory =
                     (filter === 'Tất cả' || batch.productCategory === filter) &&
                     (batch.productName.toLowerCase().includes(search.toLowerCase()) ||
                         batch.productCode.toLowerCase().includes(search.toLowerCase()));
 
                 if (!matchesSearchAndCategory) {
+                    return false;
+                }
+
+                if (productStatusFilter !== 'Tất cả' && batch.productStatus !== productStatusFilter) {
                     return false;
                 }
 
@@ -131,7 +141,7 @@ const Inventory = () => {
                 }
                 return true;
             });
-    }, [productsWithRemaining, search, filter, expiryFilter, productBatchCounts]);
+    }, [productsWithRemaining, search, filter, expiryFilter, productBatchCounts, productStatusFilter]);
 
     const tableSummary = useMemo(() => {
         const totalRemainingInTable = filteredBatches.reduce((sum, batch) => sum + batch.remaining, 0);
@@ -237,9 +247,23 @@ const Inventory = () => {
                     <select value={filter} onChange={(e) => setFilter(e.target.value)} className="inventory__select">
                         {categories.map((c) => (
                             <option key={c} value={c}>
-                                {c.charAt(0).toUpperCase() + c.slice(1)}
+                                {convertCategory(c.charAt(0).toUpperCase() + c.slice(1))}
                             </option>
                         ))}
+                    </select>
+                </div>
+
+                <div className="inventory__select-wrapper mw-230">
+                    <MdFilterList className="inventory__icon" />
+                    <select
+                        value={productStatusFilter}
+                        onChange={(e) => setProductStatusFilter(e.target.value)}
+                        className="inventory__select"
+                    >
+                        <option value="Tất cả">Trạng thái sản phẩm</option>
+                        <option value="active">🟢 Đang hoạt động</option>
+                        <option value="inactive">⚫ Ngừng hoạt động</option>
+                        <option value="hidden">⚪ Bị ẩn</option>
                     </select>
                 </div>
 
@@ -307,9 +331,9 @@ const Inventory = () => {
                                         {batch.productName}
                                         {batch.totalBatches > 1 && ` (${batch.batchIndex}/${batch.totalBatches})`}
                                     </td>
-                                    <td className="inventory__table-cell">{batch.productCategory}</td>
-                                    <td className="inventory__table-cell">{batch.entryDate}</td>
-                                    <td className={expiryTextClasses}>{batch.expirationDate}</td>
+                                    <td className="inventory__table-cell">{convertCategory(batch.productCategory)}</td>
+                                    <td className="inventory__table-cell">{formatDate(batch.entryDate)}</td>
+                                    <td className={expiryTextClasses}>{formatDate(batch.expirationDate)}</td>
                                     <td className="inventory__table-cell">{batch.quantity}</td>
                                     <td className="inventory__table-cell">{batch.purchasePrice.toLocaleString()} ₫</td>
                                     <td className="inventory__table-cell">{batch.remaining}</td>

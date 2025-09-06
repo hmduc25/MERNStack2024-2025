@@ -71,6 +71,7 @@ const addProduct = async (req, res) => {
         notes: req.body.notes,
         supplier: supplier,
         image: image_filename,
+        productStatus: req.body.productStatus,
         batches: batches,
     });
 
@@ -131,9 +132,10 @@ const updateProduct = async (req, res) => {
         product.purchasePrice = updatedData.purchasePrice ? parseInt(updatedData.purchasePrice) : product.purchasePrice;
         product.sellingPrice = updatedData.sellingPrice ? parseInt(updatedData.sellingPrice) : product.sellingPrice;
         product.unit = updatedData.unit || product.unit;
+        product.productStatus = updatedData.productStatus || product.productStatus;
         product.description = updatedData.description || product.description;
         product.notes = updatedData.notes || product.notes;
-        product.image = newImageFilename || product.image; // Sử dụng newImageFilename nếu có
+        product.image = newImageFilename || product.image;
 
         if (updatedData.batches) {
             let newBatches = [];

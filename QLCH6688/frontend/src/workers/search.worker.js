@@ -43,6 +43,10 @@ onmessage = function (event) {
     const numericSearchTerm = isPriceSearch ? Number(lowerCaseSearchTerm) : null;
 
     const filteredSuggestions = productList.filter((item) => {
+        if (item.productStatus === 'hidden') {
+            return false;
+        }
+
         // 1. Ưu tiên tìm kiếm theo barcode tùy chỉnh "SKU_..."
         if (isCustomBarcodeSearch) {
             return item.barcode && item.barcode.toLowerCase() === customBarcode;

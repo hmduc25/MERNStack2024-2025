@@ -11,6 +11,7 @@ import NoteProductPopup from './NoteProductPopup/NoteProductPopup';
 
 // SỬA ĐỔI CÁCH IMPORT WEB WORKER
 // Nếu bạn sử dụng Create React App hoặc Vite, bạn có thể dùng cú pháp đặc biệt này:
+// src/workers/search.worker.js
 import SearchWorker from '../../workers/search.worker.js?worker';
 // Hoặc đơn giản và phổ biến hơn, sử dụng cú pháp URL như sau:
 // const searchWorkerUrl = new URL('../../workers/search.worker.js', import.meta.url);

@@ -9,6 +9,8 @@ const ProductPopup = ({ product, onClose }) => {
         formatDateFromYYYYMMDDToVietNamDate,
         formatCurrency,
         convertCategory,
+        convertBrand,
+        convertUnit,
     } = utilityFunctions;
 
     if (!product) return null;
@@ -61,11 +63,11 @@ const ProductPopup = ({ product, onClose }) => {
                         </div>
                         <div className="detail-group">
                             <p className="detail-label">Thương hiệu:</p>
-                            <p className="detail-value">{product.brand}</p>
+                            <p className="detail-value">{convertBrand(product.brand)}</p>
                         </div>
                         <div className="detail-group">
                             <p className="detail-label">Đơn vị tính:</p>
-                            <p className="detail-value">{product.unit}</p>
+                            <p className="detail-value">{convertUnit(product.unit)}</p>
                         </div>
                         <div className="detail-group">
                             <p className="detail-label">Loại hàng:</p>

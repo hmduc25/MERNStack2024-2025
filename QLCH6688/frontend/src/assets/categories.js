@@ -23,4 +23,7 @@ export const categories = [
     { value: 'nguyenlieu', label: 'Nguyên liệu' },
     { value: 'banhkeo', label: 'Bánh, kẹo' },
     { value: 'thach', label: 'Thạch' },
+    { value: 'giaybimtabvs', label: 'Giấy, bỉm tã & BVS' },
+    { value: 'nuocgiatvachattayrua', label: 'Nước giặt & chất tẩy rửa' },
+    { value: 'caphetra', label: 'Cà phê & trà' },
 ];

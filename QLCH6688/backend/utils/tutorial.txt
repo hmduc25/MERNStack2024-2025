@@ -1,0 +1,1 @@
+- Tất cả các file này cần mang ra `E:\MyProjects\QLCH6688\backend` để chạy mới hoạt động đúng
