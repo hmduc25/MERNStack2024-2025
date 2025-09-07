@@ -11,7 +11,7 @@
 - đăng nhập (phân quyền: `admin`, `manager` ,`seller`) /sau
 - đổi thông báo qua toast message -> ok
 - add AI (AI gợi ý, đề xuất - API GEMENI hoặc chatGPT)
-- chế độ khi k có mạng (local)
+- chế độ khi k có mạng (local_)
 
 
 //Lọc ký tự đặc biệt (trừ dấu _)
