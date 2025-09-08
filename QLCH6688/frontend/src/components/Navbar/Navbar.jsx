@@ -58,11 +58,11 @@ const Navbar = () => {
                     <div className={getTotalCartAmount() === 0 ? '' : 'dot'}></div>
                 </div> */}
 
-                {!token ? (
+                {/* {!token ? (
                     <button onClick={() => navigate('/login')}>Đăng nhập</button>
                 ) : (
                     <UserProfileDropdown logout={logout} navigate={navigate} />
-                )}
+                )} */}
             </div>
         </div>
     );
