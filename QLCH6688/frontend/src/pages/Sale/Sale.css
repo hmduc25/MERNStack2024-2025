@@ -15,6 +15,7 @@
     padding: 20px;
     background-color: var(--bg-light);
     min-height: 100vh;
+    max-width: 1700px;
 }
 
 .sale-left,
@@ -192,6 +193,30 @@
     flex: 1;
     margin-top: 20px;
     overflow-y: auto;
+    /*  */
+    display: flex; /* Thêm flex để căn chỉnh nội dung bên trong */
+    flex-direction: column; /* Xếp theo cột */
+}
+
+.sale-products-grid-container {
+    padding: 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+/* Element: Tiêu đề */
+.sale-products-grid-container h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: var(--third-color);
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .cart-item-container {
@@ -309,6 +334,9 @@
     flex: 1;
     display: flex;
     flex-direction: column;
+    /*  */
+    padding-bottom: 70px; /* Thêm khoảng đệm ở dưới, lớn hơn chiều cao của nút */
+    position: relative; /* Cần thiết nếu bạn muốn nút chỉ dính trong sale-right */
 }
 
 .cart-summary h2 {
@@ -435,6 +463,13 @@
     font-weight: 700;
     margin-top: auto;
     transition: background-color 0.3s ease, transform 0.2s ease;
+
+    /* Dính button nổi */
+    position: sticky;
+    bottom: 62px;
+    z-index: 998;
+    width: 100%;
+    box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1), 0 -2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 .checkout-btn:hover {

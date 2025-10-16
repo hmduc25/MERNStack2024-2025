@@ -1,6 +1,3 @@
-/* ... Giữ nguyên các style cũ ở trên ... */
-
-/* Thêm các style dưới đây để tạo dấu chấm lửng giữa các trang */
 .pagination span {
     padding: 8px 0;
 }
@@ -8,6 +5,7 @@
 /* Các style khác giữ nguyên */
 .products {
     padding: 20px;
+    padding-bottom: 60px;
     font-family: Arial, sans-serif;
 }
 
@@ -76,6 +74,9 @@
     margin-right: 5px;
     border-radius: 3px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .delete-btn {
@@ -104,6 +105,19 @@ button:hover {
     margin: 0;
     margin-right: auto;
     font-weight: 500;
+}
+
+.action-buttons .view-mode-btn,
+.action-buttons .toggle-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #007bff;
+    color: white;
+}
+
+.action-buttons .view-mode-btn:hover {
+    background-color: #0056b3;
 }
 
 .toggle-btn {

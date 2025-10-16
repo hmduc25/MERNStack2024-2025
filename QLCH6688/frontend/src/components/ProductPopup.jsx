@@ -59,7 +59,7 @@ const ProductPopup = ({ product, onClose }) => {
                         </div>
                         <div className="detail-group">
                             <p className="detail-label">Mô tả:</p>
-                            <p className="detail-value">{product.description || 'Chưa có mô tả'}</p>
+                            <p className="detail-value">{product.description || '---'}</p>
                         </div>
                         <div className="detail-group">
                             <p className="detail-label">Thương hiệu:</p>
@@ -70,7 +70,7 @@ const ProductPopup = ({ product, onClose }) => {
                             <p className="detail-value">{convertUnit(product.unit)}</p>
                         </div>
                         <div className="detail-group">
-                            <p className="detail-label">Đơn vị tính:</p>
+                            <p className="detail-label">Trạng thái sản phẩm:</p>
                             <p className="detail-value">
                                 {product.productStatus === 'active' ? 'Đang hoạt động' : 'Ngừng kinh doanh'}
                             </p>
@@ -102,7 +102,7 @@ const ProductPopup = ({ product, onClose }) => {
                         </div>
                         <div className="detail-group">
                             <p className="detail-label">Ghi chú:</p>
-                            <p className="detail-value">{product.notes || 'Không có'}</p>
+                            <p className="detail-value">{product.notes || '---'}</p>
                         </div>
 
                         <div className="supplier-info">
@@ -113,11 +113,11 @@ const ProductPopup = ({ product, onClose }) => {
                             </div>
                             <div className="detail-group">
                                 <p className="detail-label">Số điện thoại:</p>
-                                <p className="detail-value">{product.supplier.contact}</p>
+                                <p className="detail-value">{product.supplier.contact || '---'}</p>
                             </div>
                             <div className="detail-group">
                                 <p className="detail-label">Địa chỉ:</p>
-                                <p className="detail-value">{product.supplier.address}</p>
+                                <p className="detail-value">{product.supplier.address || '---'}</p>
                             </div>
                         </div>
 

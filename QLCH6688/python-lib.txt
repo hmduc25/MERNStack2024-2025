@@ -1,2 +1,8 @@
 pip install psutil
 pip install pyinstaller (pyinstaller --onefile --name khoi_dong_ung_dung run_app.py) - build
+
+
+#lib- when new download (Python) need install (pip install ...) - (Add path python, pip [Script Folder path] to Env (Path))
+colorama
+filelock
+psutil

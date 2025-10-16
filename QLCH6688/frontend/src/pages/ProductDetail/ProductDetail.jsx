@@ -308,6 +308,7 @@ const ProductDetail = () => {
                                                 id="file-upload"
                                                 disabled={!isEditMode}
                                                 type="file"
+                                                accept=".png, .jpg, .jpeg"
                                                 onChange={handleImageChange}
                                                 style={{ cursor: isEditMode ? 'pointer' : 'not-allowed' }}
                                             />

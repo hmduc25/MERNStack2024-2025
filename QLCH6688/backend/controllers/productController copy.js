@@ -20,8 +20,7 @@ const handleMongoError = (res, error) => {
 };
 
 const addProduct = async (req, res) => {
-    // let image_filename = req.file ? `${req.file.filename}` : null;
-    let image_url = req.file ? req.file.path : null;
+    let image_filename = req.file ? `${req.file.filename}` : null;
     console.log('req.body: ', req.body);
 
     let batches = [];
@@ -72,7 +71,7 @@ const addProduct = async (req, res) => {
         description: req.body.description,
         notes: req.body.notes,
         supplier: supplier,
-        image: image_url,
+        image: image_filename,
         productStatus: req.body.productStatus,
         batches: batches,
     });
@@ -86,176 +85,11 @@ const addProduct = async (req, res) => {
     }
 };
 
-// Function hỗ trợ lấy public_id từ Cloudinary URL
-// const getPublicIdFromUrl = (url) => {
-//     if (!url) return null;
-//     // URL có dạng: https://res.cloudinary.com/.../v.../folder/public_id.extension
-//     const parts = url.split('/');
-//     const filenameWithExtension = parts.pop();
-//     const publicIdWithFolder = parts.slice(parts.indexOf('mern-product-images')).join('/'); // Lấy từ tên folder trở đi
-
-//     // Loại bỏ đuôi file (.jpg, .png, ...)
-//     const publicId = publicIdWithFolder.split('.').slice(0, -1).join('.');
-
-//     return publicId;
-// };
-
-const getPublicIdFromUrl = (url, folderName = 'mern-product-images') => {
-    if (!url) return null;
-    try {
-        // Ví dụ URL: https://res.cloudinary.com/dvxxxxxxx/image/upload/v1678888888/mern-product-images/product-1665974400000-clove.jpg
-
-        // Tách chuỗi tại '/upload/'
-        const parts = url.split('/upload/');
-        if (parts.length < 2) return null;
-
-        let pathWithVersionAndExtension = parts[1];
-
-        // Loại bỏ version (ví dụ: 'v1678888888/') nếu có
-        const versionMatch = pathWithVersionAndExtension.match(/^v\d+\//);
-        if (versionMatch) {
-            pathWithVersionAndExtension = pathWithVersionAndExtension.substring(versionMatch[0].length);
-        }
-
-        // Loại bỏ phần mở rộng và bất kỳ tham số nào khác (thường là sau dấu chấm cuối cùng)
-        const lastDotIndex = pathWithVersionAndExtension.lastIndexOf('.');
-        if (lastDotIndex > 0) {
-            pathWithVersionAndExtension = pathWithVersionAndExtension.substring(0, lastDotIndex);
-        }
-
-        // Public ID phải khớp với cấu trúc thư mục (folderName/public_id_của_bạn)
-        return pathWithVersionAndExtension;
-    } catch (e) {
-        console.error('❌ Lỗi khi trích xuất Public ID:', e);
-        return null;
-    }
-};
-
-// const updateProduct = async (req, res) => {
-//     try {
-//         const productId = req.params.id;
-//         const updatedData = req.body;
-//         // const newImageFilename = req.file ? `${req.file.filename}` : null;
-//         const newImageURL = req.file ? req.file.path : null;
-
-//         const product = await productModel.findById(productId);
-//         if (!product) {
-//             return res.status(404).json({ success: false, message: 'Sản phẩm không tồn tại' });
-//         }
-
-//         if (updatedData.productCode && updatedData.productCode !== product.productCode) {
-//             return res.status(400).json({ success: false, message: 'Không thể thay đổi productCode' });
-//         }
-
-//         if (newImageURL) {
-//             if (product.image) {
-//                 const oldImageURL = product.image;
-//                 const publicId = getPublicIdFromUrl(oldImageURL);
-
-//                 if (publicId) {
-//                     try {
-//                         await cloudinary.uploader.destroy(publicId);
-//                         console.log('Đã xóa ảnh cũ trên Cloudinary thành công:', publicId);
-//                     } catch (err) {
-//                         console.error('Lỗi khi xóa ảnh cũ trên Cloudinary:', err);
-//                     }
-//                 }
-//             }
-//             // ⚠️ Cập nhật ảnh mới
-//             updatedData.image = newImageURL;
-//         }
-
-//         const today = new Date();
-//         const todayISO = today.toISOString().split('T')[0];
-//         const futureDate = new Date(today);
-//         futureDate.setFullYear(2099);
-//         const defaultExpirationDate = futureDate.toISOString().split('T')[0];
-
-//         // Cập nhật các trường dữ liệu chung của sản phẩm
-//         product.barcode = updatedData.barcode || product.barcode;
-//         product.name = updatedData.name || product.name;
-//         product.category = updatedData.category || product.category;
-//         product.brand = updatedData.brand || product.brand;
-//         product.purchasePrice = updatedData.purchasePrice ? parseInt(updatedData.purchasePrice) : product.purchasePrice;
-//         product.sellingPrice = updatedData.sellingPrice ? parseInt(updatedData.sellingPrice) : product.sellingPrice;
-//         product.unit = updatedData.unit || product.unit;
-//         product.productStatus = updatedData.productStatus || product.productStatus;
-//         product.description = updatedData.description || product.description;
-//         product.notes = updatedData.notes || product.notes;
-//         product.image = newImageURL || product.image;
-
-//         if (updatedData.batches) {
-//             let newBatches = [];
-//             try {
-//                 newBatches = JSON.parse(updatedData.batches);
-//             } catch (error) {
-//                 return res.status(400).json({ success: false, message: 'Lỗi trong việc parse batches' });
-//             }
-
-//             const existingBatchesMap = new Map(product.batches.map((batch) => [batch._id.toString(), batch]));
-//             const newBatchesToProcess = new Map(newBatches.map((batch) => [batch._id, batch]));
-
-//             // Xóa các batches đã bị gỡ bỏ
-//             product.batches.forEach((batch) => {
-//                 if (!newBatchesToProcess.has(batch._id.toString())) {
-//                     product.batches.pull(batch._id);
-//                 }
-//             });
-
-//             // Cập nhật các batches đã tồn tại và thêm các batches mới
-//             newBatches.forEach((newBatch) => {
-//                 const existingBatch = existingBatchesMap.get(newBatch._id);
-
-//                 if (existingBatch) {
-//                     // Cập nhật lô hàng đã tồn tại
-//                     const quantity = parseInt(newBatch.quantity);
-//                     if (parseInt(existingBatch.quantity) !== quantity) {
-//                         existingBatch.quantity = quantity;
-//                         existingBatch.remaining = quantity;
-//                     }
-//                     existingBatch.entryDate = newBatch.entryDate || todayISO;
-//                     existingBatch.expirationDate = newBatch.expirationDate || defaultExpirationDate;
-//                     existingBatch.purchasePrice = parseInt(newBatch.purchasePrice);
-//                 } else {
-//                     // Thêm lô hàng mới
-//                     const quantity = parseInt(newBatch.quantity);
-//                     const newBatchNumber = `BATCH${(product.batches.length + 1).toString().padStart(3, '0')}`;
-//                     product.batches.push({
-//                         entryDate: newBatch.entryDate || todayISO,
-//                         batchNumber: newBatchNumber,
-//                         expirationDate: newBatch.expirationDate || defaultExpirationDate,
-//                         purchasePrice: parseInt(newBatch.purchasePrice),
-//                         quantity: quantity,
-//                         remaining: quantity,
-//                     });
-//                 }
-//             });
-
-//             // Tính lại totalQuantity dựa trên các batches hiện có
-//             const newTotalQuantity = product.batches.reduce((sum, batch) => sum + batch.remaining, 0);
-//             product.totalQuantity = newTotalQuantity;
-//         }
-
-//         // Lưu lại sản phẩm đã cập nhật
-//         await product.save();
-//         res.json({ success: true, message: 'Cập nhật sản phẩm thành công', data: product });
-//     } catch (error) {
-//         handleMongoError(res, error);
-//     }
-// };
-
-// Danh sách tất cả sản phẩm
 const updateProduct = async (req, res) => {
     try {
         const productId = req.params.id;
         const updatedData = req.body;
-        // req.file.path là URL của ảnh mới đã được Cloudinary trả về
-        const newImageURL = req.file ? req.file.path : null;
-
-        // DEBUG 1: Kiểm tra đầu vào
-        console.log('--- Bắt đầu Update Product ---');
-        console.log('Product ID:', productId);
-        console.log('New Image URL (req.file.path):', newImageURL);
+        const newImageFilename = req.file ? `${req.file.filename}` : null;
 
         const product = await productModel.findById(productId);
         if (!product) {
@@ -266,55 +100,32 @@ const updateProduct = async (req, res) => {
             return res.status(400).json({ success: false, message: 'Không thể thay đổi productCode' });
         }
 
-        // --- LOGIC XÓA ẢNH CŨ TRÊN CLOUDINARY ---
-        if (newImageURL) {
-            // Kiểm tra xem sản phẩm đã có ảnh cũ chưa
+        if (newImageFilename) {
             if (product.image) {
-                const oldImageURL = product.image;
+                const oldImagePath = path.join('uploads', product.image);
 
-                // DEBUG 2: Kiểm tra ảnh cũ
-                console.log('Old Image URL (từ DB):', oldImageURL);
-
-                const publicId = getPublicIdFromUrl(oldImageURL);
-
-                // DEBUG 3: Kiểm tra Public ID trích xuất
-                console.log('Calculated Public ID:', publicId);
-
-                if (publicId) {
-                    try {
-                        // Gọi API xóa của Cloudinary
-                        const destructionResult = await cloudinary.uploader.destroy(publicId);
-
-                        // DEBUG 4: Kiểm tra kết quả trả về
-                        console.log('Cloudinary Destruction Result:', destructionResult);
-
-                        if (destructionResult.result === 'ok') {
-                            console.log(`✅ Đã xóa ảnh cũ trên Cloudinary thành công: ${publicId}`);
-                        } else {
-                            console.log(
-                                `⚠️ Cloudinary báo lỗi xóa hoặc publicId không hợp lệ: ${publicId}. Result: ${destructionResult.result}`,
-                            );
-                            // Lưu ý: Có thể vẫn tiếp tục cập nhật DB nếu việc xóa ảnh không phải là lỗi blocking
-                        }
-                    } catch (err) {
-                        console.error('❌ Lỗi THỰC SỰ khi gọi API xóa Cloudinary:', err.message);
-                        // Lỗi này thường do cấu hình Cloudinary sai hoặc mạng
+                try {
+                    // Kiểm tra xem file có tồn tại không trước khi xóa
+                    if (fs.existsSync(oldImagePath)) {
+                        fs.unlinkSync(oldImagePath); // Sử dụng fs.unlinkSync để đồng bộ và dễ xử lý lỗi
+                        console.log('Đã xóa ảnh cũ thành công:', oldImagePath);
+                    } else {
+                        console.log('Tệp ảnh cũ không tồn tại:', oldImagePath);
                     }
-                } else {
-                    console.log('⚠️ Không thể trích xuất Public ID từ URL cũ. Bỏ qua việc xóa ảnh cũ.');
+                } catch (err) {
+                    console.error('Lỗi khi xóa ảnh cũ:', err);
                 }
             }
-            // Cập nhật URL ảnh mới
-            updatedData.image = newImageURL;
+            updatedData.image = newImageFilename;
         }
 
-        // --- CẬP NHẬT TRƯỜNG DỮ LIỆU CƠ BẢN ---
         const today = new Date();
         const todayISO = today.toISOString().split('T')[0];
         const futureDate = new Date(today);
         futureDate.setFullYear(2099);
         const defaultExpirationDate = futureDate.toISOString().split('T')[0];
 
+        // Cập nhật các trường dữ liệu chung của sản phẩm
         product.barcode = updatedData.barcode || product.barcode;
         product.name = updatedData.name || product.name;
         product.category = updatedData.category || product.category;
@@ -325,16 +136,13 @@ const updateProduct = async (req, res) => {
         product.productStatus = updatedData.productStatus || product.productStatus;
         product.description = updatedData.description || product.description;
         product.notes = updatedData.notes || product.notes;
-        product.image = newImageURL || product.image; // Cập nhật trường image
+        product.image = newImageFilename || product.image;
 
-        // --- LOGIC XỬ LÝ BATCHES ---
         if (updatedData.batches) {
             let newBatches = [];
             try {
                 newBatches = JSON.parse(updatedData.batches);
             } catch (error) {
-                // DEBUG: Lỗi parse batches
-                console.error('Lỗi khi parse batches:', error.message);
                 return res.status(400).json({ success: false, message: 'Lỗi trong việc parse batches' });
             }
 
@@ -345,7 +153,6 @@ const updateProduct = async (req, res) => {
             product.batches.forEach((batch) => {
                 if (!newBatchesToProcess.has(batch._id.toString())) {
                     product.batches.pull(batch._id);
-                    console.log(`DEBUG: Removed batch ID ${batch._id}`);
                 }
             });
 
@@ -358,7 +165,6 @@ const updateProduct = async (req, res) => {
                     const quantity = parseInt(newBatch.quantity);
                     if (parseInt(existingBatch.quantity) !== quantity) {
                         existingBatch.quantity = quantity;
-                        // Giả định khi cập nhật số lượng nhập kho, tồn kho sẽ bằng số lượng nhập kho mới
                         existingBatch.remaining = quantity;
                     }
                     existingBatch.entryDate = newBatch.entryDate || todayISO;
@@ -379,24 +185,20 @@ const updateProduct = async (req, res) => {
                 }
             });
 
-            // Tính lại totalQuantity
+            // Tính lại totalQuantity dựa trên các batches hiện có
             const newTotalQuantity = product.batches.reduce((sum, batch) => sum + batch.remaining, 0);
             product.totalQuantity = newTotalQuantity;
         }
 
         // Lưu lại sản phẩm đã cập nhật
         await product.save();
-
-        console.log('--- Kết thúc Update Product thành công ---');
         res.json({ success: true, message: 'Cập nhật sản phẩm thành công', data: product });
     } catch (error) {
-        // DEBUG: Lỗi chung
-        console.error('❌ Lỗi chung trong updateProduct:', error.message);
-        // Giả định handleMongoError xử lý và trả về phản hồi lỗi HTTP
         handleMongoError(res, error);
     }
 };
 
+// Danh sách tất cả sản phẩm
 const listAllProducts = async (req, res) => {
     try {
         const products = await productModel.find({});
@@ -408,33 +210,11 @@ const listAllProducts = async (req, res) => {
 
 // Xoá sản phẩm
 const removeProduct = async (req, res) => {
-    // try {
-    //     const product = await productModel.findById(req.body.id);
-    //     if (product) {
-    //         // Xoá ảnh trong `uploads`
-    //         fs.unlink(`uploads/${product.image}`, () => {});
-    //     }
-    //     await productModel.findByIdAndDelete(req.body.id);
-    //     res.json({ success: true, message: `Đã xóa sản phẩm thành công ${req.body.id}` });
-    // } catch (error) {
-    //     handleMongoError(res, error);
-    // }
-
     try {
         const product = await productModel.findById(req.body.id);
-        if (product && product.image) {
-            // ⚠️ THAY THẾ: XÓA ẢNH TRÊN CLOUDINARY
-            const publicId = getPublicIdFromUrl(product.image); // Lấy public_id từ URL
-
-            if (publicId) {
-                try {
-                    await cloudinary.uploader.destroy(publicId);
-                    console.log('Đã xóa ảnh sản phẩm trên Cloudinary thành công:', publicId);
-                } catch (err) {
-                    console.error('Lỗi khi xóa ảnh trên Cloudinary:', err);
-                    // Tiếp tục xóa sản phẩm khỏi DB dù việc xóa ảnh Cloudinary có lỗi
-                }
-            }
+        if (product) {
+            // Xoá ảnh trong `uploads`
+            fs.unlink(`uploads/${product.image}`, () => {});
         }
         await productModel.findByIdAndDelete(req.body.id);
         res.json({ success: true, message: `Đã xóa sản phẩm thành công ${req.body.id}` });
