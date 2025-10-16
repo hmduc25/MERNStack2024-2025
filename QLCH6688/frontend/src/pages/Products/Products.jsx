@@ -7,6 +7,9 @@ import { Link } from 'react-router-dom';
 import defaultImage from '../../assets/images/Mystery-products.png';
 import StatusDisplaySpinner from '../../components/StatusDisplaySpinner/StatusDisplaySpinner';
 import { toast } from 'react-toastify';
+import { FaBook, FaEye, FaFileExcel, FaList, FaPlus, FaTh } from 'react-icons/fa';
+
+import ProductCard from './ProductCard';
 
 // Tách riêng component cho một hàng sản phẩm để tối ưu hiệu suất.
 // Sử dụng memo để ngăn việc render lại hàng khi các props không đổi.
@@ -44,7 +47,7 @@ const ProductRow = memo(({ product, urlImage, utilityFunctions }) => {
             <td>{product.totalQuantity}</td>
             <td style={{ maxWidth: '100px' }}>
                 <button className="detail-btn" onClick={handleDetail}>
-                    Chi tiết
+                    <FaEye style={{ marginRight: '5px' }} /> Chi tiết
                 </button>
             </td>
         </tr>
@@ -56,6 +59,7 @@ const Products = () => {
     const { formatCurrency, convertCategory } = utilityFunctions;
 
     const [isLoading, setIsLoading] = useState(true);
+    const [viewMode, setViewMode] = useState('grid');
 
     // State cho phân trang
     const [currentPage, setCurrentPage] = useState(1);
@@ -201,6 +205,11 @@ const Products = () => {
         );
     }, [currentPage, totalPages, paginate]);
 
+    // Hàm chuyển đổi chế độ xem
+    const toggleViewMode = useCallback(() => {
+        setViewMode((prevMode) => (prevMode === 'grid' ? 'table' : 'grid'));
+    }, []);
+
     if (isLoading) {
         return <StatusDisplaySpinner isLoading={true} loadingText="Đang tải danh sách sản phẩm..." />;
     }
@@ -210,14 +219,25 @@ const Products = () => {
             <h1>Danh sách sản phẩm</h1>
             <div className="action-buttons">
                 <p>Tổng số sản phẩm: {product_list?.length || 0}</p>
+                <button className="toggle-btn view-mode-btn" onClick={toggleViewMode}>
+                    {viewMode === 'grid' ? (
+                        <>
+                            <FaList style={{ marginRight: '5px' }} /> Hiển thị dạng Lưới
+                        </>
+                    ) : (
+                        <>
+                            <FaTh style={{ marginRight: '5px' }} /> Hiển thị dạng Bảng
+                        </>
+                    )}
+                </button>
                 <Link to="/sanpham/themmoisanpham" className="toggle-btn">
-                    Thêm sản phẩm mới
+                    <FaPlus style={{ marginRight: '5px' }} /> Thêm sản phẩm mới
                 </Link>
                 <Link to="/sanpham/ghichu" className="toggle-btn">
-                    Ghi chú
+                    <FaBook style={{ marginRight: '5px' }} /> Ghi chú
                 </Link>
                 <button className="toggle-btn" onClick={exportToExcel}>
-                    Xuất file Excel
+                    <FaFileExcel style={{ marginRight: '5px' }} /> Xuất file Excel
                 </button>
                 <div className="pagination-controls">
                     <label htmlFor="productsPerPage">Sản phẩm/trang:</label>
@@ -230,24 +250,44 @@ const Products = () => {
                     </select>
                 </div>
             </div>
-            <table className="products-table">
-                <thead>
-                    <tr>
-                        <th onClick={handleSortToggle} style={{ cursor: 'pointer' }}>
-                            Mã sản phẩm {sortOrder === 'asc' ? '▲' : '▼'}
-                        </th>
-                        <th>Mã vạch</th>
-                        <th>Tên sản phẩm</th>
-                        <th>Nhóm hàng</th>
-                        <th>Giá bán</th>
-                        <th>Tồn kho</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
+
+            {viewMode === 'table' ? (
+                <table className="products-table">
+                    <thead>
+                        <tr>
+                            <th onClick={handleSortToggle} style={{ cursor: 'pointer' }}>
+                                Mã sản phẩm {sortOrder === 'asc' ? '▲' : '▼'}
+                            </th>
+                            <th>Mã vạch</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Nhóm hàng</th>
+                            <th>Giá bán</th>
+                            <th>Tồn kho</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {productsToDisplay.length > 0 ? (
+                            productsToDisplay.map((product) => (
+                                <ProductRow
+                                    key={product._id}
+                                    product={product}
+                                    urlImage={urlImage}
+                                    utilityFunctions={utilityFunctions}
+                                />
+                            ))
+                        ) : (
+                            <tr>
+                                <td colSpan="8">Không có sản phẩm nào</td>
+                            </tr>
+                        )}
+                    </tbody>
+                </table>
+            ) : (
+                <div className="products-grid-container">
                     {productsToDisplay.length > 0 ? (
                         productsToDisplay.map((product) => (
-                            <ProductRow
+                            <ProductCard
                                 key={product._id}
                                 product={product}
                                 urlImage={urlImage}
@@ -255,12 +295,10 @@ const Products = () => {
                             />
                         ))
                     ) : (
-                        <tr>
-                            <td colSpan="8">Không có sản phẩm nào</td>
-                        </tr>
+                        <div className="no-products-message">Không có sản phẩm nào</div>
                     )}
-                </tbody>
-            </table>
+                </div>
+            )}
             {totalPages > 1 && renderPaginationButtons()}
         </div>
     );

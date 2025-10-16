@@ -14,28 +14,15 @@ import {
 } from '../controllers/productController.js';
 import multer from 'multer';
 
-import { CloudinaryStorage } from 'multer-storage-cloudinary';
-import cloudinary from '../config/cloudinaryConfig.js';
-
 const productRouter = express.Router();
 
-// CẤU HÌNH LƯU TRỮ CLOUDINARY
-const storage = new CloudinaryStorage({
-    cloudinary: cloudinary,
-    params: {
-        folder: 'products-images',
-        allowed_formats: ['jpeg', 'jpg', 'png'],
-        public_id: (req, file) => `${Date.now()}-${file.originalname.split('.')[0]}`,
+// Cấu hình lưu trữ ảnh
+const storage = multer.diskStorage({
+    destination: 'uploads',
+    filename: (req, file, cb) => {
+        return cb(null, `${Date.now()}-${file.originalname}`);
     },
 });
-
-// // Cấu hình lưu trữ ảnh
-// const storage = multer.diskStorage({
-//     destination: 'uploads',
-//     filename: (req, file, cb) => {
-//         return cb(null, `${Date.now()}-${file.originalname}`);
-//     },
-// });
 
 const upload = multer({ storage: storage });
 

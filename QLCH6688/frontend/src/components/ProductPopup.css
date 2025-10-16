@@ -42,7 +42,7 @@
     position: fixed;
     top: 0;
     right: 0;
-    z-index: 1001;
+    z-index: 999;
     transform: translateX(100%);
     animation: slideIn 0.5s forwards cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }

@@ -9,6 +9,7 @@ import InvoiceOverlay from './InvoiceOverlay/InvoiceOverlay';
 import { getPaymentSuggestions } from '../../utils/paymentSuggestions';
 import NoteProductPopup from './NoteProductPopup/NoteProductPopup';
 import { toast } from 'react-toastify';
+import defaultImage from '../../assets/images/Mystery-products.png';
 
 // SỬA ĐỔI CÁCH IMPORT WEB WORKER
 // Nếu bạn sử dụng Create React App hoặc Vite, bạn có thể dùng cú pháp đặc biệt này:
@@ -16,6 +17,9 @@ import { toast } from 'react-toastify';
 import SearchWorker from '../../workers/search.worker.js?worker';
 // Hoặc đơn giản và phổ biến hơn, sử dụng cú pháp URL như sau:
 // const searchWorkerUrl = new URL('../../workers/search.worker.js', import.meta.url);
+
+import SaleProducts from './SaleProducts/SaleProducts.jsx';
+const Products = SaleProducts;
 
 const MAX_QUANTITY = 999;
 
@@ -332,6 +336,16 @@ const Sale = () => {
         setShowAddProductPopup(true);
     }, [analyzeSearchTerm]);
 
+    // Xử lý click từ Products Grid
+    const handleProductClick = useCallback(
+        (product) => {
+            // Product được truyền là object, ta cần truyền ID vào addToCart
+            addToCart(product._id);
+            toast.success(`Đã thêm ${product.name} vào giỏ hàng!`);
+        },
+        [addToCart],
+    );
+
     return (
         <div className="sale-container">
             {/* Cột trái: Tìm kiếm & Danh sách sản phẩm trong giỏ hàng */}
@@ -393,6 +407,9 @@ const Sale = () => {
                                 className="cart-item-image"
                                 src={`${urlImage}${item.image}`}
                                 alt={''}
+                                onError={(e) => {
+                                    e.target.src = defaultImage;
+                                }}
                             />
                             <div className="cart-item-details">
                                 <p
@@ -402,7 +419,10 @@ const Sale = () => {
                                 >
                                     {item.name}
                                 </p>
-                                <p className="cart-item-price-per-unit">{formatCurrency(item.sellingPrice)}</p>
+                                <div>
+                                    <p className="cart-item-price-per-unit">{formatCurrency(item.sellingPrice)}</p>
+                                    <p className="cart-item-price-per-unit">{item.barcode}</p>
+                                </div>
                             </div>
                             <div className="cart-item-counter">
                                 <img
@@ -447,6 +467,26 @@ const Sale = () => {
                             </p>
                         </div>
                     ))}
+
+                    {/* <div className="sale-products-grid-container" style={{ border: '1px solid #ccc' }}>
+                        <h3>Chọn nhanh sản phẩm ⚡️</h3>
+                        <Products
+                            product_list={product_list}
+                            urlImage={urlImage}
+                            formatCurrency={formatCurrency}
+                            addToCart={handleProductClick}
+                        />
+                    </div> */}
+
+                    <div className="sale-products-grid-container" style={{ border: '1px solid #ccc' }}>
+                        <h3>Chọn nhanh sản phẩm ⚡️</h3>
+                        <Products
+                            product_list={product_list}
+                            urlImage={urlImage}
+                            formatCurrency={formatCurrency}
+                            addToCart={handleProductClick}
+                        />
+                    </div>
                 </div>
                 {selectedProduct && <ProductPopup product={selectedProduct} onClose={() => setSelectedProduct(null)} />}
             </div>

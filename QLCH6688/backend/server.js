@@ -23,7 +23,7 @@ app.use('/api/sanpham', productRouter);
 app.use('/api/banhang', saleRouter);
 app.use('/api/hoadon', invoiceRouter);
 app.use('/api/raw-product', rawProductRouter);
-app.use('/images', express.static('uploads'));
+// app.use('/images', express.static('uploads'));
 
 app.get('/', (req, res) => {
     res.send('API WORKING');

@@ -14,5 +14,6 @@
 - chế độ khi k có mạng (local)
 
 
+
 //Lọc ký tự đặc biệt (trừ dấu _)
 const regex = /[!@#$%^&*()\-+=\[\]{}|\\;:'",.<>/?~`]/g;
