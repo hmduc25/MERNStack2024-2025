@@ -34,3 +34,7 @@ Thumbs.db
 
 # Environment variables
 .env
+
+
+# Uploads folder for backend
+/QLCH6688/backend/uploads
