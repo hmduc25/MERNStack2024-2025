@@ -309,6 +309,7 @@ const AddProduct = () => {
                                                 type="file"
                                                 onChange={handleImageChange}
                                                 required
+                                                accept=".png, .jpg, .jpeg"
                                                 style={{ cursor: 'pointer' }}
                                             />
                                         </div>

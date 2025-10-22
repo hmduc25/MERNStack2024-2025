@@ -29,7 +29,8 @@ const ProductRow = memo(({ product, urlImage, utilityFunctions }) => {
                     <div>
                         <img
                             draggable={false}
-                            src={`${urlImage}/${product.image}`}
+                            src={`${urlImage}${product.image}`}
+                            // src={product.image}
                             alt={product.name || 'Sản phẩm'}
                             className="product-image"
                             onError={(e) => {

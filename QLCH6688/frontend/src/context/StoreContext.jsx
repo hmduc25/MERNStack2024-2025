@@ -9,7 +9,10 @@ export const StoreContext = createContext(null);
 const StoreContextProvider = (props) => {
     const [cartItems, setCartItems] = useState({});
     const url = import.meta.env.VITE_BACKEND_URL || process.env.VITE_BACKEND_URL;
-    const urlImage = import.meta.env.VITE_BACKEND_IMAGE_URL || process.env.VITE_BACKEND_IMAGE_URL;
+    // const urlImage = import.meta.env.VITE_BACKEND_IMAGE_URL || process.env.VITE_BACKEND_IMAGE_URL;
+    const urlImage = import.meta.env.VITE_CLOUDINARY_BASE_URL || process.env.VITE_CLOUDINARY_BASE_URL;
+
+    console.log('urlImage: ', urlImage);
 
     const [token, setToken] = useState('');
     const [product_list, setProductList] = useState([]);

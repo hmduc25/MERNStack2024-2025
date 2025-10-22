@@ -23,7 +23,7 @@ const productRouter = express.Router();
 const storage = new CloudinaryStorage({
     cloudinary: cloudinary,
     params: {
-        folder: 'products-images',
+        folder: 'products',
         allowed_formats: ['jpeg', 'jpg', 'png'],
         public_id: (req, file) => `${Date.now()}-${file.originalname.split('.')[0]}`,
     },

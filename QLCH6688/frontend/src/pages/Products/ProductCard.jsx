@@ -19,13 +19,13 @@ const ProductCard = memo(({ product, urlImage, utilityFunctions }) => {
             <div className="card-image-container">
                 <img
                     draggable={false}
-                    // src={`${urlImage}/${product.image}`}
-                    src={product.image}
+                    src={`${urlImage}${product.image}`}
+                    // src={product.image}
                     alt={product.name || 'Sản phẩm'}
                     className="product-card-image"
-                    onError={(e) => {
-                        e.target.src = defaultImage;
-                    }}
+                    // onError={(e) => {
+                    //     e.target.src = defaultImage;
+                    // }}
                 />
             </div>
             <div className="card-info">

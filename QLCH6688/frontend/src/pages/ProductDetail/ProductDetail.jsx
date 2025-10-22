@@ -132,7 +132,11 @@ const ProductDetail = () => {
 
     if (isLoading || error) {
         return (
-            <StatusDisplaySpinner isLoading={isLoading} error={error} loadingText="Đang lấy thông tin sản phẩm..." />
+            <StatusDisplaySpinner
+                isLoading={isLoading}
+                error={error}
+                loadingText="Đang cập nhật thông tin sản phẩm..."
+            />
         );
     }
 
