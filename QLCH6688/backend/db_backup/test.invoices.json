@@ -1,0 +1,2536 @@
+[{
+  "_id": {
+    "$oid": "68a83a2d86261146c18ea09e"
+  },
+  "invoiceCode": "HD202508220001",
+  "invoiceDate": {
+    "$date": "2025-08-22T09:36:45.178Z"
+  },
+  "status": "completed",
+  "customerName": "Khách lẻ",
+  "cashier": {
+    "id": {
+      "$oid": "67462c8a77a41c1f4e5a9c0c"
+    },
+    "name": "Min"
+  },
+  "totalAmount": 200000,
+  "paymentDetails": {
+    "method": "Tiền mặt",
+    "soTienDaNhan": 200000
+  },
+  "items": [
+    {
+      "productId": {
+        "$oid": "6795e18711581ca2b44ebe86"
+      },
+      "productName": "Nước rửa chén, bát POLAR BEAR (960ml)",
+      "quantity": 3,
+      "unitPrice": 42000,
+      "totalPrice": 126000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "6795e18711581ca2b44ebe87"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 3,
+          "_id": {
+            "$oid": "68a83a2d86261146c18ea0a0"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68a83a2d86261146c18ea09f"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "675e62dcfd34b6d08c994af2"
+      },
+      "productName": "Cá hộp, Cá Ngừ Sốt Dầu VISSAN (170g)",
+      "quantity": 2,
+      "unitPrice": 37000,
+      "totalPrice": 74000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "675e62dcfd34b6d08c994af3"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 2,
+          "_id": {
+            "$oid": "68a83a2d86261146c18ea0a2"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68a83a2d86261146c18ea0a1"
+      }
+    }
+  ],
+  "discounts": 0,
+  "createdAt": {
+    "$date": "2025-08-22T09:36:45.226Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-22T09:36:45.226Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68a8a73f86261146c18ea4c3"
+  },
+  "invoiceCode": "HD202508230001",
+  "invoiceDate": {
+    "$date": "2025-08-22T17:22:07.459Z"
+  },
+  "status": "completed",
+  "customerName": "Khách lẻ",
+  "cashier": {
+    "id": {
+      "$oid": "67462c8a77a41c1f4e5a9c0c"
+    },
+    "name": "Min"
+  },
+  "totalAmount": 250000,
+  "paymentDetails": {
+    "method": "Tiền mặt",
+    "soTienDaNhan": 250000
+  },
+  "items": [
+    {
+      "productId": {
+        "$oid": "6767e66a42196dd482ebdb14"
+      },
+      "productName": "Bánh Custas Kem Trứng Orion Hộp (282g - 12gói x 23,5g)",
+      "quantity": 5,
+      "unitPrice": 50000,
+      "totalPrice": 250000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "6767e66a42196dd482ebdb15"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 5,
+          "_id": {
+            "$oid": "68a8a73f86261146c18ea4c5"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68a8a73f86261146c18ea4c4"
+      }
+    }
+  ],
+  "discounts": 0,
+  "createdAt": {
+    "$date": "2025-08-22T17:22:07.474Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-22T17:22:07.474Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68a8a77986261146c18ea4cf"
+  },
+  "invoiceCode": "HD202508230002",
+  "invoiceDate": {
+    "$date": "2025-08-22T17:23:05.816Z"
+  },
+  "status": "completed",
+  "customerName": "Khách lẻ",
+  "cashier": {
+    "id": {
+      "$oid": "67462c8a77a41c1f4e5a9c0c"
+    },
+    "name": "Min"
+  },
+  "totalAmount": 54000,
+  "paymentDetails": {
+    "method": "Chuyển khoản",
+    "soTienDaNhan": 60000
+  },
+  "items": [
+    {
+      "productId": {
+        "$oid": "6746cd5ac8891dc803c976db"
+      },
+      "productName": "Thuốc lá sài gòn đen (melon)",
+      "quantity": 1,
+      "unitPrice": 18000,
+      "totalPrice": 18000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "6746cd5ac8891dc803c976dc"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 1,
+          "_id": {
+            "$oid": "68a8a77986261146c18ea4d1"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68a8a77986261146c18ea4d0"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "6746ec4dc8891dc803c978f4"
+      },
+      "productName": "Mì tôm kokomi 90, kokomi đại (90g)",
+      "quantity": 9,
+      "unitPrice": 4000,
+      "totalPrice": 36000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "6765574884a715c428beba79"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 9,
+          "_id": {
+            "$oid": "68a8a77986261146c18ea4d3"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68a8a77986261146c18ea4d2"
+      }
+    }
+  ],
+  "discounts": 0,
+  "createdAt": {
+    "$date": "2025-08-22T17:23:05.841Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-22T18:32:35.233Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68a8b7ec2c53ade2804a8a4b"
+  },
+  "invoiceCode": "HD202508230003",
+  "invoiceDate": {
+    "$date": "2025-08-22T18:33:16.699Z"
+  },
+  "status": "completed",
+  "customerName": "Khách lẻ",
+  "cashier": {
+    "id": {
+      "$oid": "67462c8a77a41c1f4e5a9c0c"
+    },
+    "name": "Min"
+  },
+  "totalAmount": 108000,
+  "paymentDetails": {
+    "method": "Chuyển khoản",
+    "soTienDaNhan": 108000
+  },
+  "items": [
+    {
+      "productId": {
+        "$oid": "674432a2352db71e5139d9f3"
+      },
+      "productName": "Kẹo nhai wrigleys doublemint (80g)",
+      "quantity": 3,
+      "unitPrice": 36000,
+      "totalPrice": 108000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "674432a2352db71e5139d9f4"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 3,
+          "_id": {
+            "$oid": "68a8b7ec2c53ade2804a8a4d"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68a8b7ec2c53ade2804a8a4c"
+      }
+    }
+  ],
+  "discounts": 0,
+  "createdAt": {
+    "$date": "2025-08-22T18:33:16.756Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-22T18:33:53.725Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68a8b7f72c53ade2804a8a53"
+  },
+  "invoiceCode": "HD202508230004",
+  "invoiceDate": {
+    "$date": "2025-08-22T18:33:27.187Z"
+  },
+  "status": "completed",
+  "customerName": "Khách lẻ",
+  "cashier": {
+    "id": {
+      "$oid": "67462c8a77a41c1f4e5a9c0c"
+    },
+    "name": "Min"
+  },
+  "totalAmount": 201000,
+  "paymentDetails": {
+    "method": "Tiền mặt",
+    "soTienDaNhan": 201000
+  },
+  "items": [
+    {
+      "productId": {
+        "$oid": "6766a9b5eccbdf3c0acb2991"
+      },
+      "productName": "Mì chính, bột ngọt AJINOMOTO gói (1kg)",
+      "quantity": 3,
+      "unitPrice": 67000,
+      "totalPrice": 201000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "6766a9b5eccbdf3c0acb2992"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 3,
+          "_id": {
+            "$oid": "68a8b7f72c53ade2804a8a55"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68a8b7f72c53ade2804a8a54"
+      }
+    }
+  ],
+  "discounts": 0,
+  "createdAt": {
+    "$date": "2025-08-22T18:33:27.215Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-22T18:33:59.355Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68a8b8302c53ade2804a8be4"
+  },
+  "invoiceCode": "HD202508230005",
+  "invoiceDate": {
+    "$date": "2025-08-22T18:34:24.291Z"
+  },
+  "status": "pending",
+  "customerName": "Khách lẻ",
+  "cashier": {
+    "id": {
+      "$oid": "67462c8a77a41c1f4e5a9c0c"
+    },
+    "name": "Min"
+  },
+  "totalAmount": 90000,
+  "paymentDetails": {
+    "method": "Tiền mặt",
+    "soTienDaNhan": 90000
+  },
+  "items": [
+    {
+      "productId": {
+        "$oid": "6746e8dac8891dc803c978aa"
+      },
+      "productName": "Mì tôm kokomi bé hương vị mì tôm chua cay (65g)",
+      "quantity": 30,
+      "unitPrice": 3000,
+      "totalPrice": 90000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "6765571284a715c428beb950"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 30,
+          "_id": {
+            "$oid": "68a8b8302c53ade2804a8be6"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68a8b8302c53ade2804a8be5"
+      }
+    }
+  ],
+  "discounts": 0,
+  "createdAt": {
+    "$date": "2025-08-22T18:34:24.307Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-22T18:34:24.307Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68a8b8622c53ade2804a8d52"
+  },
+  "invoiceCode": "HD202508230006",
+  "invoiceDate": {
+    "$date": "2025-08-22T18:35:14.053Z"
+  },
+  "status": "completed",
+  "customerName": "Khách lẻ",
+  "cashier": {
+    "id": {
+      "$oid": "67462c8a77a41c1f4e5a9c0c"
+    },
+    "name": "Min"
+  },
+  "totalAmount": 104000,
+  "paymentDetails": {
+    "method": "Tiền mặt",
+    "soTienDaNhan": 500000
+  },
+  "items": [
+    {
+      "productId": {
+        "$oid": "6746caafc8891dc803c976bc"
+      },
+      "productName": "Thuốc lá thăng long dẹp",
+      "quantity": 8,
+      "unitPrice": 13000,
+      "totalPrice": 104000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "6746caafc8891dc803c976bd"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 8,
+          "_id": {
+            "$oid": "68a8b8622c53ade2804a8d54"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68a8b8622c53ade2804a8d53"
+      }
+    }
+  ],
+  "discounts": 0,
+  "createdAt": {
+    "$date": "2025-08-22T18:35:14.068Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-22T18:35:59.250Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68a9547d6dcf8d5e5f2b5d51"
+  },
+  "invoiceCode": "HD202508230007",
+  "invoiceDate": {
+    "$date": "2025-08-23T05:41:17.834Z"
+  },
+  "status": "completed",
+  "customerName": "Khách lẻ",
+  "cashier": {
+    "id": {
+      "$oid": "67462c8a77a41c1f4e5a9c0c"
+    },
+    "name": "Min"
+  },
+  "totalAmount": 20000,
+  "paymentDetails": {
+    "method": "Tiền mặt",
+    "soTienDaNhan": 20000
+  },
+  "items": [
+    {
+      "productId": {
+        "$oid": "67445b42352db71e5139da81"
+      },
+      "productName": "Thuốc lá gold lion",
+      "quantity": 2,
+      "unitPrice": 10000,
+      "totalPrice": 20000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "6747de7cc8891dc803c97da3"
+          },
+          "batchNumber": "BATCH002",
+          "soldQuantity": 2,
+          "_id": {
+            "$oid": "68a9547d6dcf8d5e5f2b5d53"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68a9547d6dcf8d5e5f2b5d52"
+      }
+    }
+  ],
+  "discounts": 0,
+  "createdAt": {
+    "$date": "2025-08-23T05:41:17.875Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-23T05:41:17.875Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68aad1516dcf8d5e5f2bf771"
+  },
+  "invoiceCode": "HD202508240001",
+  "invoiceDate": {
+    "$date": "2025-08-24T08:46:09.901Z"
+  },
+  "status": "completed",
+  "customerName": "Khách lẻ",
+  "cashier": {
+    "id": {
+      "$oid": "67462c8a77a41c1f4e5a9c0c"
+    },
+    "name": "Min"
+  },
+  "totalAmount": 75000,
+  "paymentDetails": {
+    "method": "Tiền mặt",
+    "soTienDaNhan": 75000
+  },
+  "items": [
+    {
+      "productId": {
+        "$oid": "6746ce78c8891dc803c976ec"
+      },
+      "productName": "Thuốc lá sài gòn bạc (silver)",
+      "quantity": 5,
+      "unitPrice": 15000,
+      "totalPrice": 75000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "6746ce78c8891dc803c976ed"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 5,
+          "_id": {
+            "$oid": "68aad1516dcf8d5e5f2bf773"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68aad1516dcf8d5e5f2bf772"
+      }
+    }
+  ],
+  "discounts": 0,
+  "createdAt": {
+    "$date": "2025-08-24T08:46:09.926Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-24T08:46:09.926Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68aae9406dcf8d5e5f2ca284"
+  },
+  "invoiceCode": "HD202508240002",
+  "invoiceDate": {
+    "$date": "2025-08-24T10:28:16.878Z"
+  },
+  "status": "completed",
+  "customerName": "Khách lẻ",
+  "cashier": {
+    "id": {
+      "$oid": "67462c8a77a41c1f4e5a9c0c"
+    },
+    "name": "Min"
+  },
+  "totalAmount": 150000,
+  "paymentDetails": {
+    "method": "Tiền mặt",
+    "soTienDaNhan": 160000
+  },
+  "items": [
+    {
+      "productId": {
+        "$oid": "676e9682c10bfb1465f09c25"
+      },
+      "productName": "Kẹo Mềm Hương Trái Cây FIZZLER hộp (300g)",
+      "quantity": 3,
+      "unitPrice": 50000,
+      "totalPrice": 150000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "676e9682c10bfb1465f09c26"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 3,
+          "_id": {
+            "$oid": "68aae9406dcf8d5e5f2ca286"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68aae9406dcf8d5e5f2ca285"
+      }
+    }
+  ],
+  "discounts": 0,
+  "createdAt": {
+    "$date": "2025-08-24T10:28:16.898Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-24T10:28:16.898Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68aae95b6dcf8d5e5f2ca28c"
+  },
+  "invoiceCode": "HD202508240003",
+  "invoiceDate": {
+    "$date": "2025-08-24T10:28:43.483Z"
+  },
+  "status": "completed",
+  "customerName": "Khách lẻ",
+  "cashier": {
+    "id": {
+      "$oid": "67462c8a77a41c1f4e5a9c0c"
+    },
+    "name": "Min"
+  },
+  "totalAmount": 200000,
+  "paymentDetails": {
+    "method": "Chuyển khoản",
+    "soTienDaNhan": 200000
+  },
+  "items": [
+    {
+      "productId": {
+        "$oid": "6767e4ce42196dd482ebd7db"
+      },
+      "productName": "Bánh ChocoPie Orion Hộp (435,6g - 12gói x 36,3g)",
+      "quantity": 4,
+      "unitPrice": 50000,
+      "totalPrice": 200000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "6767e4ce42196dd482ebd7dc"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 4,
+          "_id": {
+            "$oid": "68aae95b6dcf8d5e5f2ca28e"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68aae95b6dcf8d5e5f2ca28d"
+      }
+    }
+  ],
+  "discounts": 0,
+  "createdAt": {
+    "$date": "2025-08-24T10:28:43.500Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-24T10:28:43.500Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ab43856dcf8d5e5f2cb185"
+  },
+  "invoiceCode": "HD202508240004",
+  "invoiceDate": {
+    "$date": "2025-08-24T16:53:25.780Z"
+  },
+  "status": "completed",
+  "customerName": "Khách lẻ",
+  "cashier": {
+    "id": {
+      "$oid": "67462c8a77a41c1f4e5a9c0c"
+    },
+    "name": "Min"
+  },
+  "totalAmount": 86000,
+  "paymentDetails": {
+    "method": "Tiền mặt",
+    "soTienDaNhan": 86000
+  },
+  "items": [
+    {
+      "productId": {
+        "$oid": "67470366c8891dc803c97b19"
+      },
+      "productName": "Mì tôm cung đình khoai tây hương vị sườn heo hầm măng (79g)",
+      "quantity": 1,
+      "unitPrice": 8000,
+      "totalPrice": 8000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "67470366c8891dc803c97b1a"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 1,
+          "_id": {
+            "$oid": "68ab43856dcf8d5e5f2cb187"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68ab43856dcf8d5e5f2cb186"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "67470835c8891dc803c97c60"
+      },
+      "productName": "Mì tôm cung đình khoai tây hương vị lẩu tôm chua cay (85g)",
+      "quantity": 3,
+      "unitPrice": 8000,
+      "totalPrice": 24000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "67470835c8891dc803c97c61"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 3,
+          "_id": {
+            "$oid": "68ab43856dcf8d5e5f2cb189"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68ab43856dcf8d5e5f2cb188"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "67480f3ec8891dc803c99395"
+      },
+      "productName": "Mì DIMDIM MiCOEM hương vị Tôm và Gà (70g)",
+      "quantity": 1,
+      "unitPrice": 4000,
+      "totalPrice": 4000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "6765419d84a715c428bea973"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 1,
+          "_id": {
+            "$oid": "68ab43856dcf8d5e5f2cb18b"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68ab43856dcf8d5e5f2cb18a"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "674c01dfa5b2800db671941d"
+      },
+      "productName": "Mì Cung Đình Hương Vị Thịt Hầm Mì Ly, Mì Hộp (65g)",
+      "quantity": 5,
+      "unitPrice": 10000,
+      "totalPrice": 50000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "674c01dfa5b2800db671941e"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 5,
+          "_id": {
+            "$oid": "68ab43856dcf8d5e5f2cb18d"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68ab43856dcf8d5e5f2cb18c"
+      }
+    }
+  ],
+  "discounts": 0,
+  "createdAt": {
+    "$date": "2025-08-24T16:53:25.806Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-24T16:53:25.806Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68ab46b86dcf8d5e5f2cca28"
+  },
+  "invoiceCode": "HD202508250001",
+  "invoiceDate": {
+    "$date": "2025-08-24T17:07:04.465Z"
+  },
+  "status": "completed",
+  "customerName": "Khách lẻ",
+  "cashier": {
+    "id": {
+      "$oid": "67462c8a77a41c1f4e5a9c0c"
+    },
+    "name": "Min"
+  },
+  "totalAmount": 385000,
+  "paymentDetails": {
+    "method": "Chuyển khoản",
+    "soTienDaNhan": 385000
+  },
+  "items": [
+    {
+      "productId": {
+        "$oid": "6767eb8242196dd482ebe233"
+      },
+      "productName": "Bánh Đậu Xanh Khoai Môn Bảo Hữu Long Rồng Vàng (400g)",
+      "quantity": 11,
+      "unitPrice": 35000,
+      "totalPrice": 385000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "6767eb8242196dd482ebe234"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 11,
+          "_id": {
+            "$oid": "68ab46b86dcf8d5e5f2cca2a"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68ab46b86dcf8d5e5f2cca29"
+      }
+    }
+  ],
+  "discounts": 0,
+  "createdAt": {
+    "$date": "2025-08-24T17:07:04.480Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-24T17:07:04.480Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68b5c11b0269cd43d3872c1d"
+  },
+  "invoiceCode": "HD202509010001",
+  "invoiceDate": {
+    "$date": "2025-09-01T15:51:55.346Z"
+  },
+  "status": "completed",
+  "customerName": "Khách lẻ",
+  "cashier": {
+    "id": {
+      "$oid": "67462c8a77a41c1f4e5a9c0c"
+    },
+    "name": "Min"
+  },
+  "totalAmount": 83000,
+  "paymentDetails": {
+    "method": "Tiền mặt",
+    "soTienDaNhan": 500000
+  },
+  "items": [
+    {
+      "productId": {
+        "$oid": "6744310c352db71e5139d9ee"
+      },
+      "productName": "Kẹo sing-gum doublemint (58,4g)",
+      "quantity": 3,
+      "unitPrice": 25000,
+      "totalPrice": 75000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "6744310c352db71e5139d9ef"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 3,
+          "_id": {
+            "$oid": "68b5c11b0269cd43d3872c1f"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68b5c11b0269cd43d3872c1e"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "6746ff1fc8891dc803c97a3a"
+      },
+      "productName": "Mì tôm kokomi pro, kim chi bò cay (75g)",
+      "quantity": 2,
+      "unitPrice": 4000,
+      "totalPrice": 8000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "6765577184a715c428bebba0"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 2,
+          "_id": {
+            "$oid": "68b5c11b0269cd43d3872c21"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68b5c11b0269cd43d3872c20"
+      }
+    }
+  ],
+  "discounts": 0,
+  "createdAt": {
+    "$date": "2025-09-01T15:51:55.351Z"
+  },
+  "updatedAt": {
+    "$date": "2025-09-01T15:51:55.351Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68b5c1aa0269cd43d3873374"
+  },
+  "invoiceCode": "HD202509010002",
+  "invoiceDate": {
+    "$date": "2025-09-01T15:54:18.983Z"
+  },
+  "status": "completed",
+  "customerName": "Khách lẻ",
+  "cashier": {
+    "id": {
+      "$oid": "67462c8a77a41c1f4e5a9c0c"
+    },
+    "name": "Min"
+  },
+  "totalAmount": 700000,
+  "paymentDetails": {
+    "method": "Tiền mặt",
+    "soTienDaNhan": 700000
+  },
+  "items": [
+    {
+      "productId": {
+        "$oid": "679775ac11581ca2b44f50d7"
+      },
+      "productName": "Bột giặt OMO hương thơm mát gói (770g)",
+      "quantity": 20,
+      "unitPrice": 35000,
+      "totalPrice": 700000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "679775ac11581ca2b44f50d8"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 20,
+          "_id": {
+            "$oid": "68b5c1aa0269cd43d3873376"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68b5c1aa0269cd43d3873375"
+      }
+    }
+  ],
+  "discounts": 0,
+  "createdAt": {
+    "$date": "2025-09-01T15:54:18.984Z"
+  },
+  "updatedAt": {
+    "$date": "2025-09-01T15:54:18.984Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68bc4ab15bd5f062da7e4082"
+  },
+  "invoiceCode": "HD202509060001",
+  "invoiceDate": {
+    "$date": "2025-09-06T14:52:33.556Z"
+  },
+  "status": "completed",
+  "customerName": "Khách lẻ",
+  "cashier": {
+    "id": {
+      "$oid": "67462c8a77a41c1f4e5a9c0c"
+    },
+    "name": "Min"
+  },
+  "totalAmount": 125000,
+  "paymentDetails": {
+    "method": "Tiền mặt",
+    "soTienDaNhan": 125000
+  },
+  "items": [
+    {
+      "productId": {
+        "$oid": "6744310c352db71e5139d9ee"
+      },
+      "productName": "Kẹo sing-gum doublemint (58,4g)",
+      "quantity": 5,
+      "unitPrice": 25000,
+      "totalPrice": 125000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "6744310c352db71e5139d9ef"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 5,
+          "_id": {
+            "$oid": "68bc4ab15bd5f062da7e4084"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68bc4ab15bd5f062da7e4083"
+      }
+    }
+  ],
+  "discounts": 0,
+  "createdAt": {
+    "$date": "2025-09-06T14:52:33.605Z"
+  },
+  "updatedAt": {
+    "$date": "2025-09-06T14:52:33.605Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68e49f85237ad0a80df13c89"
+  },
+  "invoiceCode": "HD202510070001",
+  "invoiceDate": {
+    "$date": "2025-10-07T05:05:09.434Z"
+  },
+  "status": "completed",
+  "customerName": "Khách lẻ",
+  "cashier": {
+    "id": {
+      "$oid": "67462c8a77a41c1f4e5a9c0c"
+    },
+    "name": "Min"
+  },
+  "totalAmount": 1330000,
+  "paymentDetails": {
+    "method": "Chuyển khoản",
+    "soTienDaNhan": 1500000
+  },
+  "items": [
+    {
+      "productId": {
+        "$oid": "6747eb51c8891dc803c98307"
+      },
+      "productName": "Mì trộn cung đình Kool hương vị Spaghetti (105g)",
+      "quantity": 5,
+      "unitPrice": 8000,
+      "totalPrice": 40000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "6747eb51c8891dc803c98308"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 5,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13c8b"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13c8a"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "6747063ac8891dc803c97c03"
+      },
+      "productName": "Mì tôm cung đình khoai tây hương vị sườn hầm ngũ quả (80g)",
+      "quantity": 3,
+      "unitPrice": 8000,
+      "totalPrice": 24000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "6747063ac8891dc803c97c04"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 3,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13c8d"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13c8c"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "67492437c8891dc803c9a40b"
+      },
+      "productName": "Mì ăn liền ZumZum hương vị Tôm Chua Cay (60g)",
+      "quantity": 2,
+      "unitPrice": 3000,
+      "totalPrice": 6000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "67492437c8891dc803c9a40c"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 2,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13c8f"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13c8e"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "67470366c8891dc803c97b19"
+      },
+      "productName": "Mì tôm cung đình khoai tây hương vị sườn heo hầm măng (79g)",
+      "quantity": 3,
+      "unitPrice": 8000,
+      "totalPrice": 24000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "67470366c8891dc803c97b1a"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 3,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13c91"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13c90"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "6746ff1fc8891dc803c97a3a"
+      },
+      "productName": "Mì tôm kokomi pro, kim chi bò cay (75g)",
+      "quantity": 2,
+      "unitPrice": 4000,
+      "totalPrice": 8000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "6765577184a715c428bebba0"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 2,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13c93"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13c92"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "6746d20bc8891dc803c97755"
+      },
+      "productName": "Thuốc lá con ngựa trắng",
+      "quantity": 2,
+      "unitPrice": 25000,
+      "totalPrice": 50000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "6746d33bc8891dc803c9778d"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 2,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13c95"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13c94"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "674c00c7a5b2800db6719346"
+      },
+      "productName": "Mì Omachi Sườn Hầm Ngũ Quả Mì Ly, Mì Hộp (72g)",
+      "quantity": 2,
+      "unitPrice": 10000,
+      "totalPrice": 20000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "674c00c7a5b2800db6719347"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 2,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13c97"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13c96"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "674c0366a5b2800db671961b"
+      },
+      "productName": "Mì Cung Đình Hương Vị Sườn Heo Hầm Măng Mì Ly, Mì Hộp (65g)",
+      "quantity": 2,
+      "unitPrice": 10000,
+      "totalPrice": 20000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "674c0366a5b2800db671961c"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 2,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13c99"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13c98"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "67486b27c8891dc803c99b2e"
+      },
+      "productName": "Cháo sườn trứng muối VIFON (80g)",
+      "quantity": 1,
+      "unitPrice": 15000,
+      "totalPrice": 15000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "67486b27c8891dc803c99b2f"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 1,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13c9b"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13c9a"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "6746df38c8891dc803c97856"
+      },
+      "productName": "Mì tôm hảo hảo hương vị mì tôm chua cay (75g)",
+      "quantity": 1,
+      "unitPrice": 4000,
+      "totalPrice": 4000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "6746e7e2c8891dc803c97890"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 1,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13c9d"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13c9c"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "67486e6ec8891dc803c99d98"
+      },
+      "productName": "Miến gà lá chanh Chinsu Story, miến story (62g)",
+      "quantity": 1,
+      "unitPrice": 15000,
+      "totalPrice": 15000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "67486e6ec8891dc803c99d99"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 1,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13c9f"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13c9e"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "67491a3ac8891dc803c99f9b"
+      },
+      "productName": "Mì nấu OmtoMi mi kim chi (108g)",
+      "quantity": 1,
+      "unitPrice": 13000,
+      "totalPrice": 13000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "67491a3ac8891dc803c99f9c"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 1,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13ca1"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13ca0"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "67486cc1c8891dc803c99c0b"
+      },
+      "productName": "Phở Bò Long Triều Vifon Gói (75g)",
+      "quantity": 1,
+      "unitPrice": 15000,
+      "totalPrice": 15000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "67486cc1c8891dc803c99c0c"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 1,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13ca3"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13ca2"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "67481433c8891dc803c9959b"
+      },
+      "productName": "Mì Tôm Chua Cay Hoàng Đế VIFON (100g)",
+      "quantity": 1,
+      "unitPrice": 15000,
+      "totalPrice": 15000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "67481433c8891dc803c9959c"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 1,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13ca5"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13ca4"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "67480f3ec8891dc803c99395"
+      },
+      "productName": "Mì DIMDIM MiCOEM hương vị Tôm và Gà (70g)",
+      "quantity": 1,
+      "unitPrice": 4000,
+      "totalPrice": 4000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "6765419d84a715c428bea973"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 1,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13ca7"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13ca6"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "67480731c8891dc803c99117"
+      },
+      "productName": "Phở cung đình, phở hủ tiếu nam vang (83g)",
+      "quantity": 1,
+      "unitPrice": 8000,
+      "totalPrice": 8000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "676555ce84a715c428beb670"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 1,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13ca9"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13ca8"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "67491fc6c8891dc803c9a1e7"
+      },
+      "productName": "Mì Omachi Xốt Bò Hầm (80g)",
+      "quantity": 1,
+      "unitPrice": 8000,
+      "totalPrice": 8000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "67491fc6c8891dc803c9a1e8"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 1,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13cab"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13caa"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "67492248c8891dc803c9a2d9"
+      },
+      "productName": "Mì trộn Xốt Spaghetti Omachi (90g)",
+      "quantity": 1,
+      "unitPrice": 8000,
+      "totalPrice": 8000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "676558b084a715c428bebe7f"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 1,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13cad"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13cac"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "674af672a5b2800db6718998"
+      },
+      "productName": "Cháo thịt gà VIFON, có thịt gà thật (70g)",
+      "quantity": 1,
+      "unitPrice": 5000,
+      "totalPrice": 5000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "674aff1aa5b2800db6718d03"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 1,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13caf"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13cae"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "674c01dfa5b2800db671941d"
+      },
+      "productName": "Mì Cung Đình Hương Vị Thịt Hầm Mì Ly, Mì Hộp (65g)",
+      "quantity": 1,
+      "unitPrice": 10000,
+      "totalPrice": 10000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "674c01dfa5b2800db671941e"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 1,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13cb1"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13cb0"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "674c1acea5b2800db6719f04"
+      },
+      "productName": "Mì Omachi Xốt Bò Hầm Mì Bát, Mì Hộp (93g)",
+      "quantity": 1,
+      "unitPrice": 13000,
+      "totalPrice": 13000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "674c1b55a5b2800db671a092"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 1,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13cb3"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13cb2"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "67503dda5ea923fd2cae9ac6"
+      },
+      "productName": "test1",
+      "quantity": 1,
+      "unitPrice": 8000,
+      "totalPrice": 8000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "6752b3b76a2ae8969df2a656"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 1,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13cb5"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13cb4"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "674bfb3ea5b2800db6718e9b"
+      },
+      "productName": "Mì Omachi Xốt Bò Hầm Mì Ly, Mì Hộp (70g)",
+      "quantity": 1,
+      "unitPrice": 10000,
+      "totalPrice": 10000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "674bfc71a5b2800db671922b"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 1,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13cb7"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13cb6"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "676e9c8cc10bfb1465f0a382"
+      },
+      "productName": "Kẹo Béo Mềm Alpenliebe 2 Chew Hương Chanh Dây Hạt Chia gói (84g)",
+      "quantity": 3,
+      "unitPrice": 15000,
+      "totalPrice": 45000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "676e9c8cc10bfb1465f0a383"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 3,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13cb9"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13cb8"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "676e9b7dc10bfb1465f0a10b"
+      },
+      "productName": "Kẹo Béo Mềm Alpenliebe 2 Chew Hương Dâu & Hương Nho gói (84g)",
+      "quantity": 1,
+      "unitPrice": 15000,
+      "totalPrice": 15000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "676e9b7dc10bfb1465f0a10c"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 1,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13cbb"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13cba"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "676e9356c10bfb1465f099b3"
+      },
+      "productName": "Bánh Tipo Bánh Trứng Hữu Nghị Gói (220g)",
+      "quantity": 2,
+      "unitPrice": 35000,
+      "totalPrice": 70000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "676e9356c10bfb1465f099b4"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 2,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13cbd"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13cbc"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "676e8ccbc10bfb1465f095a9"
+      },
+      "productName": "Bánh Bông Lan Cuộn Kem Solite Vị Lá Dứa Hộp (360g - 20gói x 18g)",
+      "quantity": 1,
+      "unitPrice": 40000,
+      "totalPrice": 40000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "676e8ccbc10bfb1465f095aa"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 1,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13cbf"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13cbe"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "676e887ec10bfb1465f091a4"
+      },
+      "productName": "Ngũ Cốc Dinh Dưỡng Hương Vị Tự Nhiên gói (500g - 20gói x 25g)",
+      "quantity": 2,
+      "unitPrice": 45000,
+      "totalPrice": 90000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "676e887ec10bfb1465f091a5"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 2,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13cc1"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13cc0"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "676d139ffe7a25cb035faba4"
+      },
+      "productName": "Viên Năng Lượng Lương Khô Hạt Điều VIETTHAI gói (350g)",
+      "quantity": 3,
+      "unitPrice": 33000,
+      "totalPrice": 99000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "676d139ffe7a25cb035faba5"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 3,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13cc3"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13cc2"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "676d1426fe7a25cb035faec8"
+      },
+      "productName": "Viên Năng Lượng Lương Khô Rong Biển VIETTHAI gói (350g)",
+      "quantity": 2,
+      "unitPrice": 33000,
+      "totalPrice": 66000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "676d1426fe7a25cb035faec9"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 2,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13cc5"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13cc4"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "676d1284fe7a25cb035fa884"
+      },
+      "productName": "Viên Năng Lượng Lương Khô Mix Vị VIETTHAI gói (350g)",
+      "quantity": 2,
+      "unitPrice": 33000,
+      "totalPrice": 66000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "676d1284fe7a25cb035fa885"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 2,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13cc7"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13cc6"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "676d1178fe7a25cb035fa249"
+      },
+      "productName": "Viên Năng Lượng Lương Khô Óc Chó VIETTHAI gói (350g)",
+      "quantity": 2,
+      "unitPrice": 33000,
+      "totalPrice": 66000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "676d119dfe7a25cb035fa62f"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 2,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13cc9"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13cc8"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "676d1051fe7a25cb035f9e68"
+      },
+      "productName": "Viên Năng Lượng Lương Khô Ăn Kiêng Gạo Lứt VIETTHAI gói (350g)",
+      "quantity": 3,
+      "unitPrice": 33000,
+      "totalPrice": 99000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "676d1051fe7a25cb035f9e69"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 3,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13ccb"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13cca"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "6746d06fc8891dc803c9771a"
+      },
+      "productName": "Thuốc lá Souvenir",
+      "quantity": 1,
+      "unitPrice": 8000,
+      "totalPrice": 8000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "6746d0bcc8891dc803c9773f"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 1,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13ccd"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13ccc"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "674809a8c8891dc803c99238"
+      },
+      "productName": "Mì ăn liền ZumZum hương vị xưa (70g)",
+      "quantity": 1,
+      "unitPrice": 3000,
+      "totalPrice": 3000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "67492480c8891dc803c9a544"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 1,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13ccf"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13cce"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "67480574c8891dc803c98fc8"
+      },
+      "productName": "Phở cung đình, phở hủ tiếu sườn heo (84g)",
+      "quantity": 1,
+      "unitPrice": 8000,
+      "totalPrice": 8000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "6748068bc8891dc803c990b7"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 1,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13cd1"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13cd0"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "6747f43cc8891dc803c98754"
+      },
+      "productName": "Phở gà VIFON (65g)",
+      "quantity": 2,
+      "unitPrice": 7000,
+      "totalPrice": 14000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "6747f466c8891dc803c987f0"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 2,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13cd3"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13cd2"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "67486132c8891dc803c998aa"
+      },
+      "productName": "Phở Gà Long Triều VIFON Gói (75g)",
+      "quantity": 1,
+      "unitPrice": 15000,
+      "totalPrice": 15000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "67486132c8891dc803c998ab"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 1,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13cd5"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13cd4"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "674aef95a5b2800db671884f"
+      },
+      "productName": "Cháo Chinsu Story, cháo story vị thịt băm nấm đùi gà (70g)",
+      "quantity": 1,
+      "unitPrice": 8000,
+      "totalPrice": 8000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "676556b884a715c428beb828"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 1,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13cd7"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13cd6"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "674ff97a46eeb73b96cb00ec"
+      },
+      "productName": "Mỳ Cung Đình Hương Vị Sườn Heo Hầm Măng Mì Bát, Mì Hộp (79g)",
+      "quantity": 1,
+      "unitPrice": 12000,
+      "totalPrice": 12000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "674ff97a46eeb73b96cb00ed"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 1,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13cd9"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13cd8"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "674c17a6a5b2800db6719d2c"
+      },
+      "productName": "Mì Trộn Tương Đen VIFON Mì Bát, Mì Hộp (90g)",
+      "quantity": 1,
+      "unitPrice": 11000,
+      "totalPrice": 11000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "675e4ef1fd34b6d08c994112"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 1,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13cdb"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13cda"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "674c0737a5b2800db671978d"
+      },
+      "productName": "Mì Cung Đình Hương Vị Lẩu Tôm Chua Cay Mì Ly, Mì Hộp (71g)",
+      "quantity": 1,
+      "unitPrice": 10000,
+      "totalPrice": 10000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "674c0737a5b2800db671978e"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 1,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13cdd"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13cdc"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "674af71ea5b2800db6718aa2"
+      },
+      "productName": "Cháo Thịt Bằm VIFON, có thịt thật (70g)",
+      "quantity": 1,
+      "unitPrice": 5000,
+      "totalPrice": 5000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "674af71ea5b2800db6718aa3"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 1,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13cdf"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13cde"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "675e8481fd34b6d08c99631a"
+      },
+      "productName": "Dầu đậu nành nguyên chất Tường An chai nhỡ (1 lít)",
+      "quantity": 1,
+      "unitPrice": 57000,
+      "totalPrice": 57000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "675e8481fd34b6d08c99631b"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 1,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13ce1"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13ce0"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "675e83dbfd34b6d08c996115"
+      },
+      "productName": "Dầu ăn cao cấp Meizan Gold chai nhỡ (1 lít)",
+      "quantity": 1,
+      "unitPrice": 40000,
+      "totalPrice": 40000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "675e83dbfd34b6d08c996116"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 1,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13ce3"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13ce2"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "675e81a3fd34b6d08c995e0f"
+      },
+      "productName": "Dầu ăn Ngon Tường An chai nhỡ (1 lít)",
+      "quantity": 1,
+      "unitPrice": 35000,
+      "totalPrice": 35000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "675e81a3fd34b6d08c995e10"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 1,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13ce5"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13ce4"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "675e8086fd34b6d08c995993"
+      },
+      "productName": "Dầu ăn FREDA dầu thực vật chai nhỡ (1 lít)",
+      "quantity": 1,
+      "unitPrice": 35000,
+      "totalPrice": 35000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "6766641aeccbdf3c0acb20ea"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 1,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13ce7"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13ce6"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "675e7d79fd34b6d08c99571e"
+      },
+      "productName": "Dầu ăn FREDA dầu thực vật chai bé, chai nhỏ (400ml)",
+      "quantity": 1,
+      "unitPrice": 17000,
+      "totalPrice": 17000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "67666405eccbdf3c0acb1fc2"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 1,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13ce9"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13ce8"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "675e7c2efd34b6d08c995046"
+      },
+      "productName": "Dầu ăn Olita Tường An chai bé, chai nhỏ (400ml)",
+      "quantity": 1,
+      "unitPrice": 20000,
+      "totalPrice": 20000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "675e7c2efd34b6d08c995047"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 1,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13ceb"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13cea"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "676d0fdffe7a25cb035f9b52"
+      },
+      "productName": "Viên Năng Lượng Lương Khô Hạnh Nhân VIETTHAI gói (350g)",
+      "quantity": 1,
+      "unitPrice": 33000,
+      "totalPrice": 33000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "676d0fe0fe7a25cb035f9b53"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 1,
+          "_id": {
+            "$oid": "68e49f85237ad0a80df13ced"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e49f85237ad0a80df13cec"
+      }
+    }
+  ],
+  "discounts": 0,
+  "createdAt": {
+    "$date": "2025-10-07T05:05:09.447Z"
+  },
+  "updatedAt": {
+    "$date": "2025-10-07T05:09:59.152Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68e4a03a237ad0a80df13ede"
+  },
+  "invoiceCode": "HD202510070002",
+  "invoiceDate": {
+    "$date": "2025-10-07T05:08:10.095Z"
+  },
+  "status": "completed",
+  "customerName": "Khách lẻ",
+  "cashier": {
+    "id": {
+      "$oid": "67462c8a77a41c1f4e5a9c0c"
+    },
+    "name": "Min"
+  },
+  "totalAmount": 8000,
+  "paymentDetails": {
+    "method": "Tiền mặt",
+    "soTienDaNhan": 8000
+  },
+  "items": [
+    {
+      "productId": {
+        "$oid": "6746d06fc8891dc803c9771a"
+      },
+      "productName": "Thuốc lá Souvenir",
+      "quantity": 1,
+      "unitPrice": 8000,
+      "totalPrice": 8000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "6746d0bcc8891dc803c9773f"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 1,
+          "_id": {
+            "$oid": "68e4a03a237ad0a80df13ee0"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e4a03a237ad0a80df13edf"
+      }
+    }
+  ],
+  "discounts": 0,
+  "createdAt": {
+    "$date": "2025-10-07T05:08:10.096Z"
+  },
+  "updatedAt": {
+    "$date": "2025-10-07T05:08:10.096Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68e4a041237ad0a80df13ef0"
+  },
+  "invoiceCode": "HD202510070003",
+  "invoiceDate": {
+    "$date": "2025-10-07T05:08:17.758Z"
+  },
+  "status": "completed",
+  "customerName": "Khách lẻ",
+  "cashier": {
+    "id": {
+      "$oid": "67462c8a77a41c1f4e5a9c0c"
+    },
+    "name": "Min"
+  },
+  "totalAmount": 45000,
+  "paymentDetails": {
+    "method": "Tiền mặt",
+    "soTienDaNhan": 46000
+  },
+  "items": [
+    {
+      "productId": {
+        "$oid": "6746d20bc8891dc803c97755"
+      },
+      "productName": "Thuốc lá con ngựa trắng",
+      "quantity": 1,
+      "unitPrice": 25000,
+      "totalPrice": 25000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "6746d33bc8891dc803c9778d"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 1,
+          "_id": {
+            "$oid": "68e4a041237ad0a80df13ef2"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e4a041237ad0a80df13ef1"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "6746ff1fc8891dc803c97a3a"
+      },
+      "productName": "Mì tôm kokomi pro, kim chi bò cay (75g)",
+      "quantity": 1,
+      "unitPrice": 4000,
+      "totalPrice": 4000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "6765577184a715c428bebba0"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 1,
+          "_id": {
+            "$oid": "68e4a041237ad0a80df13ef4"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e4a041237ad0a80df13ef3"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "67470366c8891dc803c97b19"
+      },
+      "productName": "Mì tôm cung đình khoai tây hương vị sườn heo hầm măng (79g)",
+      "quantity": 1,
+      "unitPrice": 8000,
+      "totalPrice": 8000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "67470366c8891dc803c97b1a"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 1,
+          "_id": {
+            "$oid": "68e4a041237ad0a80df13ef6"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e4a041237ad0a80df13ef5"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "6747eb51c8891dc803c98307"
+      },
+      "productName": "Mì trộn cung đình Kool hương vị Spaghetti (105g)",
+      "quantity": 1,
+      "unitPrice": 8000,
+      "totalPrice": 8000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "6747eb51c8891dc803c98308"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 1,
+          "_id": {
+            "$oid": "68e4a041237ad0a80df13ef8"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e4a041237ad0a80df13ef7"
+      }
+    }
+  ],
+  "discounts": 0,
+  "createdAt": {
+    "$date": "2025-10-07T05:08:17.760Z"
+  },
+  "updatedAt": {
+    "$date": "2025-10-07T05:10:04.137Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68e645634cfb6ccec311f9c1"
+  },
+  "invoiceCode": "HD202510080001",
+  "invoiceDate": {
+    "$date": "2025-10-08T11:05:07.911Z"
+  },
+  "status": "completed",
+  "customerName": "Khách lẻ",
+  "cashier": {
+    "id": {
+      "$oid": "67462c8a77a41c1f4e5a9c0c"
+    },
+    "name": "Min"
+  },
+  "totalAmount": 21000,
+  "paymentDetails": {
+    "method": "Tiền mặt",
+    "soTienDaNhan": 21000
+  },
+  "items": [
+    {
+      "productId": {
+        "$oid": "67491a3ac8891dc803c99f9b"
+      },
+      "productName": "Mì nấu OmtoMi mi kim chi (108g)",
+      "quantity": 1,
+      "unitPrice": 13000,
+      "totalPrice": 13000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "67491a3ac8891dc803c99f9c"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 1,
+          "_id": {
+            "$oid": "68e645634cfb6ccec311f9c3"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e645634cfb6ccec311f9c2"
+      }
+    },
+    {
+      "productId": {
+        "$oid": "67503dda5ea923fd2cae9ac6"
+      },
+      "productName": "test1",
+      "quantity": 1,
+      "unitPrice": 8000,
+      "totalPrice": 8000,
+      "batchInfo": [
+        {
+          "batchId": {
+            "$oid": "6752b3b76a2ae8969df2a656"
+          },
+          "batchNumber": "BATCH001",
+          "soldQuantity": 1,
+          "_id": {
+            "$oid": "68e645634cfb6ccec311f9c5"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "68e645634cfb6ccec311f9c4"
+      }
+    }
+  ],
+  "discounts": 0,
+  "createdAt": {
+    "$date": "2025-10-08T11:05:07.915Z"
+  },
+  "updatedAt": {
+    "$date": "2025-10-08T11:05:07.915Z"
+  },
+  "__v": 0
+}]

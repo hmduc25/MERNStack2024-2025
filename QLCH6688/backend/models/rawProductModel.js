@@ -1,5 +1,3 @@
-// File: backend/models/rawProductModel.js
-
 import mongoose from 'mongoose';
 
 const rawProductSchema = new mongoose.Schema({

@@ -1,5 +1,3 @@
-// File: backend/controllers/rawProductController.js
-
 import rawProductModel from '../models/rawProductModel.js';
 
 // Thêm một sản phẩm thô vào collection

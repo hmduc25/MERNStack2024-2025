@@ -1,0 +1,84 @@
+[{
+  "_id": {
+    "$oid": "68b5af3dab428aa317834d23"
+  },
+  "productCode": "sp00000333",
+  "barcode": "123123",
+  "name": "thuoc la moi",
+  "sellingPrice": 321,
+  "isUpdated": true,
+  "createdAt": {
+    "$date": "2025-09-01T14:35:41.236Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68b5c2000269cd43d3873523"
+  },
+  "productCode": "3213",
+  "barcode": "312332",
+  "name": "bút trì",
+  "sellingPrice": 32132131,
+  "isUpdated": false,
+  "createdAt": {
+    "$date": "2025-09-01T15:55:44.039Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68b5c26e0269cd43d387392b"
+  },
+  "productCode": "",
+  "barcode": "8938508191345",
+  "name": "but",
+  "sellingPrice": null,
+  "isUpdated": false,
+  "createdAt": {
+    "$date": "2025-09-01T15:57:34.661Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68bc39765bd5f062da7e39ba"
+  },
+  "productCode": "191",
+  "barcode": "2005",
+  "name": "minh duc 135",
+  "sellingPrice": 1580,
+  "isUpdated": false,
+  "createdAt": {
+    "$date": "2025-09-06T13:39:02.445Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68bc3f0c5bd5f062da7e3b15"
+  },
+  "productCode": "123",
+  "barcode": "8938508191376",
+  "name": "helloworld",
+  "sellingPrice": null,
+  "isUpdated": false,
+  "createdAt": {
+    "$date": "2025-09-06T14:02:52.622Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68bc40b65bd5f062da7e3c71"
+  },
+  "productCode": "123",
+  "barcode": "8938508191376",
+  "name": "duc135",
+  "sellingPrice": 31321313,
+  "isUpdated": false,
+  "createdAt": {
+    "$date": "2025-09-06T14:09:58.104Z"
+  },
+  "__v": 0
+}]
