@@ -333,10 +333,6 @@ const ProductDetail = () => {
                                     <div className="detail-product-form__guidelines">
                                         <a href="#" target="">
                                             {/* _blank */}
-                                            Hướng dẫn thêm sản phẩm mới
-                                        </a>
-                                        <a href="#" target="">
-                                            {/* _blank */}
                                             Hướng dẫn chỉnh sửa sản phẩm
                                         </a>
                                         <a href="#" target="">

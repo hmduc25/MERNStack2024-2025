@@ -107,6 +107,9 @@
     list-style-type: none;
     padding: 0;
     margin: 0;
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 10px;
 }
 
 .revenue__list-item {
@@ -119,11 +122,12 @@
     border-left: 5px solid #007bff;
     display: flex;
     flex-direction: column;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
 }
 
 .revenue__list-item:hover {
     transform: translateX(5px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }
 
 .revenue__list-content {

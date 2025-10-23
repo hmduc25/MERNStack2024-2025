@@ -1,8 +1,12 @@
-import { useContext, useRef, useCallback, useState } from 'react'; // Thêm useState
+import { useContext, useRef, useCallback, useState, useEffect } from 'react'; // Thêm useState
 import { useNavigate, Link } from 'react-router-dom';
 import classNames from 'classnames';
 import { motion } from 'framer-motion';
 import { FaEdit, FaSave, FaTrashAlt, FaPlus, FaTimes, FaUndoAlt } from 'react-icons/fa';
+
+import { Steps } from 'intro.js-react';
+import 'intro.js/introjs.css';
+import './introjs-custom.css';
 
 import { StoreContext } from '../../context/StoreContext';
 import { categories } from '../../assets/categories';
@@ -20,6 +24,10 @@ const AddProduct = () => {
 
     // Thêm state mới để quản lý trạng thái của trường mã vạch
     const [isBarcodeDisabled, setIsBarcodeDisabled] = useState(false);
+
+    const [stepsEnabled, setStepsEnabled] = useState(false); // Mặc định tắt, sẽ kiểm tra localStorage
+    const [initialStep, setInitialStep] = useState(0);
+    const [forceRenderKey, setForceRenderKey] = useState(0);
 
     const initialProductState = {
         supplier: { name: '', contact: '', address: '' },
@@ -64,6 +72,86 @@ const AddProduct = () => {
         handleDeleteSelectedBatches,
         handleSelectBatch,
     } = useProductForm(initialProductState, removeSpecialChars, 'add', memoizedFetchLastProductCode);
+
+    // 💡 LOGIC CỦA INTRO.JS TOUR
+    const steps = [
+        {
+            intro: 'Chào mừng bạn đến với trang <strong>Thêm mới sản phẩm</strong>! Chúng ta sẽ đi qua các bước nhập liệu chính.',
+        },
+        {
+            element: '.detail-product__heading',
+            intro: 'Chào mừng bạn đến với trang <strong>Thêm mới sản phẩm</strong>! Chúng ta sẽ đi qua các bước nhập liệu chính.',
+        },
+        {
+            element: 'input[name="productCode"]',
+            intro: 'Đây là <strong>Mã sản phẩm</strong> được hệ thống tự động tạo. Bạn có thể sử dụng mã này để tìm kiếm sản phẩm nhanh chóng.',
+        },
+        {
+            element: 'input[name="barcode"]',
+            intro: 'Bạn có thể nhập <strong>Mã vạch</strong> sản phẩm tại đây. Hoặc nếu sản phẩm không có mã vạch, hãy nhấn vào liên kết bên dưới để hệ thống tự động tạo mã vạch tùy chỉnh.',
+        },
+        {
+            element: 'input[name="name"]',
+            intro: 'Trường này là bắt buộc. Nhập <strong>Tên sản phẩm</strong> rõ ràng, dễ nhớ.',
+        },
+        {
+            element: 'select[name="category"]',
+            intro: 'Chọn <strong>Nhóm hàng</strong> và các thông tin cơ bản khác như Thương hiệu, Đơn vị tính.',
+        },
+        {
+            element: 'input[name="purchasePrice"]',
+            intro: 'Nhập <strong>Giá nhập (Giá vốn), Giá bán</strong> của sản phẩm. Giá nhập (Giá vốn) này sẽ được áp dụng tự động cho các lô hàng mới.',
+        },
+        {
+            element: '.detail-product-form__image-section',
+            intro: 'Hãy chọn một <strong>Ảnh sản phẩm</strong> để dễ dàng quản lý.',
+        },
+        {
+            element: 'select[name="supplier.name"]',
+            intro: 'Chọn <strong>Nhà phân phối</strong> sản phẩm. Nếu là nhà phân phối mới, bạn có thể chọn "Khác" để nhập thông tin liên hệ và địa chỉ ở phía dưới.',
+        },
+        {
+            element: '.detail-product-form__batch-inputs',
+            intro: 'Mỗi sản phẩm cần có ít nhất một <strong>Lô hàng</strong>. Hãy điền ngày nhập, ngày hết hạn (nếu có), và <strong>Số lượng</strong> trong lô này. Giá vốn đã được lấy tự động.',
+        },
+        {
+            element: '.detail-product-form__batch-actions > button:first-child',
+            intro: 'Nhấn <strong>Thêm lô hàng</strong> để lưu lô này vào danh sách. Bạn có thể thêm nhiều lô khác nhau.',
+        },
+        {
+            element: 'button[type="submit"]',
+            intro: 'Cuối cùng, nhấn <strong>Thêm sản phẩm</strong> để hoàn tất quá trình và đưa sản phẩm vào kho.',
+        },
+    ];
+
+    const onExit = () => {
+        setStepsEnabled(false);
+        localStorage.setItem('addProductTourSeen', 'true');
+    };
+
+    const startTour = () => {
+        localStorage.removeItem('addProductTourSeen');
+        setInitialStep(0);
+
+        setStepsEnabled(false);
+        setForceRenderKey((prevKey) => prevKey + 1);
+
+        setTimeout(() => {
+            setStepsEnabled(true);
+        }, 150);
+    };
+
+    useEffect(() => {
+        const hasSeenTour = localStorage.getItem('addProductTourSeen');
+        let timer;
+
+        if (!hasSeenTour) {
+            const timer = setTimeout(() => {
+                setStepsEnabled(true);
+            }, 150);
+            return () => clearTimeout(timer);
+        }
+    }, []);
 
     const handleNoBarcodeClick = async () => {
         setIsBarcodeDisabled(true);
@@ -147,398 +235,426 @@ const AddProduct = () => {
     }
 
     return (
-        <motion.div
-            className="detail-product"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-        >
-            <h1 className="detail-product__heading">Thêm mới sản phẩm</h1>
-            <Link to="/sanpham" className="detail-product__back-btn">
-                <FaTimes /> Quay lại
-            </Link>
+        <>
+            <Steps
+                key={forceRenderKey}
+                enabled={stepsEnabled}
+                steps={steps}
+                initialStep={initialStep}
+                onExit={onExit}
+                options={{
+                    nextLabel: 'Tiếp >',
+                    prevLabel: '< Quay lại',
+                    skipLabel: 'Bỏ qua', // HOẶC 'Thoát' TÙY Ý BẠN
+                    doneLabel: 'Hoàn thành',
+                    hidePrev: true,
+                    exitOnOverlayClick: false,
+                    showProgress: true,
+                    showBullets: true,
+                }}
+            />
+            <motion.div
+                className="detail-product"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+            >
+                <h1 className="detail-product__heading">Thêm mới sản phẩm</h1>
+                <Link to="/sanpham" className="detail-product__back-btn">
+                    <FaTimes /> Quay lại
+                </Link>
 
-            <form className="detail-product-form" onSubmit={handleSubmit} encType="multipart/form-data">
-                <div className="detail-product-form__group-container">
-                    <div className="detail-product-form__left">
-                        <div className="detail-product-form__group">
-                            <label className="detail-product-form__label">Mã sản phẩm (tự động):</label>
-                            <input
-                                className="detail-product-form__input"
-                                type="text"
-                                name="productCode"
-                                value={product.productCode}
-                                disabled
-                            />
-                        </div>
-                        <div className="detail-product-form__group">
-                            <label className="detail-product-form__label">Mã vạch:</label>
-                            <input
-                                className="detail-product-form__input"
-                                type="text"
-                                name="barcode"
-                                value={product.barcode}
-                                onChange={(e) => handleChange(e, 'barcode')}
-                                readOnly={isBarcodeDisabled}
-                                disabled={isBarcodeDisabled}
-                            />
-                            {/* Dòng gợi ý mới */}
-                            {!isBarcodeDisabled && (
-                                <p className="detail-product-form__help-text">
-                                    <span onClick={handleNoBarcodeClick}>Sản phẩm không có mã vạch?</span>
-                                </p>
-                            )}
-                            {isBarcodeDisabled && (
-                                <p className="detail-product-form__help-text--disabled">Mã vạch đã được tạo tự động</p>
-                            )}
-                        </div>
-                        <div className="detail-product-form__group">
-                            <label className="detail-product-form__label--required">Tên sản phẩm:</label>
-                            <input
-                                className="detail-product-form__input"
-                                type="text"
-                                name="name"
-                                value={product.name}
-                                onChange={(e) => handleChange(e, 'name')}
-                                required
-                            />
-                        </div>
-                        <div className="detail-product-form__group">
-                            <label className="detail-product-form__label--required">Nhóm hàng:</label>
-                            <select
-                                className="detail-product-form__select"
-                                required
-                                name="category"
-                                value={product.category}
-                                onChange={(e) => handleChange(e)}
-                            >
-                                <option value="">-- Chọn nhóm hàng --</option>
-                                {categories.map((category) => (
-                                    <option key={category.value} value={category.value}>
-                                        {category.label}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-                        <div className="detail-product-form__group">
-                            <label className="detail-product-form__label">Thương hiệu:</label>
-                            <select
-                                className="detail-product-form__select"
-                                required
-                                name="brand"
-                                value={product.brand}
-                                onChange={(e) => handleChange(e)}
-                            >
-                                <option value="">-- Chọn thương hiệu --</option>
-                                {brands.map((brand) => (
-                                    <option key={brand.value} value={brand.value}>
-                                        {brand.label}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-                        <div className="detail-product-form__group">
-                            <label className="detail-product-form__label--required">Đơn vị tính:</label>
-                            <select
-                                className="detail-product-form__select"
-                                required
-                                name="unit"
-                                value={product.unit}
-                                onChange={handleChange}
-                            >
-                                <option value="">-- Chọn đơn vị tính --</option>
-                                {units.map((unit) => (
-                                    <option key={unit.value} value={unit.value}>
-                                        {unit.label}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-                        <div className="detail-product-form__group">
-                            <label className="detail-product-form__label--required">
-                                Giá nhập: ({formatCurrency(product.purchasePrice)})
-                            </label>
-                            <input
-                                className="detail-product-form__input"
-                                required
-                                type="text"
-                                name="purchasePrice"
-                                value={product.purchasePrice}
-                                onChange={(e) => handleChange(e, 'purchasePrice')}
-                            />
-                        </div>
-                        <div className="detail-product-form__group">
-                            <label className="detail-product-form__label--required">
-                                Giá bán: ({formatCurrency(product.sellingPrice)})
-                            </label>
-                            <input
-                                className="detail-product-form__input"
-                                required
-                                type="text"
-                                name="sellingPrice"
-                                value={product.sellingPrice}
-                                onChange={(e) => handleChange(e, 'sellingPrice')}
-                            />
-                        </div>
+                <form className="detail-product-form" onSubmit={handleSubmit} encType="multipart/form-data">
+                    <div className="detail-product-form__group-container">
+                        <div className="detail-product-form__left">
+                            <div className="detail-product-form__group">
+                                <label className="detail-product-form__label">Mã sản phẩm (tự động):</label>
+                                <input
+                                    className="detail-product-form__input"
+                                    type="text"
+                                    name="productCode"
+                                    value={product.productCode}
+                                    disabled
+                                />
+                            </div>
+                            <div className="detail-product-form__group">
+                                <label className="detail-product-form__label">Mã vạch:</label>
+                                <input
+                                    className="detail-product-form__input"
+                                    type="text"
+                                    name="barcode"
+                                    value={product.barcode}
+                                    onChange={(e) => handleChange(e, 'barcode')}
+                                    readOnly={isBarcodeDisabled}
+                                    disabled={isBarcodeDisabled}
+                                />
+                                {/* Dòng gợi ý mới */}
+                                {!isBarcodeDisabled && (
+                                    <p className="detail-product-form__help-text">
+                                        <span onClick={handleNoBarcodeClick}>Sản phẩm không có mã vạch?</span>
+                                    </p>
+                                )}
+                                {isBarcodeDisabled && (
+                                    <p className="detail-product-form__help-text--disabled">
+                                        Mã vạch đã được tạo tự động
+                                    </p>
+                                )}
+                            </div>
+                            <div className="detail-product-form__group">
+                                <label className="detail-product-form__label--required">Tên sản phẩm:</label>
+                                <input
+                                    className="detail-product-form__input"
+                                    type="text"
+                                    name="name"
+                                    value={product.name}
+                                    onChange={(e) => handleChange(e, 'name')}
+                                    required
+                                />
+                            </div>
+                            <div className="detail-product-form__group">
+                                <label className="detail-product-form__label--required">Nhóm hàng:</label>
+                                <select
+                                    className="detail-product-form__select"
+                                    required
+                                    name="category"
+                                    value={product.category}
+                                    onChange={(e) => handleChange(e)}
+                                >
+                                    <option value="">-- Chọn nhóm hàng --</option>
+                                    {categories.map((category) => (
+                                        <option key={category.value} value={category.value}>
+                                            {category.label}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div className="detail-product-form__group">
+                                <label className="detail-product-form__label">Thương hiệu:</label>
+                                <select
+                                    className="detail-product-form__select"
+                                    required
+                                    name="brand"
+                                    value={product.brand}
+                                    onChange={(e) => handleChange(e)}
+                                >
+                                    <option value="">-- Chọn thương hiệu --</option>
+                                    {brands.map((brand) => (
+                                        <option key={brand.value} value={brand.value}>
+                                            {brand.label}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div className="detail-product-form__group">
+                                <label className="detail-product-form__label--required">Đơn vị tính:</label>
+                                <select
+                                    className="detail-product-form__select"
+                                    required
+                                    name="unit"
+                                    value={product.unit}
+                                    onChange={handleChange}
+                                >
+                                    <option value="">-- Chọn đơn vị tính --</option>
+                                    {units.map((unit) => (
+                                        <option key={unit.value} value={unit.value}>
+                                            {unit.label}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div className="detail-product-form__group">
+                                <label className="detail-product-form__label--required">
+                                    Giá nhập: ({formatCurrency(product.purchasePrice)})
+                                </label>
+                                <input
+                                    className="detail-product-form__input"
+                                    required
+                                    type="text"
+                                    name="purchasePrice"
+                                    value={product.purchasePrice}
+                                    onChange={(e) => handleChange(e, 'purchasePrice')}
+                                />
+                            </div>
+                            <div className="detail-product-form__group">
+                                <label className="detail-product-form__label--required">
+                                    Giá bán: ({formatCurrency(product.sellingPrice)})
+                                </label>
+                                <input
+                                    className="detail-product-form__input"
+                                    required
+                                    type="text"
+                                    name="sellingPrice"
+                                    value={product.sellingPrice}
+                                    onChange={(e) => handleChange(e, 'sellingPrice')}
+                                />
+                            </div>
 
-                        <div className="detail-product-form__image-section">
-                            <label className="detail-product-form__label--required">Ảnh sản phẩm:</label>
-                            <div className="detail-product-form__image-upload-container">
-                                <div className="detail-product-form__image-preview">
-                                    {imagePreview ? (
-                                        <img
-                                            src={imagePreview}
-                                            alt="Ảnh sản phẩm"
-                                            className="detail-product-form__image"
-                                        />
-                                    ) : (
-                                        <div className="detail-product-form__image-placeholder">
-                                            <label htmlFor="file-upload">Chưa có ảnh</label>
-                                        </div>
-                                    )}
-                                </div>
-                                <div className="detail-product-form__file-upload">
-                                    <div className="file-input-wrapper">
-                                        <label className="detail-product-form__label">Thay ảnh mới</label>
-                                        <div className="custom-file-upload">
-                                            <label htmlFor="file-upload" className="custom-file-label">
-                                                {imagePreview ? 'Chọn ảnh khác' : 'Chọn ảnh mới'}
-                                            </label>
-                                            <input
-                                                id="file-upload"
-                                                type="file"
-                                                onChange={handleImageChange}
-                                                required
-                                                accept=".png, .jpg, .jpeg"
-                                                style={{ cursor: 'pointer' }}
+                            <div className="detail-product-form__image-section">
+                                <label className="detail-product-form__label--required">Ảnh sản phẩm:</label>
+                                <div className="detail-product-form__image-upload-container">
+                                    <div className="detail-product-form__image-preview">
+                                        {imagePreview ? (
+                                            <img
+                                                src={imagePreview}
+                                                alt="Ảnh sản phẩm"
+                                                className="detail-product-form__image"
                                             />
-                                        </div>
-                                        {file && (
-                                            <div className="detail-product-form__file-name">
-                                                <p>
-                                                    File đã chọn: <b>{file.name}</b>
-                                                </p>
+                                        ) : (
+                                            <div className="detail-product-form__image-placeholder">
+                                                <label htmlFor="file-upload">Chưa có ảnh</label>
                                             </div>
                                         )}
                                     </div>
-                                    <div className="detail-product-form__guidelines">
-                                        <a href="#" target="_blank">
-                                            Hướng dẫn thêm sản phẩm mới
-                                        </a>
+                                    <div className="detail-product-form__file-upload">
+                                        <div className="file-input-wrapper">
+                                            <label className="detail-product-form__label">Thay ảnh mới</label>
+                                            <div className="custom-file-upload">
+                                                <label htmlFor="file-upload" className="custom-file-label">
+                                                    {imagePreview ? 'Chọn ảnh khác' : 'Chọn ảnh mới'}
+                                                </label>
+                                                <input
+                                                    id="file-upload"
+                                                    type="file"
+                                                    onChange={handleImageChange}
+                                                    required
+                                                    accept=".png, .jpg, .jpeg"
+                                                    style={{ cursor: 'pointer' }}
+                                                />
+                                            </div>
+                                            {file && (
+                                                <div className="detail-product-form__file-name">
+                                                    <p>
+                                                        File đã chọn: <b>{file.name}</b>
+                                                    </p>
+                                                </div>
+                                            )}
+                                        </div>
+                                        <div className="detail-product-form__guidelines">
+                                            <a
+                                                href="#"
+                                                target="_blank"
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    startTour();
+                                                }}
+                                            >
+                                                Hướng dẫn thêm sản phẩm mới
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="detail-product-form__right">
-                        <div className="detail-product-form__group">
-                            <label className="detail-product-form__label">Mô tả sản phẩm:</label>
-                            <textarea
-                                className="detail-product-form__textarea"
-                                placeholder="Nhập mô tả cho sản phẩm"
-                                name="description"
-                                value={product.description}
-                                onChange={(e) => handleChange(e, 'description')}
-                            />
-                        </div>
-                        <div className="detail-product-form__group">
-                            <label className="detail-product-form__label">Ghi chú:</label>
-                            <textarea
-                                className="detail-product-form__textarea"
-                                placeholder="Nhập ghi chú cho sản phẩm"
-                                name="notes"
-                                value={product.notes}
-                                onChange={(e) => handleChange(e, 'notes')}
-                            />
-                        </div>
-                        <div className="detail-product-form__group">
-                            <label className="detail-product-form__label">Nhà phân phối:</label>
-                            <select
-                                className="detail-product-form__select"
-                                required
-                                name="supplier.name"
-                                value={product.supplier.name}
-                                onChange={handleChange}
-                            >
-                                <option value="">-- Chọn nhà phân phối --</option>
-                                {suppliers.map((supp) => (
-                                    <option key={supp.value} value={supp.value}>
-                                        {supp.label}
-                                    </option>
-                                ))}
-                            </select>
-                            <div className="detail-product-form__supplier-details">
-                                <input
-                                    className="detail-product-form__input"
-                                    type="text"
-                                    name="supplier.contact"
-                                    placeholder="Số điện thoại liên hệ"
-                                    value={product.supplier.contact}
-                                    onChange={handleChange}
-                                    readOnly={product.supplier.name !== 'other'}
-                                />
-                                <input
-                                    className="detail-product-form__input"
-                                    type="text"
-                                    name="supplier.address"
-                                    placeholder="Địa chỉ"
-                                    value={product.supplier.address}
-                                    onChange={handleChange}
-                                    readOnly={product.supplier.name !== 'other'}
+                        <div className="detail-product-form__right">
+                            <div className="detail-product-form__group">
+                                <label className="detail-product-form__label">Mô tả sản phẩm:</label>
+                                <textarea
+                                    className="detail-product-form__textarea"
+                                    placeholder="Nhập mô tả cho sản phẩm"
+                                    name="description"
+                                    value={product.description}
+                                    onChange={(e) => handleChange(e, 'description')}
                                 />
                             </div>
-                        </div>
-                        <div className="detail-product-form__group">
-                            <div className="detail-product-form__batch-header">
-                                <label className="detail-product-form__label">Thông tin lô hàng</label>
-                                <i className="detail-product-form__batch-count">
-                                    Tổng số lô hàng đã nhập: {product.batches.length}
-                                </i>
+                            <div className="detail-product-form__group">
+                                <label className="detail-product-form__label">Ghi chú:</label>
+                                <textarea
+                                    className="detail-product-form__textarea"
+                                    placeholder="Nhập ghi chú cho sản phẩm"
+                                    name="notes"
+                                    value={product.notes}
+                                    onChange={(e) => handleChange(e, 'notes')}
+                                />
                             </div>
-
-                            <div className="detail-product-form__batch-inputs">
-                                <div>
-                                    <label className="detail-product-form__label">Ngày nhập hàng:</label>
-                                    <input
-                                        className="detail-product-form__input"
-                                        type="date"
-                                        name="entryDate"
-                                        value={batch.entryDate}
-                                        onChange={handleBatchChange}
-                                    />
-                                </div>
-                                <div>
-                                    <label className="detail-product-form__label">Ngày hết hạn:</label>
-                                    <input
-                                        className="detail-product-form__input"
-                                        type="date"
-                                        name="expirationDate"
-                                        value={batch.expirationDate}
-                                        onChange={handleBatchChange}
-                                    />
-                                </div>
-                                <div>
-                                    <label className="detail-product-form__label">Giá vốn</label>
-                                    <input
-                                        className="detail-product-form__input detail-product-form__input--readonly"
-                                        type="text"
-                                        name="purchasePrice"
-                                        readOnly
-                                        title="*Thay đổi Giá vốn bằng cách thay đổi Giá nhập sản phẩm"
-                                        value={formatCurrency(product.purchasePrice)}
-                                        onChange={(e) => handleBatchChange(e, 'purchasePrice')}
-                                    />
-                                </div>
-                                <div>
-                                    <label className="detail-product-form__label">Số lượng</label>
-                                    <input
-                                        className="detail-product-form__input"
-                                        type="number"
-                                        name="quantity"
-                                        value={batch.quantity}
-                                        onChange={(e) => handleBatchChange(e, 'quantity')}
-                                    />
-                                </div>
-                            </div>
-                            <div className="detail-product-form__batch-actions">
-                                <button className="detail-product-form__button" type="button" onClick={addBatch}>
-                                    <FaPlus /> Thêm lô hàng
-                                </button>
-
-                                <button
-                                    className={classNames(
-                                        'detail-product-form__button',
-                                        {
-                                            'detail-product-form__button--delete': deleteBatchMode,
-                                        },
-                                        'detail-product-form__button--edit',
-                                    )}
-                                    type="button"
-                                    disabled={product.batches.length === 0}
-                                    onClick={handleDeleteSelectedBatches}
+                            <div className="detail-product-form__group">
+                                <label className="detail-product-form__label">Nhà phân phối:</label>
+                                <select
+                                    className="detail-product-form__select"
+                                    required
+                                    name="supplier.name"
+                                    value={product.supplier.name}
+                                    onChange={handleChange}
                                 >
-                                    {deleteBatchMode ? (
-                                        selectedBatches.length > 0 ? (
-                                            <>
-                                                <FaTrashAlt /> Xóa lô đã chọn
-                                            </>
+                                    <option value="">-- Chọn nhà phân phối --</option>
+                                    {suppliers.map((supp) => (
+                                        <option key={supp.value} value={supp.value}>
+                                            {supp.label}
+                                        </option>
+                                    ))}
+                                </select>
+                                <div className="detail-product-form__supplier-details">
+                                    <input
+                                        className="detail-product-form__input"
+                                        type="text"
+                                        name="supplier.contact"
+                                        placeholder="Số điện thoại liên hệ"
+                                        value={product.supplier.contact}
+                                        onChange={handleChange}
+                                        readOnly={product.supplier.name !== 'other'}
+                                    />
+                                    <input
+                                        className="detail-product-form__input"
+                                        type="text"
+                                        name="supplier.address"
+                                        placeholder="Địa chỉ"
+                                        value={product.supplier.address}
+                                        onChange={handleChange}
+                                        readOnly={product.supplier.name !== 'other'}
+                                    />
+                                </div>
+                            </div>
+                            <div className="detail-product-form__group">
+                                <div className="detail-product-form__batch-header">
+                                    <label className="detail-product-form__label">Thông tin lô hàng</label>
+                                    <i className="detail-product-form__batch-count">
+                                        Tổng số lô hàng đã nhập: {product.batches.length}
+                                    </i>
+                                </div>
+
+                                <div className="detail-product-form__batch-inputs">
+                                    <div>
+                                        <label className="detail-product-form__label">Ngày nhập hàng:</label>
+                                        <input
+                                            className="detail-product-form__input"
+                                            type="date"
+                                            name="entryDate"
+                                            value={batch.entryDate}
+                                            onChange={handleBatchChange}
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="detail-product-form__label">Ngày hết hạn:</label>
+                                        <input
+                                            className="detail-product-form__input"
+                                            type="date"
+                                            name="expirationDate"
+                                            value={batch.expirationDate}
+                                            onChange={handleBatchChange}
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="detail-product-form__label">Giá vốn</label>
+                                        <input
+                                            className="detail-product-form__input detail-product-form__input--readonly"
+                                            type="text"
+                                            name="purchasePrice"
+                                            readOnly
+                                            title="*Thay đổi Giá vốn bằng cách thay đổi Giá nhập sản phẩm"
+                                            value={formatCurrency(product.purchasePrice)}
+                                            onChange={(e) => handleBatchChange(e, 'purchasePrice')}
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="detail-product-form__label">Số lượng</label>
+                                        <input
+                                            className="detail-product-form__input"
+                                            type="number"
+                                            name="quantity"
+                                            value={batch.quantity}
+                                            onChange={(e) => handleBatchChange(e, 'quantity')}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="detail-product-form__batch-actions">
+                                    <button className="detail-product-form__button" type="button" onClick={addBatch}>
+                                        <FaPlus /> Thêm lô hàng
+                                    </button>
+
+                                    <button
+                                        className={classNames(
+                                            'detail-product-form__button',
+                                            {
+                                                'detail-product-form__button--delete': deleteBatchMode,
+                                            },
+                                            'detail-product-form__button--edit',
+                                        )}
+                                        type="button"
+                                        disabled={product.batches.length === 0}
+                                        onClick={handleDeleteSelectedBatches}
+                                    >
+                                        {deleteBatchMode ? (
+                                            selectedBatches.length > 0 ? (
+                                                <>
+                                                    <FaTrashAlt /> Xóa lô đã chọn
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <FaTimes /> <span>Hủy bỏ</span>
+                                                </>
+                                            )
                                         ) : (
                                             <>
-                                                <FaTimes /> <span>Hủy bỏ</span>
+                                                <FaEdit /> Sửa, xóa lô hàng
                                             </>
-                                        )
-                                    ) : (
-                                        <>
-                                            <FaEdit /> Sửa, xóa lô hàng
-                                        </>
-                                    )}
-                                </button>
+                                        )}
+                                    </button>
+                                </div>
+                            </div>
+
+                            <ul className="detail-product-form__batch-list">
+                                {product.batches.length > 0 ? (
+                                    <>
+                                        {product.batches.map((batch, index) => (
+                                            <motion.li
+                                                key={index}
+                                                className={classNames('detail-product-form__batch-item', {
+                                                    'detail-product-form__batch-item--selected':
+                                                        selectedBatches.includes(index),
+                                                })}
+                                                initial={{ opacity: 0, x: -10 }}
+                                                animate={{ opacity: 1, x: 0 }}
+                                                transition={{ duration: 0.3, delay: index * 0.05 }}
+                                            >
+                                                <div className="detail-product-form__batch-info">
+                                                    <b>Số lô {index + 1}:</b>
+                                                    <p>
+                                                        Ngày nhập:{' '}
+                                                        {batch.entryDate
+                                                            ? formatDateFromYYYYMMDDToVietNamDate(batch.entryDate)
+                                                            : 'Không có'}
+                                                    </p>
+                                                    <p>
+                                                        Ngày hết hạn:{' '}
+                                                        {batch.expirationDate
+                                                            ? formatDateFromYYYYMMDDToVietNamDate(batch.expirationDate)
+                                                            : 'Không có'}
+                                                    </p>
+                                                    <p>Giá nhập: {formatCurrency(batch.purchasePrice)}</p>
+                                                    <p>Số lượng: {batch.quantity}</p>
+                                                </div>
+                                                {deleteBatchMode && (
+                                                    <input
+                                                        className="detail-product-form__batch-checkbox"
+                                                        type="checkbox"
+                                                        checked={selectedBatches.includes(index)}
+                                                        onChange={(e) => handleSelectBatch(e, index)}
+                                                    />
+                                                )}
+                                            </motion.li>
+                                        ))}
+                                    </>
+                                ) : (
+                                    <div>
+                                        <p>Chưa có lô hàng nào trong kho!</p>
+                                    </div>
+                                )}
+                            </ul>
+
+                            <div className="detail-product-form__actions">
+                                <motion.button
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    className="detail-product-form__button detail-product-form__button--save detail-product-form__button--saveCustom"
+                                    type="submit"
+                                >
+                                    <FaPlus /> Thêm sản phẩm
+                                </motion.button>
                             </div>
                         </div>
-
-                        <ul className="detail-product-form__batch-list">
-                            {product.batches.length > 0 ? (
-                                <>
-                                    {product.batches.map((batch, index) => (
-                                        <motion.li
-                                            key={index}
-                                            className={classNames('detail-product-form__batch-item', {
-                                                'detail-product-form__batch-item--selected':
-                                                    selectedBatches.includes(index),
-                                            })}
-                                            initial={{ opacity: 0, x: -10 }}
-                                            animate={{ opacity: 1, x: 0 }}
-                                            transition={{ duration: 0.3, delay: index * 0.05 }}
-                                        >
-                                            <div className="detail-product-form__batch-info">
-                                                <b>Số lô {index + 1}:</b>
-                                                <p>
-                                                    Ngày nhập:{' '}
-                                                    {batch.entryDate
-                                                        ? formatDateFromYYYYMMDDToVietNamDate(batch.entryDate)
-                                                        : 'Không có'}
-                                                </p>
-                                                <p>
-                                                    Ngày hết hạn:{' '}
-                                                    {batch.expirationDate
-                                                        ? formatDateFromYYYYMMDDToVietNamDate(batch.expirationDate)
-                                                        : 'Không có'}
-                                                </p>
-                                                <p>Giá nhập: {formatCurrency(batch.purchasePrice)}</p>
-                                                <p>Số lượng: {batch.quantity}</p>
-                                            </div>
-                                            {deleteBatchMode && (
-                                                <input
-                                                    className="detail-product-form__batch-checkbox"
-                                                    type="checkbox"
-                                                    checked={selectedBatches.includes(index)}
-                                                    onChange={(e) => handleSelectBatch(e, index)}
-                                                />
-                                            )}
-                                        </motion.li>
-                                    ))}
-                                </>
-                            ) : (
-                                <div>
-                                    <p>Chưa có lô hàng nào trong kho!</p>
-                                </div>
-                            )}
-                        </ul>
-
-                        <div className="detail-product-form__actions">
-                            <motion.button
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="detail-product-form__button detail-product-form__button--save detail-product-form__button--saveCustom"
-                                type="submit"
-                            >
-                                <FaPlus /> Thêm sản phẩm
-                            </motion.button>
-                        </div>
                     </div>
-                </div>
-            </form>
-        </motion.div>
+                </form>
+            </motion.div>
+        </>
     );
 };
 
