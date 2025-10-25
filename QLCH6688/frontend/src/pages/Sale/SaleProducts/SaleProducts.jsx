@@ -194,8 +194,8 @@ const SaleProducts = ({ product_list, formatCurrency, urlImage, addToCart }) => 
                         ))
                     ) : (
                         <div className="sale-products-grid-container__message">
-                            Không tìm thấy sản phẩm nào trong danh mục **
-                            {getDisplayCategoryName(selectedCategory)}** để hiển thị nhanh.
+                            Không tìm thấy sản phẩm nào trong danh mục
+                            <strong> {getDisplayCategoryName(selectedCategory)}</strong> để hiển thị nhanh.
                         </div>
                     )}
                 </div>

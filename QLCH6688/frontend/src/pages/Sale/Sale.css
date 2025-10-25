@@ -211,12 +211,27 @@
 
 /* Element: Tiêu đề */
 .sale-products-grid-container h3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-top: 0;
     margin-bottom: 15px;
     font-size: 18px;
     color: var(--third-color);
     padding-bottom: 10px;
     border-bottom: 1px solid var(--border-color);
+}
+
+.sale-products-grid-container h3 a.sale-products-guide {
+    font-size: 16px;
+    font-weight: 500;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.sale-products-grid-container h3 a.sale-products-guide:hover {
+    color: var(--fourth-color);
+    text-decoration: underline;
 }
 
 .cart-item-container {

@@ -25,7 +25,7 @@ const AddProduct = () => {
     // Thêm state mới để quản lý trạng thái của trường mã vạch
     const [isBarcodeDisabled, setIsBarcodeDisabled] = useState(false);
 
-    const [stepsEnabled, setStepsEnabled] = useState(false); // Mặc định tắt, sẽ kiểm tra localStorage
+    const [stepsEnabled, setStepsEnabled] = useState(false);
     const [initialStep, setInitialStep] = useState(0);
     const [forceRenderKey, setForceRenderKey] = useState(0);
 
@@ -45,14 +45,10 @@ const AddProduct = () => {
         batches: [],
     };
 
-    // Sử dụng custom hook để quản lý API, chỉ cần addProduct
-    // LƯU Ý: Giả định hook useProductApi có hàm fetchLastProductCode
     const { isLoading, error, addProduct, fetchLastProductCode } = useProductApi();
 
-    // Sử dụng useCallback để đảm bảo fetchLastProductCode không thay đổi
     const memoizedFetchLastProductCode = useCallback(fetchLastProductCode, []);
 
-    // Sử dụng custom hook để quản lý form và lấy mã sản phẩm tự động
     const {
         product,
         setProduct,
@@ -76,51 +72,52 @@ const AddProduct = () => {
     // 💡 LOGIC CỦA INTRO.JS TOUR
     const steps = [
         {
-            intro: 'Chào mừng bạn đến với trang <strong>Thêm mới sản phẩm</strong>! Chúng ta sẽ đi qua các bước nhập liệu chính.',
-        },
-        {
-            element: '.detail-product__heading',
-            intro: 'Chào mừng bạn đến với trang <strong>Thêm mới sản phẩm</strong>! Chúng ta sẽ đi qua các bước nhập liệu chính.',
+            intro: 'Chào mừng bạn đến với trang <b>Thêm mới sản phẩm</b>! Chúng ta sẽ đi qua các bước nhập liệu chính.',
         },
         {
             element: 'input[name="productCode"]',
-            intro: 'Đây là <strong>Mã sản phẩm</strong> được hệ thống tự động tạo. Bạn có thể sử dụng mã này để tìm kiếm sản phẩm nhanh chóng.',
+            intro: 'Đây là <b>Mã sản phẩm</b> được hệ thống tự động tạo. Bạn có thể sử dụng mã này để tìm kiếm sản phẩm nhanh chóng.',
         },
         {
             element: 'input[name="barcode"]',
-            intro: 'Bạn có thể nhập <strong>Mã vạch</strong> sản phẩm tại đây. Hoặc nếu sản phẩm không có mã vạch, hãy nhấn vào liên kết bên dưới để hệ thống tự động tạo mã vạch tùy chỉnh.',
+            intro: 'Bạn có thể nhập <b>Mã vạch</b> sản phẩm tại đây. Hoặc nếu sản phẩm không có mã vạch, hãy nhấn vào liên kết bên dưới để hệ thống tự động tạo mã vạch tùy chỉnh.',
         },
         {
             element: 'input[name="name"]',
-            intro: 'Trường này là bắt buộc. Nhập <strong>Tên sản phẩm</strong> rõ ràng, dễ nhớ.',
+            intro: 'Trường này là bắt buộc. Nhập <b>Tên sản phẩm</b> rõ ràng, dễ nhớ.',
         },
         {
-            element: 'select[name="category"]',
-            intro: 'Chọn <strong>Nhóm hàng</strong> và các thông tin cơ bản khác như Thương hiệu, Đơn vị tính.',
+            element: '.detail-product-form__group-row',
+            intro: 'Chọn <b>Nhóm hàng</b> và các thông tin cơ bản khác như <b>Thương hiệu, Đơn vị tính</b>.',
         },
         {
             element: 'input[name="purchasePrice"]',
-            intro: 'Nhập <strong>Giá nhập (Giá vốn), Giá bán</strong> của sản phẩm. Giá nhập (Giá vốn) này sẽ được áp dụng tự động cho các lô hàng mới.',
+            intro: 'Nhập <b>Giá nhập (Giá vốn), Giá bán</b> của sản phẩm. Giá nhập (Giá vốn) này sẽ được áp dụng tự động cho các lô hàng mới.',
         },
         {
             element: '.detail-product-form__image-section',
-            intro: 'Hãy chọn một <strong>Ảnh sản phẩm</strong> để dễ dàng quản lý.',
+            intro: 'Hãy chọn một <b>Ảnh sản phẩm</b> để dễ dàng quản lý.',
         },
         {
-            element: 'select[name="supplier.name"]',
-            intro: 'Chọn <strong>Nhà phân phối</strong> sản phẩm. Nếu là nhà phân phối mới, bạn có thể chọn "Khác" để nhập thông tin liên hệ và địa chỉ ở phía dưới.',
+            element: '.detail-product-form__group-description-notes',
+            intro: 'Tại đây bạn có thể cung cấp <b>Thông tin mô tả & ghi chú</b> cho sản phẩm. (có thể để trống)',
+            position: 'left',
+        },
+        {
+            element: '.detail-product-form__label-nha-phan-phoi',
+            intro: 'Chọn <b>Nhà phân phối</b> sản phẩm. Nếu là nhà phân phối mới, bạn có thể chọn "Khác" để nhập thông tin liên hệ và địa chỉ ở phía dưới.',
         },
         {
             element: '.detail-product-form__batch-inputs',
-            intro: 'Mỗi sản phẩm cần có ít nhất một <strong>Lô hàng</strong>. Hãy điền ngày nhập, ngày hết hạn (nếu có), và <strong>Số lượng</strong> trong lô này. Giá vốn đã được lấy tự động.',
+            intro: 'Mỗi sản phẩm cần có ít nhất một <b>Lô hàng</b>. Hãy điền ngày nhập, ngày hết hạn (nếu có), và <b>Số lượng</b> trong lô này. Giá vốn đã được lấy tự động.',
         },
         {
             element: '.detail-product-form__batch-actions > button:first-child',
-            intro: 'Nhấn <strong>Thêm lô hàng</strong> để lưu lô này vào danh sách. Bạn có thể thêm nhiều lô khác nhau.',
+            intro: 'Nhấn <b>Thêm lô hàng</b> để lưu lô này vào danh sách. Bạn có thể thêm nhiều lô khác nhau.',
         },
         {
             element: 'button[type="submit"]',
-            intro: 'Cuối cùng, nhấn <strong>Thêm sản phẩm</strong> để hoàn tất quá trình và đưa sản phẩm vào kho.',
+            intro: 'Cuối cùng, nhấn <b>Thêm sản phẩm</b> để hoàn tất quá trình và đưa sản phẩm vào kho.',
         },
     ];
 
@@ -311,56 +308,58 @@ const AddProduct = () => {
                                     required
                                 />
                             </div>
-                            <div className="detail-product-form__group">
-                                <label className="detail-product-form__label--required">Nhóm hàng:</label>
-                                <select
-                                    className="detail-product-form__select"
-                                    required
-                                    name="category"
-                                    value={product.category}
-                                    onChange={(e) => handleChange(e)}
-                                >
-                                    <option value="">-- Chọn nhóm hàng --</option>
-                                    {categories.map((category) => (
-                                        <option key={category.value} value={category.value}>
-                                            {category.label}
-                                        </option>
-                                    ))}
-                                </select>
-                            </div>
-                            <div className="detail-product-form__group">
-                                <label className="detail-product-form__label">Thương hiệu:</label>
-                                <select
-                                    className="detail-product-form__select"
-                                    required
-                                    name="brand"
-                                    value={product.brand}
-                                    onChange={(e) => handleChange(e)}
-                                >
-                                    <option value="">-- Chọn thương hiệu --</option>
-                                    {brands.map((brand) => (
-                                        <option key={brand.value} value={brand.value}>
-                                            {brand.label}
-                                        </option>
-                                    ))}
-                                </select>
-                            </div>
-                            <div className="detail-product-form__group">
-                                <label className="detail-product-form__label--required">Đơn vị tính:</label>
-                                <select
-                                    className="detail-product-form__select"
-                                    required
-                                    name="unit"
-                                    value={product.unit}
-                                    onChange={handleChange}
-                                >
-                                    <option value="">-- Chọn đơn vị tính --</option>
-                                    {units.map((unit) => (
-                                        <option key={unit.value} value={unit.value}>
-                                            {unit.label}
-                                        </option>
-                                    ))}
-                                </select>
+                            <div className="detail-product-form__group-row">
+                                <div className="detail-product-form__group">
+                                    <label className="detail-product-form__label--required">Nhóm hàng:</label>
+                                    <select
+                                        className="detail-product-form__select"
+                                        required
+                                        name="category"
+                                        value={product.category}
+                                        onChange={(e) => handleChange(e)}
+                                    >
+                                        <option value="">-- Chọn nhóm hàng --</option>
+                                        {categories.map((category) => (
+                                            <option key={category.value} value={category.value}>
+                                                {category.label}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+                                <div className="detail-product-form__group">
+                                    <label className="detail-product-form__label">Thương hiệu:</label>
+                                    <select
+                                        className="detail-product-form__select"
+                                        required
+                                        name="brand"
+                                        value={product.brand}
+                                        onChange={(e) => handleChange(e)}
+                                    >
+                                        <option value="">-- Chọn thương hiệu --</option>
+                                        {brands.map((brand) => (
+                                            <option key={brand.value} value={brand.value}>
+                                                {brand.label}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+                                <div className="detail-product-form__group">
+                                    <label className="detail-product-form__label--required">Đơn vị tính:</label>
+                                    <select
+                                        className="detail-product-form__select"
+                                        required
+                                        name="unit"
+                                        value={product.unit}
+                                        onChange={handleChange}
+                                    >
+                                        <option value="">-- Chọn đơn vị tính --</option>
+                                        {units.map((unit) => (
+                                            <option key={unit.value} value={unit.value}>
+                                                {unit.label}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
                             </div>
                             <div className="detail-product-form__group">
                                 <label className="detail-product-form__label--required">
@@ -446,27 +445,29 @@ const AddProduct = () => {
                             </div>
                         </div>
                         <div className="detail-product-form__right">
-                            <div className="detail-product-form__group">
-                                <label className="detail-product-form__label">Mô tả sản phẩm:</label>
-                                <textarea
-                                    className="detail-product-form__textarea"
-                                    placeholder="Nhập mô tả cho sản phẩm"
-                                    name="description"
-                                    value={product.description}
-                                    onChange={(e) => handleChange(e, 'description')}
-                                />
+                            <div className="detail-product-form__group-description-notes">
+                                <div className="detail-product-form__group">
+                                    <label className="detail-product-form__label">Mô tả sản phẩm:</label>
+                                    <textarea
+                                        className="detail-product-form__textarea"
+                                        placeholder="Nhập mô tả cho sản phẩm"
+                                        name="description"
+                                        value={product.description}
+                                        onChange={(e) => handleChange(e, 'description')}
+                                    />
+                                </div>
+                                <div className="detail-product-form__group">
+                                    <label className="detail-product-form__label">Ghi chú:</label>
+                                    <textarea
+                                        className="detail-product-form__textarea"
+                                        placeholder="Nhập ghi chú cho sản phẩm"
+                                        name="notes"
+                                        value={product.notes}
+                                        onChange={(e) => handleChange(e, 'notes')}
+                                    />
+                                </div>
                             </div>
-                            <div className="detail-product-form__group">
-                                <label className="detail-product-form__label">Ghi chú:</label>
-                                <textarea
-                                    className="detail-product-form__textarea"
-                                    placeholder="Nhập ghi chú cho sản phẩm"
-                                    name="notes"
-                                    value={product.notes}
-                                    onChange={(e) => handleChange(e, 'notes')}
-                                />
-                            </div>
-                            <div className="detail-product-form__group">
+                            <div className="detail-product-form__group detail-product-form__label-nha-phan-phoi">
                                 <label className="detail-product-form__label">Nhà phân phối:</label>
                                 <select
                                     className="detail-product-form__select"
